@@ -87,12 +87,12 @@ wzard_attack2_rect = wzard_attack2_image.get_rect()
 name2_text = pygame.font.SysFont("Moncerat", 20)
 name2_text = name2_text.render(player2.name, True, white)
 name2_text_rect = name2_text.get_rect()
-name2_text_rect.center = (610,305)
+name2_text_rect.center = (590,435)
 
 lvl2_text = pygame.font.SysFont("Moncerat", 16)
 lvl2_text = lvl2_text.render("lvl " + str(player2.level), True, yellow)
 lvl2_text_rect = lvl2_text.get_rect()
-lvl2_text_rect.center = (605,315)
+lvl2_text_rect.center = (585,445)
 
 
 
@@ -107,7 +107,7 @@ while lets_continue:
 
         # Firemag
         if mag == 1 and fmag == 1:
-            keys = pygame.key()
+            keys = pygame.key.get_pressed()
             if keys [pygame.K_w]:
                 fzard_rect.y = fzard_rect.y - distance
                 fzard2_rect.y = fzard2_rect.y - distance
