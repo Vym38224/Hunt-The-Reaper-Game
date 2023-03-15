@@ -94,14 +94,20 @@ while lets_continue:
         if keys [pygame.K_w]:
             fzard_rect.y = fzard_rect.y - distance
             fzard2_rect.y = fzard2_rect.y - distance
+            wzard_rect.y = wzard_rect.y - distance
+            wzard2_rect.y = wzard2_rect.y - distance
             name_text_rect.y = name_text_rect.y - distance  
             lvl_text_rect.y = lvl_text_rect.y - distance
         elif keys [pygame.K_s]:
             fzard_rect.y = fzard_rect.y + distance
             fzard2_rect.y = fzard2_rect.y + distance
+            wzard_rect.y = wzard_rect.y + distance
+            wzard2_rect.y = wzard2_rect.y + distance
             name_text_rect.y = name_text_rect.y + distance
             lvl_text_rect.y = lvl_text_rect.y + distance
         elif keys [pygame.K_a]:
+            wzard_rect.x = wzard_rect.x - distance
+            wzard2_rect.x = wzard2_rect.x - distance
             fzard_rect.x = fzard_rect.x - distance
             fzard2_rect.x = fzard2_rect.x - distance
             name_text_rect.x = name_text_rect.x - distance
@@ -110,6 +116,8 @@ while lets_continue:
             mirror = 1
             fire_attack = 0
         elif keys [pygame.K_d]:
+            wzard_rect.x = wzard_rect.x + distance
+            wzard2_rect.x = wzard2_rect.x + distance
             fzard_rect.x = fzard_rect.x + distance
             fzard2_rect.x = fzard2_rect.x + distance
             name_text_rect.x = name_text_rect.x + distance

@@ -40,7 +40,7 @@ class ArcherPlayer(Player):
 background = Background(("img/background.png"))
     
 #lidi
-player0 = Player("Sam", 1,("img/human.png"),("img/human_attack.png"))
+player0 = Player("Sam", 1,("img/human.png"),("img/human_attack.png"),("img/human2.png"),("img/human_attack2.png"))
 
 #kouzelníci
 player1 = WizardPlayer("Dave","fire", 1,("img/firemag.png"),("img/firemag2.png"),("img/fireball.png"),("img/fireball2.png"))
