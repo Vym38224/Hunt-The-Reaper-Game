@@ -31,7 +31,7 @@ click_x = 0
 click_y = 0
 attack_x = 1
 attack_1x = -1* attack_x
-attack_speed = 9
+attack_speed = 8
 mag = 1
 fmag = 0
 wmag = 1
@@ -76,7 +76,7 @@ wzard_rect.center = (width//2, height//2)
 
 wzard2_image = loadify(player2.img2)
 wzard2_rect = wzard_image.get_rect()
-wzard2_rect.center = (width//2, height//2)
+wzard2_rect.center = (width//2 , height//2 )
 
 wzard_attack_image = loadify(player2.img_attack)
 wzard_attack_rect = wzard_attack_image.get_rect()
@@ -87,12 +87,12 @@ wzard_attack2_rect = wzard_attack2_image.get_rect()
 name2_text = pygame.font.SysFont("Moncerat", 20)
 name2_text = name2_text.render(player2.name, True, white)
 name2_text_rect = name2_text.get_rect()
-name2_text_rect.center = (600,440)
+name2_text_rect.center = (610,305)
 
 lvl2_text = pygame.font.SysFont("Moncerat", 16)
 lvl2_text = lvl2_text.render("lvl " + str(player2.level), True, yellow)
 lvl2_text_rect = lvl2_text.get_rect()
-lvl2_text_rect.center = (600,450)
+lvl2_text_rect.center = (605,315)
 
 
 
@@ -107,7 +107,7 @@ while lets_continue:
 
         # Firemag
         if mag == 1 and fmag == 1:
-            keys = pygame.key.get_pressed()
+            keys = pygame.key()
             if keys [pygame.K_w]:
                 fzard_rect.y = fzard_rect.y - distance
                 fzard2_rect.y = fzard2_rect.y - distance
@@ -184,7 +184,7 @@ while lets_continue:
                 mirror = 0
                 water_attack = 0
             elif keys [pygame.K_SPACE]:
-                wzard_attack_rect.center = (wzard_rect.x + 150,wzard_rect.y + 80)
+                wzard_attack_rect.center = (wzard_rect.x + 90,wzard_rect.y + 80)
                 wzard_attack2_rect.center = (wzard_rect.x + 60,wzard_rect.y + 80)
                 water_attack += 1
 
