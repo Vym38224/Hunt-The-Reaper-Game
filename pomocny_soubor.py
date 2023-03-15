@@ -9,7 +9,7 @@ from SaveLoadManager import SaveLoadSystem
 ##
 ############ ZÁKLADNÍ NASTAVENÍ ############
 ##
-##
+##ahoj
 ##
    
 # INICIALIZACE HRY 
@@ -40,7 +40,6 @@ lblue = (50,155,255)
 orange = (255,155,0)
 yellow = (250,250,0)
 lorange = (255,200,0)
-beige = (245,245,220)
 screen_color = (0,95,0)
 
 # ZÁKLADNÍ NASTAVENÍ
