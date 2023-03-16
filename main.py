@@ -1,6 +1,7 @@
 import pygame
 from players import *
 
+# načtení IMG
 def loadify(imgname):
     return pygame.image.load(imgname).convert_alpha()
 
