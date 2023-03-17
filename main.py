@@ -27,11 +27,14 @@ green = (124, 252, 0)
 # Nastavení
 fps = 60
 clock = pygame.time.Clock()
+#---------------------------#
 mag = 1
 fmag = 1
 wmag = 0
+#---------------------------#
+enemy = 1
 scelet = 1
-
+#---------------------------#
 mirror = 0
 fire_attack = 0
 wire_attack = 0
@@ -127,18 +130,25 @@ name2_text = name2_text.render(player2.name, True, white)
 name2_text_rect = name2_text.get_rect()
 name2_text_rect.center = (592,435)
 
+
+
+# Portal
+if enemy == 1:
+    portal_image = loadify("img/portal.png")
+    portal_image_rect = portal_image.get_rect()
+    portal_image_rect.center = (width//2 + 500, height//2 - 250)
 # Sceleton
-if scelet == 1:
-    scelet_image = loadify(enemy0.img)
-    scelet_rect = scelet_image.get_rect()
-    scelet_rect.center = (width//2 + 400, height//2 )
+    if scelet == 1:
+        scelet_image = loadify(enemy0.img)
+        scelet_rect = scelet_image.get_rect()
+        scelet_rect.center = (width//2 + 500, height//2 - 250)
 
-    e_name_text = pygame.font.SysFont("Moncerat", 20)
-    e_name_text = e_name_text.render(enemy0.name, True, red)
-    e_name_text_rect = e_name_text.get_rect()
-    e_name_text_rect.center = (992,435)
+        e_name_text = pygame.font.SysFont("Moncerat", 20)
+        e_name_text = e_name_text.render(enemy0.name, True, red)
+        e_name_text_rect = e_name_text.get_rect()
+        e_name_text_rect.center = (992,435)
 
-
+    
 
 #### HLAVNÍ CYKLUS ####
 
@@ -149,7 +159,14 @@ while lets_continue:
         if event.type == pygame.QUIT:
             lets_continue = False
 
+
+### OBJEKTY ###
+
+# bg
     screen.blit(background_img, background_img_rect)
+# Portal
+    if enemy == 1:
+        screen.blit(portal_image,portal_image_rect)
 
 
 ### POSTAVY ###
@@ -276,7 +293,7 @@ while lets_continue:
             screen.blit(hp2_text,hp2_text_rect)
         
     # Sceleton
-    if scelet == 1:
+    if enemy ==1 and scelet == 1:
         hp3_text = pygame.font.SysFont("Moncerat", 18)
         if scelet_hp > 0:      
             hp3_text = hp3_text.render("HP: " + f"{scelet_hp}", True, white)
@@ -301,6 +318,8 @@ while lets_continue:
             
         if scelet_rect.left >= 1000: 
             scelet_image = loadify(enemy0.img)
+    
+    
             
         
 
@@ -343,6 +362,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f2.write(str_wmag_hp)
             f2.close()
+
+    if scelet_rect.colliderect(fzard_rect) or scelet_rect.colliderect(fzard2_rect):
         if fmag == 1:
             fmag_hp -= 1
             str_fmag_hp = str(fmag_hp)
@@ -353,8 +374,6 @@ while lets_continue:
             text = f1.write(str_fmag_hp)
             f1.close()
 
-    if wmag_hp == 0:
-        print("nemáš hapka debile")
 
     pygame.display.update()
     clock.tick_busy_loop(fps)
