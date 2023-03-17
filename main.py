@@ -42,7 +42,7 @@ attack_1x = -1* attack_x
 scelet_x = random.choice ([-1,1])
 scelet_y = random.choice([-1,1])
 
-scelet_speed = 4
+scelet_speed = 3
 attack_speed = 8
 distance = 9
 
@@ -128,15 +128,15 @@ name2_text_rect = name2_text.get_rect()
 name2_text_rect.center = (592,435)
 
 # Sceleton
+if scelet == 1:
+    scelet_image = loadify(enemy0.img)
+    scelet_rect = scelet_image.get_rect()
+    scelet_rect.center = (width//2 + 400, height//2 )
 
-scelet_image = loadify(enemy0.img)
-scelet_rect = scelet_image.get_rect()
-scelet_rect.center = (width//2 + 400, height//2 )
-
-e_name_text = pygame.font.SysFont("Moncerat", 20)
-e_name_text = e_name_text.render(enemy0.name, True, red)
-e_name_text_rect = e_name_text.get_rect()
-e_name_text_rect.center = (992,435)
+    e_name_text = pygame.font.SysFont("Moncerat", 20)
+    e_name_text = e_name_text.render(enemy0.name, True, red)
+    e_name_text_rect = e_name_text.get_rect()
+    e_name_text_rect.center = (992,435)
 
 
 
@@ -158,11 +158,11 @@ while lets_continue:
     # Firemag
     if mag == 1 and fmag == 1:
         hp1_text = pygame.font.SysFont("Moncerat", 18)
-        if fmag_hp >= 75:
+        if fmag_hp >= 250:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, green)
-        if fmag_hp >= 37.5 and fmag_hp < 75:
+        if fmag_hp >= 125 and fmag_hp < 250:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, yellow)
-        if fmag_hp >= 0 and fmag_hp < 37.5:
+        if fmag_hp >= 0 and fmag_hp < 125:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, red)
         if fmag_hp < 0:
             hp1_text = hp1_text.render("HP (seš mrtvej sračko): " + f"{fmag_hp}", True, red)
@@ -280,22 +280,22 @@ while lets_continue:
         hp3_text = pygame.font.SysFont("Moncerat", 18)
         if scelet_hp > 0:      
             hp3_text = hp3_text.render("HP: " + f"{scelet_hp}", True, white)
+            hp3_text_rect = hp3_text.get_rect()
+            hp3_text_rect.center = (scelet_rect.x + 30, scelet_rect.y + 125)
+            screen.blit(hp3_text,hp3_text_rect)
         if scelet_hp <= 0:
-            hp3_text = hp3_text.render("HP (seš mrtvej sračko): " + f"{scelet_hp}", True, red)
-        hp3_text_rect = hp3_text.get_rect()
-        hp3_text_rect.center = (scelet_rect.x + 30, scelet_rect.y + 125)
+            scelet = 0
         e_name_text_rect.center = (scelet_rect.x + 30, scelet_rect.y + 110)
         screen.blit(scelet_image,scelet_rect)
-        screen.blit(hp3_text,hp3_text_rect)
         screen.blit(e_name_text,e_name_text_rect)
         scelet_rect.x += scelet_x * scelet_speed
         scelet_rect.y += scelet_y * scelet_speed
-        if scelet_rect.left < 0 or scelet_rect.left > width - 120:
+        if scelet_rect.left < 120 or scelet_rect.left > width - 120:
             scelet_x = -1 * scelet_x
         elif scelet_rect.top < 25 or scelet_rect.bottom > height - 120:
             scelet_y = -1 * scelet_y
 
-        if scelet_rect.left < 0: 
+        if scelet_rect.left < 130: 
             scelet_image = loadify(enemy0.img2)
                 
             
@@ -303,7 +303,6 @@ while lets_continue:
             scelet_image = loadify(enemy0.img)
             
         
-
 
 ### KONTROLA KOLIZE ###
 
@@ -329,6 +328,10 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f3.write(str_scelet_hp)
             f3.close()
+
+        if scelet_hp <= 0:
+            scelet = 0
+
 
     if scelet_rect.colliderect(wzard_rect) or scelet_rect.colliderect(wzard2_rect):
         if wmag == 1:
