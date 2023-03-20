@@ -28,12 +28,34 @@ green = (124, 252, 0)
 fps = 60
 clock = pygame.time.Clock()
 #---------------------------#
-mag = 1
-fmag = 1
-wmag = 0
+# Hráč v poli
+player_fmag = int()
+player_fmag_str=str(player_fmag)
+try:
+    f_fmag = open("player_fmag.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_fmag.read(player_fmag)
+f_fmag.close()
+
+player_wmag = int()
+player_wmag_str=str(player_wmag)
+try:
+    f_player_wmag = open("player_wmag.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_player_wmag.read(player_wmag)
+
 #---------------------------#
-enemy = 1
-scelet = 1
+# Nepřítel v poli
+enemy = int()
+enemy_str=str(enemy)
+try:
+    f_enemies = open("enemies.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemies.read(enemy)
+
 #---------------------------#
 mirror = 0
 fire_attack = 0
@@ -50,7 +72,7 @@ attack_speed = 8
 distance = 9
 
 fmag_hp = (player1.hp)
-if fmag == 1:
+if player_fmag > 0:
     str_fmag_hp = str(fmag_hp)
     try:
         f1 = open("fmag_hp.txt", "r")
@@ -60,7 +82,7 @@ if fmag == 1:
     f1.close()
 
 wmag_hp = (player2.hp)
-if wmag == 1:
+if player_wmag > 0:
     str_wmag_hp = str(wmag_hp)
     try:
         f2 = open("wmag_hp.txt", "r")
@@ -70,7 +92,7 @@ if wmag == 1:
     f2.close()
 
 scelet_hp = (enemy0.hp)
-if scelet == 1:
+if enemy == 1:
     str_scelet_hp = str(scelet_hp)
     try:
         f3 = open("scelet_hp.txt", "r")
@@ -133,22 +155,21 @@ name2_text_rect.center = (592,435)
 
 
 # Portal
-if enemy == 1:
+if enemy >= 1:
     portal_image = loadify("img/portal.png")
     portal_image_rect = portal_image.get_rect()
     portal_image_rect.center = (width//2 + 500, height//2 - 250)
+
 # Sceleton
-    if scelet == 1:
-        scelet_image = loadify(enemy0.img)
-        scelet_rect = scelet_image.get_rect()
-        scelet_rect.center = (width//2 + 500, height//2 - 250)
+scelet_image = loadify(enemy0.img)
+scelet_rect = scelet_image.get_rect()
+scelet_rect.center = (width//2 + 500, height//2 - 250)
 
-        e_name_text = pygame.font.SysFont("Moncerat", 20)
-        e_name_text = e_name_text.render(enemy0.name, True, red)
-        e_name_text_rect = e_name_text.get_rect()
-        e_name_text_rect.center = (992,435)
+e_name_text = pygame.font.SysFont("Moncerat", 20)
+e_name_text = e_name_text.render(enemy0.name, True, red)
+e_name_text_rect = e_name_text.get_rect()
+e_name_text_rect.center = (992,435)
 
-    
 
 #### HLAVNÍ CYKLUS ####
 
@@ -165,15 +186,55 @@ while lets_continue:
 # bg
     screen.blit(background_img, background_img_rect)
 # Portal
-    if enemy == 1:
+    if enemy >= 1:
         screen.blit(portal_image,portal_image_rect)
 
 
 ### POSTAVY ###
+    keys = pygame.key.get_pressed()
+    if keys [pygame.K_1]:
+        player_fmag += 1
+        player_fmag_str = str(player_fmag)
+        try:
+            f_fmag = open("player_fmag.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_fmag.write(player_fmag_str)
+        f_fmag.close()
+        if player_wmag > 0:
+            player_wmag -= 10
+            player_wmag_str = str(player_wmag)
+            try:
+                f_wmag = open("player_wmag.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_wmag.write(player_wmag_str)
+            f_wmag.close()
+
+    keys = pygame.key.get_pressed()
+    if keys [pygame.K_2]:
+        player_wmag += 1
+        player_wmag_str = str(player_wmag)
+        try:
+            f_wmag = open("player_wmag.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_wmag.write(player_wmag_str)
+        f_wmag.close()
+        if player_fmag > 0:
+            player_fmag -= 10
+            player_fmag_str = str(player_fmag)
+            try:
+                f_fmag = open("player_fmag.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_fmag.write(player_fmag_str)
+            f_fmag.close()
+
 
 
     # Firemag
-    if mag == 1 and fmag == 1:
+    if player_fmag > 0:
         hp1_text = pygame.font.SysFont("Moncerat", 18)
         if fmag_hp >= 250:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, green)
@@ -233,7 +294,7 @@ while lets_continue:
             screen.blit(hp1_text,hp1_text_rect)
 
     # Water mag
-    if mag == 1 and wmag == 1:
+    if player_wmag > 0:
         hp2_text = pygame.font.SysFont("Moncerat", 18)
         if wmag_hp >= 150:
             hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, green)
@@ -293,7 +354,7 @@ while lets_continue:
             screen.blit(hp2_text,hp2_text_rect)
         
     # Sceleton
-    if enemy ==1 and scelet == 1:
+    if enemy == 1:
         hp3_text = pygame.font.SysFont("Moncerat", 18)
         if scelet_hp > 0:      
             hp3_text = hp3_text.render("HP: " + f"{scelet_hp}", True, white)
@@ -350,10 +411,20 @@ while lets_continue:
 
         if scelet_hp <= 0:
             scelet = 0
-
+    
+    if scelet_rect.colliderect(fzard_rect) or scelet_rect.colliderect(fzard2_rect):
+        if player == 1:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
 
     if scelet_rect.colliderect(wzard_rect) or scelet_rect.colliderect(wzard2_rect):
-        if wmag == 1:
+        if player == 2:
             wmag_hp -= 1
             str_wmag_hp = str(wmag_hp)
             try:
@@ -363,16 +434,7 @@ while lets_continue:
             text = f2.write(str_wmag_hp)
             f2.close()
 
-    if scelet_rect.colliderect(fzard_rect) or scelet_rect.colliderect(fzard2_rect):
-        if fmag == 1:
-            fmag_hp -= 1
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
+    
 
 
     pygame.display.update()
