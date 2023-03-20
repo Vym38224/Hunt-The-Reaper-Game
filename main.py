@@ -50,11 +50,6 @@ text = f_player_wmag.read(player_wmag)
 # Nepřítel v poli
 enemy = int()
 enemy_str=str(enemy)
-try:
-    f_enemies = open("enemies.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemies.read(enemy)
 
 #---------------------------#
 mirror = 0
@@ -92,14 +87,13 @@ if player_wmag > 0:
     f2.close()
 
 scelet_hp = (enemy0.hp)
-if enemy == 1:
-    str_scelet_hp = str(scelet_hp)
-    try:
-        f3 = open("scelet_hp.txt", "r")
-    except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-    text = f3.read(scelet_hp)
-    f3.close()
+str_scelet_hp = str(scelet_hp)
+try:
+    f3 = open("scelet_hp.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(scelet_hp)
+f3.close()
 
 
  
@@ -230,8 +224,6 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f_fmag.write(player_fmag_str)
             f_fmag.close()
-
-
 
     # Firemag
     if player_fmag > 0:
