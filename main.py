@@ -526,63 +526,7 @@ while lets_continue:
                 print("Soubor nebyl nalezen")
         text = f_enemy_scelet_boss.write(enemy_scelet_boss_str)
         f_enemy_scelet_boss.close()
-        # Skeleton 1 + 2 + 3 
-        if enemy_scelet_boss_hp <= 100:
-            enemy_scelet1 += 1
-            enemy_scelet1_str = str(enemy_scelet1)
-            try:
-                f_enemy_scelet1 = open("players/enemy_scelet1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_scelet1.write(enemy_scelet1_str)
-            f_enemy_scelet1.close()
-            if enemy_scelet_boss_hp >= 90:
-                scelet1_hp += 5
-                str_scelet1_hp = str(scelet1_hp)
-                try:
-                    f3 = open("players_hp/scelet1_hp.txt","w")
-                except FileNotFoundError:
-                        print("Soubor nebyl nalezen")
-                text = f3.write(str_scelet1_hp)
-                f3.close()
-
-        if enemy_scelet_boss_hp <= 100:
-            enemy_scelet2 += 1
-            enemy_scelet2_str = str(enemy_scelet2)
-            try:
-                f_enemy_scelet2 = open("players/enemy_scelet2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_scelet2.write(enemy_scelet2_str)
-            f_enemy_scelet2.close()
-            if enemy_scelet_boss_hp >= 90:
-                scelet2_hp += 5
-                str_scelet2_hp = str(scelet2_hp)
-                try:
-                    f3 = open("players_hp/scelet2_hp.txt","w")
-                except FileNotFoundError:
-                        print("Soubor nebyl nalezen")
-                text = f3.write(str_scelet2_hp)
-                f3.close()
-
-        if enemy_scelet_boss_hp <= 100:
-            enemy_scelet3 += 1
-            enemy_scelet3_str = str(enemy_scelet3)
-            try:
-                f_enemy_scelet3 = open("players/enemy_scelet3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_scelet3.write(enemy_scelet3_str)
-            f_enemy_scelet3.close()
-            if enemy_scelet_boss_hp >= 90:
-                scelet3_hp += 5
-                str_scelet3_hp = str(scelet3_hp)
-                try:
-                    f3 = open("players_hp/scelet3_hp.txt","w")
-                except FileNotFoundError:
-                        print("Soubor nebyl nalezen")
-                text = f3.write(str_scelet3_hp)
-                f3.close()
+        
              
          
     # Firemag
