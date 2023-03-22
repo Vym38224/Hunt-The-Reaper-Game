@@ -65,7 +65,7 @@ player8 = ArcherPlayer("Amy", "bear", 1)"""
 
 #enemáci
  
-enemy0 = EnemyPlayer("Kostlivec", 20,("img/sceleton.png"),("img/sceleton2.png"))
+enemy0 = EnemyPlayer("Kostlivec", 2,("img/sceleton.png"),("img/sceleton2.png"))
 enemy1 = EnemyPlayer("BOSS Kostlivec", 200,("img/scelet_boss.png"),("img/scelet_boss2.png"))
 
 
