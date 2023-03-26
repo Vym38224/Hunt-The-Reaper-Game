@@ -40,7 +40,7 @@ background = Background(("img/background.png"))
 player0 = Player("Sam", 1000,("img/human.png"),("img/human2.png"),("img/human_attack.png"),("img/human_attack2.png"))
 
 #kouzelníci
-player1 = WizardPlayer("Dave","fire", 200,("img/firemag.png"),("img/firemag2.png"),("img/fireball.png"),("img/fireball2.png"))
+player1 = WizardPlayer("Dave","fire", 300,("img/firemag.png"),("img/firemag2.png"),("img/fireball.png"),("img/fireball2.png"))
 player2 = WizardPlayer("Anna", "water", 125,("img/watermag.png"),("img/watermag2.png"),("img/watermag_attack.png"),("img/watermag_attack2.png"))
 
 #lukostřelci

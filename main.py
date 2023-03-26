@@ -42,8 +42,9 @@ scelet_speed = 3
 scelet_boss_speed = 4
 
 attack_speed = 8
-distance = 9
-human_distance = 6
+fmag_distance = 5
+wmag_distance = 8
+human_distance = 5
 
 # Nastavení scelet_hp = 0 na začátku hry
 scelet_hp = 0
@@ -704,9 +705,9 @@ while lets_continue:
     # Firemag
     if player_fmag > 0:
         hp1_text = pygame.font.SysFont("Moncerat", 18)
-        if fmag_hp >= 150:
+        if fmag_hp >= 200:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, green)
-        if fmag_hp >= 100 and fmag_hp < 150:
+        if fmag_hp >= 100 and fmag_hp < 200:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, yellow)
         if fmag_hp >= 0 and fmag_hp <= 99:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, red)
@@ -716,26 +717,26 @@ while lets_continue:
         hp1_text_rect.center = (fzard_rect.x + 60, fzard_rect.y + 135)
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and fzard_rect.top > 0 and fzard2_rect.top > 0:
-            fzard_rect.y = fzard_rect.y - distance
-            fzard2_rect.y = fzard2_rect.y - distance
-            name1_text_rect.y = name1_text_rect.y - distance  
-            hp1_text_rect.y = hp1_text_rect.y - distance
+            fzard_rect.y = fzard_rect.y - fmag_distance
+            fzard2_rect.y = fzard2_rect.y - fmag_distance
+            name1_text_rect.y = name1_text_rect.y - fmag_distance 
+            hp1_text_rect.y = hp1_text_rect.y - fmag_distance
         elif keys [pygame.K_s] and fzard_rect.bottom < height - 120 and fzard2_rect.bottom < height - 120:
-            fzard_rect.y = fzard_rect.y + distance
-            fzard2_rect.y = fzard2_rect.y + distance
-            name1_text_rect.y = name1_text_rect.y + distance
-            hp1_text_rect.y = hp1_text_rect.y + distance
+            fzard_rect.y = fzard_rect.y + fmag_distance
+            fzard2_rect.y = fzard2_rect.y + fmag_distance
+            name1_text_rect.y = name1_text_rect.y + fmag_distance
+            hp1_text_rect.y = hp1_text_rect.y + fmag_distance
         elif keys [pygame.K_a] and fzard_rect.left > 0 and fzard2_rect.left > 0:
-            fzard_rect.x = fzard_rect.x - distance
-            fzard2_rect.x = fzard2_rect.x - distance
-            name1_text_rect.x = name1_text_rect.x - distance
-            hp1_text_rect.x = hp1_text_rect.x - distance    
+            fzard_rect.x = fzard_rect.x - fmag_distance
+            fzard2_rect.x = fzard2_rect.x - fmag_distance
+            name1_text_rect.x = name1_text_rect.x - fmag_distance
+            hp1_text_rect.x = hp1_text_rect.x - fmag_distance   
             mirror = 1
         elif keys [pygame.K_d] and fzard_rect.right > 0 and fzard2_rect.right < width:
-            fzard_rect.x = fzard_rect.x + distance
-            fzard2_rect.x = fzard2_rect.x + distance
-            name1_text_rect.x = name1_text_rect.x + distance
-            hp1_text_rect.x = hp1_text_rect.x + distance
+            fzard_rect.x = fzard_rect.x +fmag_distance
+            fzard2_rect.x = fzard2_rect.x + fmag_distance
+            name1_text_rect.x = name1_text_rect.x + fmag_distance
+            hp1_text_rect.x = hp1_text_rect.x + fmag_distance
             mirror = 0 
 
         elif keys [pygame.K_SPACE] and mirror == 1:
@@ -776,32 +777,32 @@ while lets_continue:
         hp2_text_rect.center = (wzard_rect.x + 65, wzard_rect.y + 130)  
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and wzard_rect.top > 0 and wzard2_rect.top > 0:
-            wzard_move_image_rect.y = wzard_move_image_rect.y - distance
-            wzard_move_image2_rect.y = wzard_move_image2_rect.y - distance
-            wzard_rect.y = wzard_rect.y - distance
-            wzard2_rect.y = wzard2_rect.y - distance
-            name2_text_rect.y = name2_text_rect.y - distance  
-            hp2_text_rect.y = hp2_text_rect.y - distance
+            wzard_move_image_rect.y = wzard_move_image_rect.y - wmag_distance
+            wzard_move_image2_rect.y = wzard_move_image2_rect.y - wmag_distance
+            wzard_rect.y = wzard_rect.y - wmag_distance
+            wzard2_rect.y = wzard2_rect.y - wmag_distance
+            name2_text_rect.y = name2_text_rect.y - wmag_distance
+            hp2_text_rect.y = hp2_text_rect.y - wmag_distance
         elif keys [pygame.K_s] and wzard_rect.bottom < height - 120 and wzard2_rect.bottom < height - 120:
-            wzard_move_image_rect.y = wzard_move_image_rect.y + distance
-            wzard_move_image2_rect.y = wzard_move_image2_rect.y + distance
-            wzard_rect.y = wzard_rect.y + distance
-            wzard2_rect.y = wzard2_rect.y + distance
-            name2_text_rect.y = name2_text_rect.y + distance
-            hp2_text_rect.y = hp2_text_rect.y + distance
+            wzard_move_image_rect.y = wzard_move_image_rect.y + wmag_distance
+            wzard_move_image2_rect.y = wzard_move_image2_rect.y + wmag_distance
+            wzard_rect.y = wzard_rect.y + wmag_distance
+            wzard2_rect.y = wzard2_rect.y + wmag_distance
+            name2_text_rect.y = name2_text_rect.y + wmag_distance
+            hp2_text_rect.y = hp2_text_rect.y + wmag_distance
         elif keys [pygame.K_a] and wzard_rect.left > 0 and wzard2_rect.left > 0:                    
-            wzard_move_image_rect.x = wzard_move_image_rect.x - distance
-            wzard_rect.x = wzard_rect.x - distance
-            wzard2_rect.x = wzard2_rect.x - distance
-            name2_text_rect.x = name2_text_rect.x - distance
-            hp2_text_rect.x = hp2_text_rect.x - distance
+            wzard_move_image_rect.x = wzard_move_image_rect.x - wmag_distance
+            wzard_rect.x = wzard_rect.x - wmag_distance
+            wzard2_rect.x = wzard2_rect.x - wmag_distance
+            name2_text_rect.x = name2_text_rect.x - wmag_distance
+            hp2_text_rect.x = hp2_text_rect.x - wmag_distance
             mirror = 1
         elif keys [pygame.K_d] and wzard_rect.right > 0 and wzard2_rect.right < width:
-            wzard_move_image_rect.x = wzard_move_image_rect.x + distance
-            wzard_rect.x = wzard_rect.x + distance
-            wzard2_rect.x = wzard2_rect.x + distance
-            name2_text_rect.x = name2_text_rect.x + distance
-            hp2_text_rect.x = hp2_text_rect.x + distance
+            wzard_move_image_rect.x = wzard_move_image_rect.x + wmag_distance
+            wzard_rect.x = wzard_rect.x + wmag_distance
+            wzard2_rect.x = wzard2_rect.x + wmag_distance
+            name2_text_rect.x = name2_text_rect.x + wmag_distance
+            hp2_text_rect.x = hp2_text_rect.x + wmag_distance
             mirror = 0       
               
         elif keys [pygame.K_SPACE] and mirror == 1:
