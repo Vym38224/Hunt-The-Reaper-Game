@@ -48,7 +48,7 @@ class EnemyPlayer:
 background = Background(("img/background.png"))
     
 #lidi
-player0 = Player("Sam", 1,("img/human.png"),("img/human_attack.png"),("img/human2.png"),("img/human_attack2.png"))
+player0 = Player("Sam", 1000,("img/human.png"),("img/human2.png"),("img/human_attack.png"),("img/human_attack2.png"))
 
 #kouzelníci
 player1 = WizardPlayer("Dave","fire", 200,("img/firemag.png"),("img/firemag2.png"),("img/fireball.png"),("img/fireball2.png"))
