@@ -304,6 +304,12 @@ human_attack2_image = loadify(player0.img_attack2)
 human_attack2_rect = human_attack2_image.get_rect()
 human_attack2_rect.center = (0,0)
 
+human_move_image = loadify("img/human_move.png")
+human_move_image_rect = human_move_image.get_rect()
+
+human_move_image2 = loadify("img/human_move2.png")
+human_move_image2_rect = human_move_image2.get_rect()
+
 name0_text = pygame.font.SysFont("Moncerat", 20)
 name0_text = name0_text.render(player0.name, True, white)
 name0_text_rect = name0_text.get_rect()
@@ -658,22 +664,30 @@ while lets_continue:
         hp0_text_rect.center = (human_rect.x + 50, human_rect.y + 110)
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and human_rect.top > 0 and human2_rect.top > 0:
+            human_move_image_rect.y = human_move_image_rect.y - human_distance
+            human_move_image2_rect.y = human_move_image2_rect.y - human_distance
             human_rect.y = human_rect.y - human_distance
             human2_rect.y = human2_rect.y - human_distance
             name0_text_rect.y = name0_text_rect.y - human_distance  
             hp0_text_rect.y = hp0_text_rect.y - human_distance
         elif keys [pygame.K_s] and human_rect.bottom < height - 120 and human2_rect.bottom < height - 120:
+            human_move_image_rect.y = human_move_image_rect.y + human_distance
+            human_move_image2_rect.y = human_move_image2_rect.y + human_distance
             human_rect.y = human_rect.y + human_distance
             human2_rect.y = human2_rect.y + human_distance
             name0_text_rect.y = name0_text_rect.y + human_distance
             hp0_text_rect.y = hp0_text_rect.y + human_distance
         elif keys [pygame.K_a] and human_rect.left > 0 and human2_rect.left > 0:
+            human_move_image_rect.x = human_move_image_rect.x - human_distance
+            human_move_image2_rect.x = human_move_image2_rect.x - human_distance
             human_rect.x = human_rect.x - human_distance
             human2_rect.x = human2_rect.x - human_distance
             name0_text_rect.x = name0_text_rect.x - human_distance
             hp0_text_rect.x = hp0_text_rect.x - human_distance  
             mirror = 1
         elif keys [pygame.K_d] and human_rect.right > 0 and human2_rect.right < width:
+            human_move_image_rect.x = human_move_image_rect.x + human_distance
+            human_move_image2_rect.x = human_move_image2_rect.x + human_distance
             human_rect.x = human_rect.x + human_distance
             human2_rect.x = human2_rect.x + human_distance
             name0_text_rect.x = name0_text_rect.x + human_distance
@@ -694,13 +708,26 @@ while lets_continue:
                 screen.blit(human_attack_image,human_attack_rect)
             
         if mirror == 0:
-            screen.blit(human_image,human_rect)
-            screen.blit(name0_text,name0_text_rect)
-            screen.blit(hp0_text,hp0_text_rect)
+            if keys [pygame.K_d] or keys [pygame.K_w] or keys [pygame.K_s]:
+                human_move_image_rect.center = (human_rect.x + 40 ,human_rect.y  + 45)
+                screen.blit(human_move_image,human_move_image_rect)
+                screen.blit(name0_text,name0_text_rect)
+                screen.blit(hp0_text,hp0_text_rect)
+            else:
+                screen.blit(human_image,human_rect)
+                screen.blit(name0_text,name0_text_rect)
+                screen.blit(hp0_text,hp0_text_rect)
+
         if mirror == 1:
-            screen.blit(human2_image,human2_rect)
-            screen.blit(name0_text,name0_text_rect)
-            screen.blit(hp0_text,hp0_text_rect)
+            if keys [pygame.K_a] or keys [pygame.K_w] or keys [pygame.K_s]: 
+                human_move_image2_rect.center = (human2_rect.x + 60,human2_rect.y + 45)
+                screen.blit(human_move_image2,human_move_image2_rect)                
+                screen.blit(name0_text,name0_text_rect)
+                screen.blit(hp0_text,hp0_text_rect)
+            else:
+                screen.blit(human2_image,human2_rect)
+                screen.blit(name0_text,name0_text_rect)
+                screen.blit(hp0_text,hp0_text_rect)
         
     # Firemag
     if player_fmag > 0:
