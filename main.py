@@ -305,13 +305,13 @@ name2_text_rect.center = (592,435)
 
 portal_image = loadify("img/portal.png")
 portal_image_rect = portal_image.get_rect()
-portal_image_rect.center = (width//2 + 500, height//2 - 250)
+portal_image_rect.center = (width//2 + 500, height//2 - 200)
 
 # Sceleton
 if scelet_hp > 0:
     scelet_image = loadify(enemy0.img)
     scelet_rect = scelet_image.get_rect()
-    scelet_rect.center = (width//2 + 500, height//2 - 250)
+    scelet_rect.center = (width//2 + 500, height//2 - 200)
 
     e_name_text = pygame.font.SysFont("Moncerat", 20)
     e_name_text = e_name_text.render(enemy0.name, True, red)
@@ -322,7 +322,7 @@ if scelet_hp > 0:
 if scelet1_hp > 0 :
     scelet1_image = loadify(enemy0.img)
     scelet1_rect = scelet1_image.get_rect()
-    scelet1_rect.center = (width//2 - 100, height//2 - 250)
+    scelet1_rect.center = (width//2 - 100, height//2 - 200)
 
     e1_name_text = pygame.font.SysFont("Moncerat", 20)
     e1_name_text = e1_name_text.render(enemy0.name, True, red)
@@ -333,7 +333,7 @@ if scelet1_hp > 0 :
 if scelet2_hp > 0 :
     scelet2_image = loadify(enemy0.img)
     scelet2_rect = scelet2_image.get_rect()
-    scelet2_rect.center = (width//2 + 100, height//2 - 250)
+    scelet2_rect.center = (width//2 + 100, height//2 - 200)
 
     e2_name_text = pygame.font.SysFont("Moncerat", 20)
     e2_name_text = e2_name_text.render(enemy0.name, True, red)
@@ -344,7 +344,7 @@ if scelet2_hp > 0 :
 if scelet3_hp > 0 :
     scelet3_image = loadify(enemy0.img)
     scelet3_rect = scelet3_image.get_rect()
-    scelet3_rect.center = (width//2 - 300, height//2 - 250)
+    scelet3_rect.center = (width//2 - 300, height//2 - 200)
 
     e3_name_text = pygame.font.SysFont("Moncerat", 20)
     e3_name_text = e3_name_text.render(enemy0.name, True, red)
@@ -355,7 +355,7 @@ if scelet3_hp > 0 :
 if enemy_scelet_boss_hp > 0:
     scelet_boss_image = loadify(enemy1.img)
     scelet_boss_rect = scelet_boss_image.get_rect()
-    scelet_boss_rect.center = (width//2 + 500, height//2 - 250)
+    scelet_boss_rect.center = (width//2 + 500, height//2 - 200)
 
     eboss_name_text = pygame.font.SysFont("Moncerat", 20)
     eboss_name_text = eboss_name_text.render(enemy1.name, True, red)
@@ -363,12 +363,11 @@ if enemy_scelet_boss_hp > 0:
     eboss_name_text_rect.center = (992,435)
 
 #-----------------------------------------------------------------------------------------------#
-
 # TEXTY 
 custom_font = pygame.font.SysFont("Helvetica", 44)
 custom_text = custom_font.render("press f to FIGHT!", True, yellow)
 custom_text_rect = custom_text.get_rect()
-custom_text_rect.center = (width//2, height//2 - 350)
+custom_text_rect.center = (width//2 , height//2 + 50)
 
 custom1_font = pygame.font.SysFont("Helvetica", 64)
 custom1_text = custom1_font.render("WELCOME TO THE GAME", True, yellow)
@@ -665,7 +664,7 @@ while lets_continue:
         scelet_rect.y += scelet_y * scelet_speed
         if scelet_rect.left < 120 or scelet_rect.left > width - 120:
             scelet_x = -1 * scelet_x
-        elif scelet_rect.top < 25 or scelet_rect.bottom > height - 120:
+        elif scelet_rect.top < 90 or scelet_rect.bottom > height - 120:
             scelet_y = -1 * scelet_y
 
         if scelet_rect.left < 130: 
@@ -715,7 +714,7 @@ while lets_continue:
         scelet2_rect.y += scelet2_y * scelet_speed
         if scelet2_rect.left < 120 or scelet2_rect.left > width - 120:
             scelet2_x = -1 * scelet2_x
-        elif scelet2_rect.top < 25 or scelet2_rect.bottom > height - 120:
+        elif scelet2_rect.top < 90 or scelet2_rect.bottom > height - 120:
             scelet2_y = -1 * scelet2_y
 
         if scelet2_rect.left < 130: 
@@ -740,7 +739,7 @@ while lets_continue:
         scelet3_rect.y += scelet3_y * scelet_speed
         if scelet3_rect.left < 120 or scelet3_rect.left > width - 120:
             scelet3_x = -1 * scelet3_x
-        elif scelet3_rect.top < 25 or scelet3_rect.bottom > height - 120:
+        elif scelet3_rect.top < 90 or scelet3_rect.bottom > height - 120:
             scelet3_y = -1 * scelet3_y
 
         if scelet3_rect.left < 130: 
@@ -765,7 +764,7 @@ while lets_continue:
         scelet_boss_rect.y += scelet_boss_y * scelet_boss_speed
         if scelet_boss_rect.left < 120 or scelet_boss_rect.left > width - 120:
             scelet_boss_x = -1 * scelet_boss_x
-        elif scelet_boss_rect.top < 25 or scelet_boss_rect.bottom > height - 120:
+        elif scelet_boss_rect.top < 90 or scelet_boss_rect.bottom > height - 120:
             scelet_boss_y = -1 * scelet_boss_y
 
         if scelet_boss_rect.left < 130: 
@@ -1025,6 +1024,20 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f3.write(str_enemy_scelet_boss_hp)
             f3.close()
+
+
+#-----------------------------------------------------------------------------------------------#
+# OBRAZCE
+#-----------------------------------------------------------------------------------------------#
+
+    pygame.draw.line(screen, black, (2,1),(1200,2), 3)
+    pygame.draw.line(screen, black, (0,70),(1200,70), 3)
+
+    pygame.draw.line(screen, black, (1,1),(1,70), 3)
+    pygame.draw.line(screen, black, (1198,1),(1198,70), 3)
+
+    pygame.draw.line(screen, black, (70,70),(70,0), 3)
+    pygame.draw.line(screen, black, (140,70),(140,0), 3)
 
     pygame.display.update()
     clock.tick_busy_loop(fps)
