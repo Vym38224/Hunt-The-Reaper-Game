@@ -450,17 +450,17 @@ while lets_continue:
     if enemy_scelet_boss > 0 and enemy_scelet_boss_hp >= 100:
         custom2_text = custom2_font.render("BOSS HP: " + f"{enemy_scelet_boss_hp}", True, green)
         custom2_text_rect = custom2_text.get_rect()
-        custom2_text_rect.center = (width//2, height//2 - 350)
+        custom2_text_rect.center = (width//2, height//2 + 350)
         screen.blit(custom2_text, custom2_text_rect)
     if enemy_scelet_boss > 0 and enemy_scelet_boss_hp <= 99 and enemy_scelet_boss_hp >= 50:
         custom3_text = custom3_font.render("BOSS HP: " + f"{enemy_scelet_boss_hp}", True, yellow)
         custom3_text_rect = custom3_text.get_rect()
-        custom3_text_rect.center = (width//2, height//2 - 350)
+        custom3_text_rect.center = (width//2, height//2 + 350)
         screen.blit(custom3_text, custom3_text_rect)
     if enemy_scelet_boss > 0 and enemy_scelet_boss_hp <= 49 and enemy_scelet_boss_hp > 0:
         custom4_text = custom4_font.render("BOSS HP: " + f"{enemy_scelet_boss_hp}", True, red)
         custom4_text_rect = custom4_text.get_rect()
-        custom4_text_rect.center = (width//2, height//2 - 350)
+        custom4_text_rect.center = (width//2, height//2 + 350)
         screen.blit(custom4_text, custom4_text_rect)
 
 
@@ -1302,14 +1302,19 @@ while lets_continue:
 # OBRAZCE
 #-----------------------------------------------------------------------------------------------#
 
-    pygame.draw.line(screen, black, (2,1),(1200,2), 3)
-    pygame.draw.line(screen, black, (0,70),(1200,70), 3)
+    pygame.draw.line(screen, black, (1,1),(1200,1), 3)
+    pygame.draw.line(screen, black, (1,70),(1200,70), 3)
 
     pygame.draw.line(screen, black, (1,1),(1,70), 3)
     pygame.draw.line(screen, black, (1198,1),(1198,70), 3)
 
     pygame.draw.line(screen, black, (70,70),(70,0), 3)
     pygame.draw.line(screen, black, (140,70),(140,0), 3)
+    pygame.draw.line(screen, black, (210,70),(210,0), 3)
+    pygame.draw.line(screen, black, (280,70),(280,0), 3)
+    pygame.draw.line(screen, black, (350,70),(350,0), 3)
+
+
 
     pygame.display.update()
     clock.tick_busy_loop(fps)
