@@ -351,6 +351,12 @@ wzard_attack_rect = wzard_attack_image.get_rect()
 wzard_attack2_image = loadify(player2.img_attack2)
 wzard_attack2_rect = wzard_attack2_image.get_rect()
 
+wzard_move_image = loadify("img/watermag_move.png")
+wzard_move_image_rect = wzard_move_image.get_rect()
+
+wzard_move_image2 = loadify("img/watermag_move2.png")
+wzard_move_image2_rect = wzard_move_image2.get_rect()
+
 name2_text = pygame.font.SysFont("Moncerat", 20)
 name2_text = name2_text.render(player2.name, True, white)
 name2_text_rect = name2_text.get_rect()
@@ -767,25 +773,31 @@ while lets_continue:
         if wmag_hp < 0:
             hp2_text = hp2_text.render("HP (seš mrtvej sračko): " + f"{wmag_hp}", True, red)
         hp2_text_rect = hp2_text.get_rect()
-        hp2_text_rect.center = (wzard_rect.x + 65, wzard_rect.y + 130)
+        hp2_text_rect.center = (wzard_rect.x + 65, wzard_rect.y + 130)  
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and wzard_rect.top > 0 and wzard2_rect.top > 0:
+            wzard_move_image_rect.y = wzard_move_image_rect.y - distance
+            wzard_move_image2_rect.y = wzard_move_image2_rect.y - distance
             wzard_rect.y = wzard_rect.y - distance
             wzard2_rect.y = wzard2_rect.y - distance
             name2_text_rect.y = name2_text_rect.y - distance  
             hp2_text_rect.y = hp2_text_rect.y - distance
         elif keys [pygame.K_s] and wzard_rect.bottom < height - 120 and wzard2_rect.bottom < height - 120:
+            wzard_move_image_rect.y = wzard_move_image_rect.y + distance
+            wzard_move_image2_rect.y = wzard_move_image2_rect.y + distance
             wzard_rect.y = wzard_rect.y + distance
             wzard2_rect.y = wzard2_rect.y + distance
             name2_text_rect.y = name2_text_rect.y + distance
             hp2_text_rect.y = hp2_text_rect.y + distance
-        elif keys [pygame.K_a] and wzard_rect.left > 0 and wzard2_rect.left > 0:
+        elif keys [pygame.K_a] and wzard_rect.left > 0 and wzard2_rect.left > 0:                    
+            wzard_move_image_rect.x = wzard_move_image_rect.x - distance
             wzard_rect.x = wzard_rect.x - distance
             wzard2_rect.x = wzard2_rect.x - distance
             name2_text_rect.x = name2_text_rect.x - distance
             hp2_text_rect.x = hp2_text_rect.x - distance
             mirror = 1
         elif keys [pygame.K_d] and wzard_rect.right > 0 and wzard2_rect.right < width:
+            wzard_move_image_rect.x = wzard_move_image_rect.x + distance
             wzard_rect.x = wzard_rect.x + distance
             wzard2_rect.x = wzard2_rect.x + distance
             name2_text_rect.x = name2_text_rect.x + distance
@@ -807,13 +819,26 @@ while lets_continue:
             wzard_attack_rect.x += attack_x * attack_speed         
         
         if mirror == 0:
-            screen.blit(wzard_image,wzard_rect)
-            screen.blit(name2_text,name2_text_rect)
-            screen.blit(hp2_text,hp2_text_rect)
+            if keys [pygame.K_d] or keys [pygame.K_w] or keys [pygame.K_s]:
+                wzard_move_image_rect.center = (wzard_rect.x + 55 ,wzard_rect.y  + 60)
+                screen.blit(wzard_move_image,wzard_move_image_rect)
+                screen.blit(name2_text,name2_text_rect)
+                screen.blit(hp2_text,hp2_text_rect)
+            else:
+                screen.blit(wzard_image,wzard_rect)
+                screen.blit(name2_text,name2_text_rect)
+                screen.blit(hp2_text,hp2_text_rect)
+
         if mirror == 1:
-            screen.blit(wzard2_image,wzard2_rect)
-            screen.blit(name2_text,name2_text_rect)
-            screen.blit(hp2_text,hp2_text_rect)
+            if keys [pygame.K_a] or keys [pygame.K_w] or keys [pygame.K_s]: 
+                wzard_move_image2_rect.center = (wzard2_rect.x + 80 ,wzard2_rect.y + 60)
+                screen.blit(wzard_move_image2,wzard_move_image2_rect)                
+                screen.blit(name2_text,name2_text_rect)
+                screen.blit(hp2_text,hp2_text_rect)
+            else:
+                screen.blit(wzard2_image,wzard2_rect)
+                screen.blit(name2_text,name2_text_rect)
+                screen.blit(hp2_text,hp2_text_rect)
         
     # Skeleton
     if enemy_scelet > 0:

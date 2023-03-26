@@ -4,27 +4,19 @@ class Background:
 
 
 class Player:
-    def __init__(self, name, hp, img, img2, img_attack, img_attack2, in_map = False):
+    def __init__(self, name, hp, img, img2, img_attack, img_attack2):
         self.name = name
         self.hp = hp
         self.img = img
         self.img2 = img2
         self.img_attack = img_attack
         self.img_attack2 = img_attack2
-        if in_map == True:
-            pass
-              
-    def attack(self):
-        return "Útok"
-
+      
 
 class WizardPlayer(Player):
     def __init__(self, name, element, hp, img, img2, img_attack, img_attack2):
-        super().__init__(name, hp, img, img2, img_attack, img_attack2, in_map = False)
+        super().__init__(name, hp, img, img2, img_attack, img_attack2)
         self.element = element
-        
-    def attack(self):
-        return "Útok *"
     
 
 class ArcherPlayer(Player):
@@ -32,9 +24,6 @@ class ArcherPlayer(Player):
         super().__init__(name, hp, in_map = False)
         self.animal = animal
         
-    def attack(self):
-        return "Útok ->"
-    
 class EnemyPlayer:
     def __init__(self, name, hp, img, img2):
         self.name = name
@@ -56,8 +45,7 @@ player2 = WizardPlayer("Anna", "water", 125,("img/watermag.png"),("img/watermag2
 
 #lukostřelci
 """player6 = ArcherPlayer("Robin", "bird", 1)
-player7 = ArcherPlayer("Parek", "wolf", 1)
-player8 = ArcherPlayer("Amy", "bear", 1)"""
+player8 = ArcherPlayer("Amy", "wolf", 1)"""
 
 #enemáci
  
