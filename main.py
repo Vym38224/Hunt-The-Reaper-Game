@@ -1,9 +1,8 @@
 import pygame
 import random
-import time
 from players import *
 
-# načtení IMG 
+# Načtení IMG 
 def loadify(imgname):
     return pygame.image.load(imgname).convert_alpha() 
 
@@ -306,6 +305,10 @@ name0_text_rect = name0_text.get_rect()
 name0_text_rect.center = (600,425)
 
 # Firemag
+fzard_portret = loadify("img/fmag_portret.png")
+fzard_portret_rect = fzard_portret.get_rect()
+fzard_portret_rect.center = (105, 35)
+
 fzard_image = loadify(player1.img)
 fzard_rect = fzard_image.get_rect()
 fzard_rect.center = (width//2, height//2)
@@ -434,6 +437,10 @@ while lets_continue:
 
 # Bg
     screen.blit(background_img, background_img_rect)
+
+# Portréty
+    screen.blit(fzard_portret, fzard_portret_rect)
+
 # Portal
     if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0:
         if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0:
