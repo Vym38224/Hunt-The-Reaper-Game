@@ -283,6 +283,10 @@ background_img_rect = background_img.get_rect()
 # OBRÁZKY
 
 # Human
+human_portret = loadify("img/human_portret.png")
+human_portret_rect = human_portret.get_rect()
+human_portret_rect.center = (35, 35)
+
 human_image = loadify(player0.img)
 human_rect = human_image.get_rect()
 human_rect.center = (width//2, height//2)
@@ -329,6 +333,10 @@ name1_text_rect = name1_text.get_rect()
 name1_text_rect.center = (600,440)
 
 # Watermag
+wzard_portret = loadify("img/wzard_portret.png")
+wzard_portret_rect = fzard_portret.get_rect()
+wzard_portret_rect.center = (175, 35)
+
 wzard_image = loadify(player2.img)
 wzard_rect = wzard_image.get_rect()
 wzard_rect.center = (width//2, height//2)
@@ -414,12 +422,12 @@ if enemy_scelet_boss_hp > 0:
 custom_font = pygame.font.SysFont("Helvetica", 44)
 custom_text = custom_font.render("press f to FIGHT!", True, yellow)
 custom_text_rect = custom_text.get_rect()
-custom_text_rect.center = (width//2 , height//2 + 50)
+custom_text_rect.center = (width//2 , height//2 + 350)
 
 custom1_font = pygame.font.SysFont("Helvetica", 64)
 custom1_text = custom1_font.render("WELCOME TO THE GAME", True, yellow)
 custom1_text_rect = custom1_text.get_rect()
-custom1_text_rect.center = (width//2, height//2)
+custom1_text_rect.center = (width//2, height//2 + 300)
 
 #-----------------------------------------------------------------------------------------------#
 #### HLAVNÍ CYKLUS ####
@@ -440,6 +448,8 @@ while lets_continue:
 
 # Portréty
     screen.blit(fzard_portret, fzard_portret_rect)
+    screen.blit(wzard_portret, wzard_portret_rect)
+    screen.blit(human_portret, human_portret_rect)
 
 # Portal
     if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0:
@@ -474,10 +484,9 @@ while lets_continue:
 #-----------------------------------------------------------------------------------------------#
 ### POSTAVY ###
 #-----------------------------------------------------------------------------------------------#
-    keysback = pygame.key.get_repeat()
     keys = pygame.key.get_pressed()
 # Načtení Humana do pole
-    if keys [pygame.K_0]:
+    if keys [pygame.K_1]:
         player_human += 1
         player_human_str = str(player_human)
         try:
@@ -507,7 +516,7 @@ while lets_continue:
             f_wmag.close()
 
 # Načtení Fmága do pole
-    if keys [pygame.K_1]:
+    if keys [pygame.K_2]:
         player_fmag += 1
         player_fmag_str = str(player_fmag)
         try:
@@ -537,7 +546,7 @@ while lets_continue:
             f_human.close()
 
 # Načtení Wmága do pole
-    if keys [pygame.K_2]:
+    if keys [pygame.K_3]:
         player_wmag += 1
         player_wmag_str = str(player_wmag)
         try:
@@ -1328,4 +1337,3 @@ while lets_continue:
 
 # Ukončení hry
 pygame.quit()
-
