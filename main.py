@@ -813,9 +813,9 @@ while lets_continue:
             screen.blit(e_name_text,e_name_text_rect)
         scelet_rect.x += scelet_x * scelet_speed
         scelet_rect.y += scelet_y * scelet_speed
-        if scelet_rect.left < 120 or scelet_rect.left > width - 120:
+        if scelet_rect.left < 100 or scelet_rect.left > width - 120:
             scelet_x = -1 * scelet_x
-        elif scelet_rect.top < 90 or scelet_rect.bottom > height - 120:
+        elif scelet_rect.top < 75 or scelet_rect.bottom > height - 120:
             scelet_y = -1 * scelet_y
 
         if scelet_rect.left < 130: 
@@ -838,9 +838,9 @@ while lets_continue:
             screen.blit(e1_name_text,e1_name_text_rect)
         scelet1_rect.x += scelet1_x * scelet_speed
         scelet1_rect.y += scelet1_y * scelet_speed
-        if scelet1_rect.left < 120 or scelet1_rect.left > width - 120:
+        if scelet1_rect.left < 100 or scelet1_rect.left > width - 120:
             scelet1_x = -1 * scelet1_x
-        elif scelet1_rect.top < 25 or scelet1_rect.bottom > height - 120:
+        elif scelet1_rect.top < 75 or scelet1_rect.bottom > height - 120:
             scelet1_y = -1 * scelet1_y
 
         if scelet1_rect.left < 130: 
@@ -863,9 +863,9 @@ while lets_continue:
             screen.blit(e2_name_text,e2_name_text_rect)
         scelet2_rect.x += scelet2_x * scelet_speed
         scelet2_rect.y += scelet2_y * scelet_speed
-        if scelet2_rect.left < 120 or scelet2_rect.left > width - 120:
+        if scelet2_rect.left < 100 or scelet2_rect.left > width - 120:
             scelet2_x = -1 * scelet2_x
-        elif scelet2_rect.top < 90 or scelet2_rect.bottom > height - 120:
+        elif scelet2_rect.top < 75 or scelet2_rect.bottom > height - 120:
             scelet2_y = -1 * scelet2_y
 
         if scelet2_rect.left < 130: 
@@ -888,9 +888,9 @@ while lets_continue:
             screen.blit(e3_name_text,e3_name_text_rect)
         scelet3_rect.x += scelet3_x * scelet_speed
         scelet3_rect.y += scelet3_y * scelet_speed
-        if scelet3_rect.left < 120 or scelet3_rect.left > width - 120:
+        if scelet3_rect.left < 100 or scelet3_rect.left > width - 120:
             scelet3_x = -1 * scelet3_x
-        elif scelet3_rect.top < 100 or scelet3_rect.bottom > height - 120:
+        elif scelet3_rect.top < 75 or scelet3_rect.bottom > height - 120:
             scelet3_y = -1 * scelet3_y
 
         if scelet3_rect.left < 130: 
@@ -913,9 +913,9 @@ while lets_continue:
             screen.blit(eboss_name_text,eboss_name_text_rect)
         scelet_boss_rect.x += scelet_boss_x * scelet_boss_speed
         scelet_boss_rect.y += scelet_boss_y * scelet_boss_speed
-        if scelet_boss_rect.left < 120 or scelet_boss_rect.left > width - 120:
+        if scelet_boss_rect.left < 100 or scelet_boss_rect.left > width - 120:
             scelet_boss_x = -1 * scelet_boss_x
-        elif scelet_boss_rect.top < 90 or scelet_boss_rect.bottom > height - 120:
+        elif scelet_boss_rect.top < 75 or scelet_boss_rect.bottom > height - 120:
             scelet_boss_y = -1 * scelet_boss_y
 
         if scelet_boss_rect.left < 130: 
