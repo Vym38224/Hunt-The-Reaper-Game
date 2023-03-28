@@ -1,5 +1,6 @@
 import pygame
 import random
+import buttons
 from players import *
 
 # Načtení IMG 
@@ -34,6 +35,8 @@ mirror = 0
 fire_attack = 0
 wire_attack = 0
 human_attack = 0
+
+run_game = 0
 
 attack_x = 1
 attack_1x = -1* attack_x
@@ -283,6 +286,13 @@ background_img_rect = background_img.get_rect()
 
 # OBRÁZKY
 
+# Buttons
+start_img = pygame.image.load("img/start_btn.png").convert_alpha()
+start_button = buttons.Button(940,0,start_img,0.8)
+exit_img = pygame.image.load("img/exit_btn.png").convert_alpha()
+exit_button = buttons.Button(1070,0,exit_img,0.8)
+
+
 # Human
 human_portret = loadify("img/human_portret.png")
 human_portret_rect = human_portret.get_rect()
@@ -370,7 +380,6 @@ name2_text_rect = name2_text.get_rect()
 name2_text_rect.center = (600,435)
 
 # Portal
-
 portal_image = loadify("img/portal.png")
 portal_image_rect = portal_image.get_rect()
 portal_image_rect.center = (width//2 + 500, height//2 - 200)
@@ -432,11 +441,6 @@ if enemy_scelet_boss_hp > 0:
 
 #-----------------------------------------------------------------------------------------------#
 # TEXTY 
-custom_font = pygame.font.SysFont("Helvetica", 44)
-custom_text = custom_font.render("press f to FIGHT!", True, yellow)
-custom_text_rect = custom_text.get_rect()
-custom_text_rect.center = (width//2 , height//2 + 350)
-
 custom1_font = pygame.font.SysFont("Helvetica", 64)
 custom1_text = custom1_font.render("WELCOME TO THE GAME", True, yellow)
 custom1_text_rect = custom1_text.get_rect()
@@ -470,9 +474,13 @@ while lets_continue:
             screen.blit(portal_image,portal_image_rect)
 # Text bez enemy
     if enemy_scelet == 0:
-        screen.blit(custom_text, custom_text_rect)
         screen.blit(custom1_text, custom1_text_rect)
-
+# Buttons
+    if start_button.draw(screen):
+        run_game = 1
+    if exit_button.draw(screen):
+        lets_continue = False
+    
 # HP bosse
     custom2_font = pygame.font.SysFont("Helvetica", 44)
     custom3_font = pygame.font.SysFont("Helvetica", 44)
@@ -589,7 +597,7 @@ while lets_continue:
             f_human.close()
 
 # Načte příšery
-    if keys [pygame.K_f]:
+    if run_game == 1:
         # Skeleton 
         enemy_scelet += 1
         enemy_scelet_str = str(enemy_scelet)
@@ -649,9 +657,13 @@ while lets_continue:
         text = f_enemy_scelet_boss.write(enemy_scelet_boss_str)
         f_enemy_scelet_boss.close()
 
+    if enemy_scelet_boss_hp <= 0:
+        pass
+
      # Human
     if player_human > 0:
-        hp0_text = pygame.font.SysFont("Moncerat", 18)
+        if human_hp > 0:
+            hp0_text = pygame.font.SysFont("Moncerat", 18)
         if human_hp >= 600:
             hp0_text = hp0_text.render("HP: " + f"{human_hp}", True, green)
         if human_hp >= 350 and human_hp <= 599:
@@ -659,7 +671,14 @@ while lets_continue:
         if human_hp <= 349 and human_hp > 0:
             hp0_text = hp0_text.render("HP: " + f"{human_hp}", True, red)
         if human_hp < 0:
-            hp0_text = hp0_text.render("HP (seš mrtvej sračko): " + f"{human_hp}", True, red)
+            player_human -= 100000000
+            player_human_str = str(player_human)
+            try:
+                f_human = open("players/player_human.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_human.write(player_human_str)
+            f_human.close()
         hp0_text_rect = hp0_text.get_rect()
         hp0_text_rect.center = (human_rect.x + 50, human_rect.y + 110)
         keys = pygame.key.get_pressed()
@@ -731,15 +750,23 @@ while lets_continue:
         
     # Firemag
     if player_fmag > 0:
-        hp1_text = pygame.font.SysFont("Moncerat", 18)
+        if fmag_hp > 0:
+            hp1_text = pygame.font.SysFont("Moncerat", 18)
         if fmag_hp >= 200:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, green)
         if fmag_hp >= 100 and fmag_hp < 200:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, yellow)
-        if fmag_hp >= 0 and fmag_hp <= 99:
+        if fmag_hp <= 99 and fmag_hp > 0:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, red)
         if fmag_hp < 0:
-            hp1_text = hp1_text.render("HP (seš mrtvej sračko): " + f"{fmag_hp}", True, red)
+            player_fmag -= 100000000
+            player_fmag_str = str(player_fmag)
+            try:
+                f_fmag = open("players/player_fmag.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_fmag.write(player_fmag_str)
+            f_fmag.close()
         hp1_text_rect = hp1_text.get_rect()
         hp1_text_rect.center = (fzard_rect.x + 60, fzard_rect.y + 135)
         keys = pygame.key.get_pressed()
@@ -791,15 +818,23 @@ while lets_continue:
 
     # Water mag
     if player_wmag > 0:
-        hp2_text = pygame.font.SysFont("Moncerat", 18)
+        if wmag_hp > 0:
+            hp2_text = pygame.font.SysFont("Moncerat", 18)
         if wmag_hp >= 75:
             hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, green)
-        if wmag_hp >= 40 and wmag_hp <= 74:
+        if wmag_hp <= 74 and wmag_hp >= 40:
             hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, yellow)
-        if wmag_hp >= 0 and wmag_hp < 40:
+        if wmag_hp <= 39 and wmag_hp > 0:
             hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, red)
         if wmag_hp < 0:
-            hp2_text = hp2_text.render("HP (seš mrtvej sračko): " + f"{wmag_hp}", True, red)
+            player_wmag -= 100000000
+            player_wmag_str = str(player_wmag)
+            try:
+                f_wmag = open("players/player_wmag.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_wmag.write(player_wmag_str)
+            f_wmag.close()
         hp2_text_rect = hp2_text.get_rect()
         hp2_text_rect.center = (wzard_rect.x + 65, wzard_rect.y + 130)  
         keys = pygame.key.get_pressed()
@@ -1382,6 +1417,7 @@ while lets_continue:
     pygame.draw.line(screen, black, (210,70),(210,0), 3)
     pygame.draw.line(screen, black, (280,70),(280,0), 3)
     pygame.draw.line(screen, black, (350,70),(350,0), 3)
+    pygame.draw.line(screen, black, (1069,70),(1069,0), 3)
 
 
 
