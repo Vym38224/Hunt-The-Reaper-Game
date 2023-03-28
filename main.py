@@ -44,7 +44,7 @@ attack_1x = -1* attack_x
 scelet_speed = 3
 scelet_boss_speed = 4
 
-attack_speed = 8
+attack_speed = 7
 fmag_distance = 5
 wmag_distance = 8
 human_distance = 5
