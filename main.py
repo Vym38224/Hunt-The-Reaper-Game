@@ -338,6 +338,12 @@ fzard2_image = loadify(player1.img2)
 fzard2_rect = fzard2_image.get_rect()
 fzard2_rect.center = (width//2, height//2)
 
+fzard_move_image = loadify("img/firemag_move.png")
+fzard_move_image_rect = fzard_move_image.get_rect()
+
+fzard_move_image2 = loadify("img/firemag_move2.png")
+fzard_move_image2_rect = fzard_move_image2.get_rect()
+
 fball_image = loadify(player1.img_attack)
 fball_rect = fball_image.get_rect()
 
@@ -806,15 +812,31 @@ while lets_continue:
         if fire_attack == 2:
             screen.blit(fball_image,fball_rect)
             fball_rect.x += attack_x * attack_speed 
+
+        if fball_rect.right > 0 or fball2_rect.right < width or fball_rect.left > 0 or fball2_rect.left < width:
+             fire_attack == 0
     
         if mirror == 0:
-            screen.blit(fzard_image,fzard_rect)
-            screen.blit(name1_text,name1_text_rect)
-            screen.blit(hp1_text,hp1_text_rect)
+            if keys [pygame.K_d] or keys [pygame.K_w] or keys [pygame.K_s]:
+                fzard_move_image_rect.center = (fzard_rect.x + 65,fzard_rect.y  + 60)
+                screen.blit(fzard_move_image,fzard_move_image_rect)
+                screen.blit(name1_text,name1_text_rect)
+                screen.blit(hp1_text,hp1_text_rect)
+            else:
+                screen.blit(fzard_image,fzard_rect)
+                screen.blit(name1_text,name1_text_rect)
+                screen.blit(hp1_text,hp1_text_rect)
+
         if mirror == 1:
-            screen.blit(fzard2_image,fzard2_rect)
-            screen.blit(name1_text,name1_text_rect)
-            screen.blit(hp1_text,hp1_text_rect)
+            if keys [pygame.K_a] or keys [pygame.K_w] or keys [pygame.K_s]: 
+                fzard_move_image2_rect.center = (fzard2_rect.x + 65 ,fzard2_rect.y + 60)
+                screen.blit(fzard_move_image2,fzard_move_image2_rect)                
+                screen.blit(name1_text,name1_text_rect)
+                screen.blit(hp1_text,hp1_text_rect)
+            else:
+                screen.blit(fzard2_image,fzard2_rect)
+                screen.blit(name1_text,name1_text_rect)
+                screen.blit(hp1_text,hp1_text_rect)
 
     # Water mag
     if player_wmag > 0:
@@ -879,7 +901,11 @@ while lets_continue:
             wzard_attack2_rect.x += attack_1x * attack_speed
         if wire_attack == 2:
             screen.blit(wzard_attack_image,wzard_attack_rect)
-            wzard_attack_rect.x += attack_x * attack_speed         
+            wzard_attack_rect.x += attack_x * attack_speed   
+
+        if wzard_attack_rect.right > 0 or wzard_attack2_rect.right < width or wzard_attack_rect.left > 0 or wzard_attack2_rect.left < width:
+             wire_attack == 0
+              
         
         if mirror == 0:
             if keys [pygame.K_d] or keys [pygame.K_w] or keys [pygame.K_s]:
