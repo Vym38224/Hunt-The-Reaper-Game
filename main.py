@@ -42,7 +42,7 @@ attack_x = 1
 attack_1x = -1* attack_x
 
 scelet_speed = 3
-scelet_boss_speed = 4
+scelet_boss_speed = 3
 
 attack_speed = 7
 fmag_distance = 5
@@ -57,7 +57,6 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_scelet_hp.write(str_scelet_hp)
-
 scelet_hp1 = 0
 str_scelet_hp1 = str(scelet_hp1)
 try:
@@ -65,7 +64,6 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_scelet_hp1.write(str_scelet_hp1)
-
 scelet_hp2 = 0
 str_scelet_hp2 = str(scelet_hp2)
 try:
@@ -73,7 +71,6 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_scelet_hp2.write(str_scelet_hp2)
-
 scelet_hp3 = 0
 str_scelet_hp3 = str(scelet_hp3)
 try:
@@ -81,6 +78,34 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_scelet_hp3.write(str_scelet_hp3)
+scelet_hp4 = 0
+str_scelet_hp4 = str(scelet_hp4)
+try:
+    f_scelet_hp4 = open("players_hp/scelet_hp4.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_scelet_hp4.write(str_scelet_hp4)
+scelet_hp5 = 0
+str_scelet_hp5 = str(scelet_hp5)
+try:
+    f_scelet_hp5 = open("players_hp/scelet_hp5.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_scelet_hp5.write(str_scelet_hp5)
+scelet_hp6 = 0
+str_scelet_hp6 = str(scelet_hp6)
+try:
+    f_scelet_hp6 = open("players_hp/scelet_hp6.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_scelet_hp6.write(str_scelet_hp6)
+scelet_hp7 = 0
+str_scelet_hp7 = str(scelet_hp7)
+try:
+    f_scelet_hp7 = open("players_hp/scelet_hp7.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_scelet_hp7.write(str_scelet_hp7)
 
 # Nastavení enemy_scelet = 0 na začátku hry
 enemy_scelet = 0
@@ -90,7 +115,6 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_enemy_scelet.write(str_enemy_scelet)
-
 enemy_scelet1 = 0
 str_enemy_scelet1 = str(enemy_scelet1)
 try:
@@ -98,7 +122,6 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_enemy_scelet1.write(str_enemy_scelet1)
-
 enemy_scelet2 = 0
 str_enemy_scelet2 = str(enemy_scelet2)
 try:
@@ -106,7 +129,6 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_enemy_scelet2.write(str_enemy_scelet2)
-
 enemy_scelet3 = 0
 str_enemy_scelet3 = str(enemy_scelet3)
 try:
@@ -114,6 +136,34 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_enemy_scelet3.write(str_enemy_scelet3)
+enemy_scelet4 = 0
+str_enemy_scelet4 = str(enemy_scelet4)
+try:
+    f_enemy_scelet4 = open("players/enemy_scelet4.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet4.write(str_enemy_scelet4)
+enemy_scelet5 = 0
+str_enemy_scelet5 = str(enemy_scelet5)
+try:
+    f_enemy_scelet5 = open("players/enemy_scelet5.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet5.write(str_enemy_scelet5)
+enemy_scelet6 = 0
+str_enemy_scelet6 = str(enemy_scelet6)
+try:
+    f_enemy_scelet6 = open("players/enemy_scelet6.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet6.write(str_enemy_scelet6)
+enemy_scelet7 = 0
+str_enemy_scelet7 = str(enemy_scelet7)
+try:
+    f_enemy_scelet7 = open("players/enemy_scelet7.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet7.write(str_enemy_scelet7)
 
 
 # Random pohyb skeletonů
@@ -125,6 +175,14 @@ scelet2_x = random.choice ([-1,1])
 scelet2_y = random.choice([-1,1])
 scelet3_x = random.choice ([-1,1])
 scelet3_y = random.choice([-1,1])
+scelet4_x = random.choice ([-1,1])
+scelet4_y = random.choice([-1,1])
+scelet5_x = random.choice ([-1,1])
+scelet5_y = random.choice([-1,1])
+scelet6_x = random.choice ([-1,1])
+scelet6_y = random.choice([-1,1])
+scelet7_x = random.choice ([-1,1])
+scelet7_y = random.choice([-1,1])
 scelet_boss_x = random.choice ([-1,1])
 scelet_boss_y = random.choice([-1,1])
 
@@ -148,7 +206,7 @@ if player_human > 0:
     except FileNotFoundError:
         print("Soubor nebyl nalezen")
     text = f2.read(human_hp)
-    f2.close()
+   
 
 # Firemag
 player_fmag = int()
@@ -166,8 +224,7 @@ if player_fmag > 0:
     except FileNotFoundError:
         print("Soubor nebyl nalezen")
     text = f1.read(fmag_hp)
-    f1.close()
-
+    
 # Watermag
 player_wmag = int()
 player_wmag_str=str(player_wmag)
@@ -184,8 +241,7 @@ if player_wmag > 0:
     except FileNotFoundError:
         print("Soubor nebyl nalezen")
     text = f2.read(wmag_hp)
-    f2.close()
-
+    
 #-----------------------------------------------------------------------------------------------#
 ### NEPŘÍTEL V POLI ###
 #-----------------------------------------------------------------------------------------------#
@@ -205,7 +261,6 @@ try:
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
 text = f3.read(scelet_hp)
-f3.close()
 
 # Skeleton 1
 enemy_scelet1= int()
@@ -218,11 +273,10 @@ text = f_enemy_scelet1.read(enemy_scelet1)
 scelet1_hp = (enemy0.hp)
 str_scelet1_hp = str(scelet1_hp)
 try:
-    f4 = open("players_hp/scelet1_hp.txt", "r")
+    f4 = open("players_hp/scelet_hp1.txt", "r")
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
 text = f4.read(scelet1_hp)
-f4.close()
 
 # Skeleton 2
 enemy_scelet2= int()
@@ -235,11 +289,10 @@ text = f_enemy_scelet2.read(enemy_scelet2)
 scelet2_hp = (enemy0.hp)
 str_scelet2_hp = str(scelet2_hp)
 try:
-    f5 = open("players_hp/scelet2_hp.txt", "r")
+    f5 = open("players_hp/scelet_hp2.txt", "r")
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
 text = f5.read(scelet2_hp)
-f5.close()
 
 # Skeleton 3
 enemy_scelet3= int()
@@ -252,11 +305,74 @@ text = f_enemy_scelet3.read(enemy_scelet3)
 scelet3_hp = (enemy0.hp)
 str_scelet3_hp = str(scelet3_hp)
 try:
-    f6 = open("players_hp/scelet3_hp.txt", "r")
+    f6 = open("players_hp/scelet_hp3.txt", "r")
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
 text = f6.read(scelet3_hp)
-f6.close()
+
+# Skeleton 4
+enemy_scelet4= int()
+enemy_scelet4_str=str(enemy_scelet4)
+try:
+    f_enemy_scelet4 = open("players/enemy_scelet4.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet4.read(enemy_scelet4)
+scelet4_hp = (enemy0.hp)
+str_scelet4_hp = str(scelet4_hp)
+try:
+    f3 = open("players_hp/scelet_hp4.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(scelet4_hp)
+
+# Skeleton 5
+enemy_scelet5= int()
+enemy_scelet5_str=str(enemy_scelet5)
+try:
+    f_enemy_scelet5 = open("players/enemy_scelet5.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet5.read(enemy_scelet5)
+scelet5_hp = (enemy0.hp)
+str_scelet5_hp = str(scelet5_hp)
+try:
+    f3 = open("players_hp/scelet_hp5.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(scelet5_hp)
+
+# Skeleton 6
+enemy_scelet6= int()
+enemy_scelet6_str=str(enemy_scelet6)
+try:
+    f_enemy_scelet6 = open("players/enemy_scelet6.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet6.read(enemy_scelet6)
+scelet6_hp = (enemy0.hp)
+str_scelet6_hp = str(scelet6_hp)
+try:
+    f3 = open("players_hp/scelet_hp6.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(scelet6_hp)
+
+# Skeleton 7
+enemy_scelet7= int()
+enemy_scelet7_str=str(enemy_scelet7)
+try:
+    f_enemy_scelet7 = open("players/enemy_scelet7.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_scelet7.read(enemy_scelet7)
+scelet7_hp = (enemy0.hp)
+str_scelet7_hp = str(scelet7_hp)
+try:
+    f3 = open("players_hp/scelet_hp7.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(scelet7_hp)
 
 # Skeleton BOSS
 enemy_scelet_boss= int()
@@ -269,11 +385,10 @@ text = f_enemy_scelet_boss.read(enemy_scelet_boss)
 enemy_scelet_boss_hp = (enemy1.hp)
 str_enemy_scelet_boss_hp = str(enemy_scelet_boss_hp)
 try:
-    f6 = open("players_hp/scelet_boss_hp.txt", "r")
+    f3 = open("players_hp/scelet_boss_hp.txt", "r")
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
-text = f6.read(enemy_scelet_boss_hp)
-f6.close()
+text = f3.read(enemy_scelet_boss_hp)
 
 #-----------------------------------------------------------------------------------------------#
 ### BACKGROUND, OBRÁZKY, TEXTY ###
@@ -291,7 +406,6 @@ start_img = pygame.image.load("img/start_btn.png").convert_alpha()
 start_button = buttons.Button(940,0,start_img,0.8)
 exit_img = pygame.image.load("img/exit_btn.png").convert_alpha()
 exit_button = buttons.Button(1070,0,exit_img,0.8)
-
 
 # Human
 human_portret = loadify("img/human_portret.png")
@@ -330,6 +444,10 @@ fzard_portret = loadify("img/fmag_portret.png")
 fzard_portret_rect = fzard_portret.get_rect()
 fzard_portret_rect.center = (105, 35)
 
+fzard_portret_lock = loadify("img/fmag_portret_lock.png")
+fzard_portret_lock_rect = fzard_portret_lock.get_rect()
+fzard_portret_lock_rect.center = (105, 35)
+
 fzard_image = loadify(player1.img)
 fzard_rect = fzard_image.get_rect()
 fzard_rect.center = (width//2, height//2)
@@ -357,7 +475,7 @@ name1_text_rect.center = (600,440)
 
 # Watermag
 wzard_portret = loadify("img/wzard_portret.png")
-wzard_portret_rect = fzard_portret.get_rect()
+wzard_portret_rect = wzard_portret.get_rect()
 wzard_portret_rect.center = (175, 35)
 
 wzard_image = loadify(player2.img)
@@ -410,7 +528,7 @@ if scelet1_hp > 0 :
     e1_name_text = pygame.font.SysFont("Moncerat", 20)
     e1_name_text = e1_name_text.render(enemy0.name, True, red)
     e1_name_text_rect = e1_name_text.get_rect()
-    e1_name_text_rect.center = (392,435)
+    e1_name_text_rect.center = (992,435)
 
 # Sceleton 2
 if scelet2_hp > 0 :
@@ -421,7 +539,7 @@ if scelet2_hp > 0 :
     e2_name_text = pygame.font.SysFont("Moncerat", 20)
     e2_name_text = e2_name_text.render(enemy0.name, True, red)
     e2_name_text_rect = e2_name_text.get_rect()
-    e2_name_text_rect.center = (592,435)
+    e2_name_text_rect.center = (992,435)
 
 # Sceleton 3
 if scelet3_hp > 0 :
@@ -432,7 +550,51 @@ if scelet3_hp > 0 :
     e3_name_text = pygame.font.SysFont("Moncerat", 20)
     e3_name_text = e3_name_text.render(enemy0.name, True, red)
     e3_name_text_rect = e3_name_text.get_rect()
-    e3_name_text_rect.center = (192,435)
+    e3_name_text_rect.center = (992,435)
+
+# Sceleton 4
+if scelet4_hp > 0 :
+    scelet4_image = loadify(enemy0.img)
+    scelet4_rect = scelet4_image.get_rect()
+    scelet4_rect.center = (width//2 + 300, height//2 - 200)
+
+    e4_name_text = pygame.font.SysFont("Moncerat", 20)
+    e4_name_text = e4_name_text.render(enemy0.name, True, red)
+    e4_name_text_rect = e4_name_text.get_rect()
+    e4_name_text_rect.center = (992,435)
+
+# Sceleton 5
+if scelet5_hp > 0 :
+    scelet5_image = loadify(enemy0.img)
+    scelet5_rect = scelet5_image.get_rect()
+    scelet5_rect.center = (width//2 - 100, height//2 - 200)
+
+    e5_name_text = pygame.font.SysFont("Moncerat", 20)
+    e5_name_text = e5_name_text.render(enemy0.name, True, red)
+    e5_name_text_rect = e5_name_text.get_rect()
+    e5_name_text_rect.center = (992,435)
+
+# Sceleton 6
+if scelet6_hp > 0 :
+    scelet6_image = loadify(enemy0.img)
+    scelet6_rect = scelet6_image.get_rect()
+    scelet6_rect.center = (width//2, height//2 - 200)
+
+    e6_name_text = pygame.font.SysFont("Moncerat", 20)
+    e6_name_text = e6_name_text.render(enemy0.name, True, red)
+    e6_name_text_rect = e6_name_text.get_rect()
+    e6_name_text_rect.center = (992,435)
+
+# Sceleton 7
+if scelet7_hp > 0 :
+    scelet7_image = loadify(enemy0.img)
+    scelet7_rect = scelet7_image.get_rect()
+    scelet7_rect.center = (width//2 + 250, height//2 - 200)
+
+    e7_name_text = pygame.font.SysFont("Moncerat", 20)
+    e7_name_text = e7_name_text.render(enemy0.name, True, red)
+    e7_name_text_rect = e7_name_text.get_rect()
+    e7_name_text_rect.center = (992,435)
 
 # Sceleton BOSS
 if enemy_scelet_boss_hp > 0:
@@ -443,7 +605,7 @@ if enemy_scelet_boss_hp > 0:
     eboss_name_text = pygame.font.SysFont("Moncerat", 20)
     eboss_name_text = eboss_name_text.render(enemy1.name, True, red)
     eboss_name_text_rect = eboss_name_text.get_rect()
-    eboss_name_text_rect.center = (992,435)
+    eboss_name_text_rect.center = (900,435)
 
 #-----------------------------------------------------------------------------------------------#
 # TEXTY 
@@ -470,16 +632,20 @@ while lets_continue:
     screen.blit(background_img, background_img_rect)
 
 # Portréty
-    screen.blit(fzard_portret, fzard_portret_rect)
-    screen.blit(wzard_portret, wzard_portret_rect)
+    if enemy_scelet_boss_hp <= 0:
+        screen.blit(fzard_portret, fzard_portret_rect)
+    if enemy_scelet_boss_hp > 0: 
+            screen.blit(fzard_portret_lock, fzard_portret_lock_rect)
+    if scelet_hp7 < 0 and scelet_hp6 < 0 and scelet_hp5 < 0 and scelet4_hp < 0:
+        screen.blit(wzard_portret, wzard_portret_rect)
     screen.blit(human_portret, human_portret_rect)
 
 # Portal
-    if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0:
-        if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0:
+    if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0 or enemy_scelet4 > 0 or enemy_scelet5 > 0 or enemy_scelet6 > 0 or enemy_scelet7 > 0:
+        if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0 or scelet4_hp > 0 or scelet5_hp > 0 or scelet6_hp > 0 or scelet7_hp > 0:
             screen.blit(portal_image,portal_image_rect)
 # Text bez enemy
-    if enemy_scelet == 0:
+    if enemy_scelet == 0:     
         screen.blit(custom1_text, custom1_text_rect)
 # Buttons
     if start_button.draw(screen):
@@ -604,7 +770,8 @@ while lets_continue:
 
 # Načte příšery
     if run_game == 1:
-        # Skeleton 
+
+# Skeleton 
         enemy_scelet += 1
         enemy_scelet_str = str(enemy_scelet)
         try:
@@ -614,17 +781,8 @@ while lets_continue:
         text = f_enemy_scelet.write(enemy_scelet_str)
         f_enemy_scelet.close()
 
+# Skeleton 1 + 2 + 3
     if scelet_hp <= 0:         
-        enemy_scelet += 1
-        enemy_scelet_str = str(enemy_scelet)
-        try:
-            f_enemy_scelet = open("players/enemy_scelet.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_scelet.write(enemy_scelet_str)
-        f_enemy_scelet.close()
-
-        # Skeleton 1 + 2 + 3
         enemy_scelet1 += 1
         enemy_scelet1_str = str(enemy_scelet1)
         try:
@@ -652,8 +810,47 @@ while lets_continue:
         text = f_enemy_scelet3.write(enemy_scelet3_str)
         f_enemy_scelet3.close()
 
-    # Skeleton BOSS
+# Skeleton 4 + 5 + 6 + 7
     if scelet_hp <= 0 and scelet1_hp <= 0 and scelet2_hp <= 0 and scelet3_hp <= 0:
+        enemy_scelet4 += 1
+        enemy_scelet4_str = str(enemy_scelet4)
+        try:
+            f_enemy_scelet4 = open("players/enemy_scelet4.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_scelet4.write(enemy_scelet4_str)
+        f_enemy_scelet4.close()
+    
+        enemy_scelet5 += 1
+        enemy_scelet5_str = str(enemy_scelet5)
+        try:
+            f_enemy_scelet5 = open("players/enemy_scelet5.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_scelet5.write(enemy_scelet5_str)
+        f_enemy_scelet5.close()
+
+        enemy_scelet6 += 1
+        enemy_scelet6_str = str(enemy_scelet6)
+        try:
+            f_enemy_scelet6 = open("players/enemy_scelet6.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_scelet6.write(enemy_scelet6_str)
+        f_enemy_scelet6.close()
+
+        enemy_scelet7 += 1
+        enemy_scelet7_str = str(enemy_scelet7)
+        try:
+            f_enemy_scelet7 = open("players/enemy_scelet7.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_scelet7.write(enemy_scelet7_str)
+        f_enemy_scelet7.close()
+        
+
+    # Skeleton BOSS
+    if scelet_hp <= 0 and scelet1_hp <= 0 and scelet2_hp <= 0 and scelet3_hp <= 0 and scelet4_hp <= 0 and scelet5_hp <= 0 and scelet6_hp <= 0 and scelet7_hp <= 0:
         enemy_scelet_boss += 1
         enemy_scelet_boss_str = str(enemy_scelet_boss)
         try:
@@ -662,7 +859,6 @@ while lets_continue:
                 print("Soubor nebyl nalezen")
         text = f_enemy_scelet_boss.write(enemy_scelet_boss_str)
         f_enemy_scelet_boss.close()
-
     if enemy_scelet_boss_hp <= 0:
         pass
 
@@ -755,7 +951,7 @@ while lets_continue:
                 screen.blit(hp0_text,hp0_text_rect)
         
     # Firemag
-    if player_fmag > 0:
+    if player_fmag > 0 and enemy_scelet_boss_hp <= 0:
         if fmag_hp > 0:
             hp1_text = pygame.font.SysFont("Moncerat", 18)
         if fmag_hp >= 200:
@@ -947,10 +1143,8 @@ while lets_continue:
             scelet_x = -1 * scelet_x
         elif scelet_rect.top < 75 or scelet_rect.bottom > height - 120:
             scelet_y = -1 * scelet_y
-
         if scelet_rect.left < 130: 
-            scelet_image = loadify(enemy0.img2)
-            
+            scelet_image = loadify(enemy0.img2)         
         if scelet_rect.left >= 1000: 
             scelet_image = loadify(enemy0.img)
 
@@ -972,10 +1166,8 @@ while lets_continue:
             scelet1_x = -1 * scelet1_x
         elif scelet1_rect.top < 75 or scelet1_rect.bottom > height - 120:
             scelet1_y = -1 * scelet1_y
-
         if scelet1_rect.left < 130: 
-            scelet1_image = loadify(enemy0.img2)
-                          
+            scelet1_image = loadify(enemy0.img2)                       
         if scelet1_rect.left >= 1000: 
             scelet1_image = loadify(enemy0.img)
 
@@ -997,10 +1189,8 @@ while lets_continue:
             scelet2_x = -1 * scelet2_x
         elif scelet2_rect.top < 75 or scelet2_rect.bottom > height - 120:
             scelet2_y = -1 * scelet2_y
-
         if scelet2_rect.left < 130: 
-            scelet2_image = loadify(enemy0.img2)
-                           
+            scelet2_image = loadify(enemy0.img2)                 
         if scelet2_rect.left >= 1000: 
             scelet2_image = loadify(enemy0.img)
 
@@ -1022,12 +1212,102 @@ while lets_continue:
             scelet3_x = -1 * scelet3_x
         elif scelet3_rect.top < 75 or scelet3_rect.bottom > height - 120:
             scelet3_y = -1 * scelet3_y
-
         if scelet3_rect.left < 130: 
-            scelet3_image = loadify(enemy0.img2)
-                
+            scelet3_image = loadify(enemy0.img2)          
         if scelet3_rect.left >= 1000: 
             scelet3_image = loadify(enemy0.img)
+
+    # Skeleton 4
+    if enemy_scelet4 > 0:
+        hp4_text4 = pygame.font.SysFont("Moncerat", 18)
+        if scelet4_hp > 0:      
+            hp4_text4 = hp4_text4.render("HP: " + f"{scelet4_hp}", True, white)
+            hp4_text4_rect = hp4_text4.get_rect()
+            hp4_text4_rect.center = (scelet4_rect.x + 30, scelet4_rect.y + 125)
+            screen.blit(hp4_text4,hp4_text4_rect)
+        e4_name_text_rect.center = (scelet4_rect.x + 30, scelet4_rect.y + 110)
+        if scelet4_hp > 0:
+            screen.blit(scelet4_image,scelet4_rect)
+            screen.blit(e4_name_text,e4_name_text_rect)
+        scelet4_rect.x += scelet4_x * scelet_speed
+        scelet4_rect.y += scelet4_y * scelet_speed
+        if scelet4_rect.left < 100 or scelet4_rect.left > width - 120:
+            scelet4_x = -1 * scelet4_x
+        elif scelet4_rect.top < 75 or scelet4_rect.bottom > height - 120:
+            scelet4_y = -1 * scelet4_y
+        if scelet4_rect.left < 130: 
+            scelet4_image = loadify(enemy0.img2)        
+        if scelet4_rect.left >= 1000: 
+            scelet4_image = loadify(enemy0.img)
+
+    # Skeleton 5
+    if enemy_scelet5 > 0:
+        hp5_text5 = pygame.font.SysFont("Moncerat", 18)
+        if scelet5_hp > 0:      
+            hp5_text5 = hp5_text5.render("HP: " + f"{scelet5_hp}", True, white)
+            hp5_text5_rect = hp5_text5.get_rect()
+            hp5_text5_rect.center = (scelet5_rect.x + 30, scelet5_rect.y + 125)
+            screen.blit(hp5_text5,hp5_text5_rect)
+        e5_name_text_rect.center = (scelet5_rect.x + 30, scelet5_rect.y + 110)
+        if scelet5_hp > 0:
+            screen.blit(scelet5_image,scelet5_rect)
+            screen.blit(e5_name_text,e5_name_text_rect)
+        scelet5_rect.x += scelet5_x * scelet_speed
+        scelet5_rect.y += scelet5_y * scelet_speed
+        if scelet5_rect.left < 100 or scelet5_rect.left > width - 120:
+            scelet5_x = -1 * scelet5_x
+        elif scelet5_rect.top < 75 or scelet5_rect.bottom > height - 120:
+            scelet5_y = -1 * scelet5_y
+        if scelet5_rect.left < 130: 
+            scelet5_image = loadify(enemy0.img2)              
+        if scelet5_rect.left >= 1000: 
+            scelet5_image = loadify(enemy0.img)
+
+ # Skeleton 6
+    if enemy_scelet6 > 0:
+        hp6_text6 = pygame.font.SysFont("Moncerat", 18)
+        if scelet6_hp > 0:      
+            hp6_text6 = hp6_text6.render("HP: " + f"{scelet6_hp}", True, white)
+            hp6_text6_rect = hp6_text6.get_rect()
+            hp6_text6_rect.center = (scelet6_rect.x + 30, scelet6_rect.y + 125)
+            screen.blit(hp6_text6,hp6_text6_rect)
+        e6_name_text_rect.center = (scelet6_rect.x + 30, scelet6_rect.y + 110)
+        if scelet6_hp > 0:
+            screen.blit(scelet6_image,scelet6_rect)
+            screen.blit(e6_name_text,e6_name_text_rect)
+        scelet6_rect.x += scelet6_x * scelet_speed
+        scelet6_rect.y += scelet6_y * scelet_speed
+        if scelet6_rect.left < 100 or scelet6_rect.left > width - 120:
+            scelet6_x = -1 * scelet6_x
+        elif scelet6_rect.top < 75 or scelet6_rect.bottom > height - 120:
+            scelet6_y = -1 * scelet6_y
+        if scelet6_rect.left < 130: 
+            scelet6_image = loadify(enemy0.img2)              
+        if scelet6_rect.left >= 1000: 
+            scelet6_image = loadify(enemy0.img)
+
+# Skeleton 7
+    if enemy_scelet7 > 0:
+        hp7_text7 = pygame.font.SysFont("Moncerat", 18)
+        if scelet7_hp > 0:      
+            hp7_text7 = hp7_text7.render("HP: " + f"{scelet7_hp}", True, white)
+            hp7_text7_rect = hp7_text7.get_rect()
+            hp7_text7_rect.center = (scelet7_rect.x + 30, scelet7_rect.y + 125)
+            screen.blit(hp7_text7,hp7_text7_rect)
+        e7_name_text_rect.center = (scelet7_rect.x + 30, scelet7_rect.y + 110)
+        if scelet7_hp > 0:
+            screen.blit(scelet7_image,scelet7_rect)
+            screen.blit(e7_name_text,e7_name_text_rect)
+        scelet7_rect.x += scelet7_x * scelet_speed
+        scelet7_rect.y += scelet7_y * scelet_speed
+        if scelet7_rect.left < 100 or scelet7_rect.left > width - 120:
+            scelet7_x = -1 * scelet7_x
+        elif scelet7_rect.top < 75 or scelet7_rect.bottom > height - 120:
+            scelet7_y = -1 * scelet7_y
+        if scelet7_rect.left < 130: 
+            scelet7_image = loadify(enemy0.img2)              
+        if scelet7_rect.left >= 1000: 
+            scelet7_image = loadify(enemy0.img)
 
     # Skeleton BOSS
     if enemy_scelet_boss > 0:
@@ -1063,7 +1343,7 @@ while lets_continue:
 #-----------------------------------------------------------------------------------------------#
 
 # scelet --> human
-    if scelet_rect.colliderect(human_rect) or scelet_rect.colliderect(human2_rect) and human_attack == 1 and keys [pygame.K_SPACE]:
+    if scelet_rect.colliderect(human_rect) or scelet_rect.colliderect(human2_rect):
         if player_human > 0 and scelet_hp > 0 and enemy_scelet > 0:
             human_hp -= 1
             str_human_hp = str(human_hp)
@@ -1075,7 +1355,7 @@ while lets_continue:
             f1.close()
 
  # scelet1 --> human
-    if scelet1_rect.colliderect(human_rect) or scelet1_rect.colliderect(human2_rect) and human_attack == 1 and keys [pygame.K_SPACE]:
+    if scelet1_rect.colliderect(human_rect) or scelet1_rect.colliderect(human2_rect) :
         if player_human > 0 and scelet1_hp > 0 and enemy_scelet1 > 0:
             human_hp -= 1
             str_human_hp = str(human_hp)
@@ -1087,7 +1367,7 @@ while lets_continue:
             f1.close()
 
 # scelet2 --> human
-    if scelet2_rect.colliderect(human_rect) or scelet2_rect.colliderect(human2_rect) and human_attack == 1 and keys [pygame.K_SPACE]:
+    if scelet2_rect.colliderect(human_rect) or scelet2_rect.colliderect(human2_rect) :
         if player_human > 0 and scelet2_hp > 0 and enemy_scelet2 > 0:
             human_hp -= 1
             str_human_hp = str(human_hp)
@@ -1099,8 +1379,56 @@ while lets_continue:
             f1.close()
 
 # scelet3 --> human
-    if scelet3_rect.colliderect(human_rect) or scelet3_rect.colliderect(human2_rect) and human_attack == 1 and keys [pygame.K_SPACE]:
+    if scelet3_rect.colliderect(human_rect) or scelet3_rect.colliderect(human2_rect) :
         if player_human > 0 and scelet3_hp > 0 and enemy_scelet3 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# scelet4 --> human
+    if scelet4_rect.colliderect(human_rect) or scelet4_rect.colliderect(human2_rect) :
+        if player_human > 0 and scelet4_hp > 0 and enemy_scelet4 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# scelet5 --> human
+    if scelet5_rect.colliderect(human_rect) or scelet5_rect.colliderect(human2_rect) :
+        if player_human > 0 and scelet5_hp > 0 and enemy_scelet5 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# scelet6 --> human
+    if scelet6_rect.colliderect(human_rect) or scelet6_rect.colliderect(human2_rect):
+        if player_human > 0 and scelet6_hp > 0 and enemy_scelet6 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# scelet7 --> human
+    if scelet7_rect.colliderect(human_rect) or scelet7_rect.colliderect(human2_rect):
+        if player_human > 0 and scelet7_hp > 0 and enemy_scelet7 > 0:
             human_hp -= 1
             str_human_hp = str(human_hp)
             try:
@@ -1292,6 +1620,54 @@ while lets_continue:
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
             text = f3.write(str_scelet3_hp)
+            f3.close()
+
+# human_attack --> scelet4
+    if human_attack_rect.colliderect(scelet4_rect) or human_attack2_rect.colliderect(scelet4_rect):
+        if enemy_scelet4 > 0 and keys [pygame.K_SPACE]:
+            scelet4_hp -= 1
+            str_scelet4_hp = str(scelet4_hp)
+            try:
+                f3 = open("players_hp/scelet4_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_scelet4_hp)
+            f3.close()
+
+# human_attack --> scelet5
+    if human_attack_rect.colliderect(scelet5_rect) or human_attack2_rect.colliderect(scelet5_rect):
+        if enemy_scelet5 > 0 and keys [pygame.K_SPACE]:
+            scelet5_hp -= 1
+            str_scelet5_hp = str(scelet5_hp)
+            try:
+                f3 = open("players_hp/scelet5_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_scelet5_hp)
+            f3.close()
+        
+# human_attack --> scelet6
+    if human_attack_rect.colliderect(scelet6_rect) or human_attack2_rect.colliderect(scelet6_rect):
+        if enemy_scelet6 > 0 and keys [pygame.K_SPACE]:
+            scelet6_hp -= 10
+            str_scelet6_hp = str(scelet6_hp)
+            try:
+                f3 = open("players_hp/scelet6_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_scelet6_hp)
+            f3.close()
+
+# human_attack --> scelet7
+    if human_attack_rect.colliderect(scelet7_rect) or human_attack2_rect.colliderect(scelet7_rect):
+        if enemy_scelet7 > 0 and keys [pygame.K_SPACE]:
+            scelet7_hp -= 10
+            str_scelet7_hp = str(scelet7_hp)
+            try:
+                f3 = open("players_hp/scelet7_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_scelet7_hp)
             f3.close()
 
 # human_attack --> sceletboss
