@@ -1754,6 +1754,41 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+# spider1 --> human
+    if spider_rect1.colliderect(human_rect) or spider_rect1.colliderect(human2_rect):
+        if player_human > 0 and spider_hp1 > 0 and enemy_spider1 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# spider2 --> human
+    if spider_rect2.colliderect(human_rect) or spider_rect2.colliderect(human2_rect):
+        if player_human > 0 and spider_hp2 > 0 and enemy_spider2 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# spider3 --> human
+    if spider_rect3.colliderect(human_rect) or spider_rect3.colliderect(human2_rect):
+        if player_human > 0 and spider_hp3 > 0 and enemy_spider3 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
 
 # spiderboss --> human
     if spider_boss_rect.colliderect(human_rect) or spider_boss_rect.colliderect(human2_rect):
@@ -1962,6 +1997,42 @@ while lets_continue:
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
             text = f3.write(str_spider_hp)
+            f3.close()
+
+# human_attack --> spider1
+    if human_attack_rect.colliderect(spider_rect1) or human_attack2_rect.colliderect(spider_rect1) :
+        if enemy_spider1 > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            spider_hp1 -= 1
+            str_spider_hp1 = str(spider_hp1)
+            try:
+                f3 = open("players_hp/spider_hp1.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_spider_hp1)
+            f3.close()
+
+# human_attack --> spider2
+    if human_attack_rect.colliderect(spider_rect2) or human_attack2_rect.colliderect(spider_rect2) :
+        if enemy_spider2 > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            spider_hp2 -= 1
+            str_spider_hp2 = str(spider_hp2)
+            try:
+                f3 = open("players_hp/spider_hp2.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_spider_hp2)
+            f3.close()
+
+# human_attack --> spider 3
+    if human_attack_rect.colliderect(spider_rect3) or human_attack2_rect.colliderect(spider_rect3) :
+        if enemy_spider3 > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            spider_hp3 -= 1
+            str_spider_hp3 = str(spider_hp3)
+            try:
+                f3 = open("players_hp/spider_hp3.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_spider_hp3)
             f3.close()
 
 # human_attack --> spiderboss
