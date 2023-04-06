@@ -59,6 +59,27 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_spider_hp.write(str_spider_hp)
+spider_hp1 = 0
+str_spider_hp1 = str(spider_hp1)
+try:
+    f_spider_hp1 = open("players_hp/spider_hp1.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_spider_hp.write(str_spider_hp1)
+spider_hp2 = 0
+str_spider_hp2 = str(spider_hp2)
+try:
+    f_spider_hp2 = open("players_hp/spider_hp2.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_spider_hp2.write(str_spider_hp2)
+spider_hp3 = 0
+str_spider_hp3 = str(spider_hp3)
+try:
+    f_spider_hp3 = open("players_hp/spider_hp3.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_spider_hp3.write(str_spider_hp3)
 
 # Nastavení scelet_hp = 0 na začátku hry
 scelet_hp = 0
@@ -126,6 +147,27 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_enemy_spider.write(str_enemy_spider)
+enemy_spider1 = 0
+str_enemy_spider1 = str(enemy_spider1)
+try:
+    f_enemy_spider1 = open("players/enemy_spider1.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_spider1.write(str_enemy_spider1)
+enemy_spider2 = 0
+str_enemy_spider2 = str(enemy_spider1)
+try:
+    f_enemy_spider2 = open("players/enemy_spider2.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_spider2.write(str_enemy_spider2)
+enemy_spider3 = 0
+str_enemy_spider3 = str(enemy_spider3)
+try:
+    f_enemy_spider3 = open("players/enemy_spider3.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_spider3.write(str_enemy_spider3)
 
 # Nastavení enemy_scelet = 0 na začátku hry
 enemy_scelet = 0
@@ -189,6 +231,12 @@ text = f_enemy_scelet7.write(str_enemy_scelet7)
 # Random pohyb skeletonů
 spider_x = random.choice ([-1,1])
 spider_y = random.choice([-1,1])
+spider1_x = random.choice ([-1,1])
+spider1_y = random.choice([-1,1])
+spider2_x = random.choice ([-1,1])
+spider2_y = random.choice([-1,1])
+spider3_x = random.choice ([-1,1])
+spider3_y = random.choice([-1,1])
 spider_boss_x = random.choice ([-1,1])
 spider_boss_y = random.choice([-1,1])
 scelet_x = random.choice ([-1,1])
@@ -284,6 +332,54 @@ try:
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
 text = f3.read(spider_hp)
+
+# Spider 1
+enemy_spider1= int()
+enemy_spider1_str=str(enemy_spider1)
+try:
+    f_enemy_spider1 = open("players/enemy_spider1.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_spider1.read(enemy_spider1)
+spider_hp1 = (enemy2.hp)
+str_spider_hp1 = str(spider_hp1)
+try:
+    f3 = open("players_hp/spider_hp1.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(spider_hp1)
+
+# Spider 2
+enemy_spider2= int()
+enemy_spider2_str=str(enemy_spider2)
+try:
+    f_enemy_spider2 = open("players/enemy_spider2.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_spider2.read(enemy_spider2)
+spider_hp2 = (enemy2.hp)
+str_spider_hp2 = str(spider_hp2)
+try:
+    f3 = open("players_hp/spider_hp2.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(spider_hp2)
+
+# Spider 3
+enemy_spider3= int()
+enemy_spider3_str=str(enemy_spider3)
+try:
+    f_enemy_spider3 = open("players/enemy_spider3.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_spider3.read(enemy_spider3)
+spider_hp3 = (enemy2.hp)
+str_spider_hp3 = str(spider_hp3)
+try:
+    f3 = open("players_hp/spider_hp3.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(spider_hp3)
 
 # Spider BOSS
 enemy_spider_boss= int()
@@ -578,6 +674,39 @@ if spider_hp > 0:
     e_name_text_rect = e_name_text.get_rect()
     e_name_text_rect.center = (992,435)
 
+# Spider 1
+if spider_hp1 > 0:
+    spider_image1 = loadify(enemy2.img)
+    spider_rect1 = spider_image1.get_rect()
+    spider_rect1.center = (width//2 -100, height//2 - 100)
+
+    e11_name_text = pygame.font.SysFont("Moncerat", 20)
+    e11_name_text = e11_name_text.render(enemy0.name, True, red)
+    e11_name_text_rect = e11_name_text.get_rect()
+    e11_name_text_rect.center = (992,435)
+
+# Spider 2
+if spider_hp2 > 0:
+    spider_image2 = loadify(enemy2.img)
+    spider_rect2 = spider_image2.get_rect()
+    spider_rect2.center = (width//2 + 100, height//2 - 200)
+
+    e12_name_text = pygame.font.SysFont("Moncerat", 20)
+    e12_name_text = e12_name_text.render(enemy0.name, True, red)
+    e12_name_text_rect = e12_name_text.get_rect()
+    e12_name_text_rect.center = (992,435)
+
+# Spider 3
+if spider_hp3 > 0:
+    spider_image3 = loadify(enemy2.img)
+    spider_rect3 = spider_image3.get_rect()
+    spider_rect3.center = (width//2 , height//2 - 200)
+
+    e9_name_text = pygame.font.SysFont("Moncerat", 20)
+    e9_name_text = e9_name_text.render(enemy0.name, True, red)
+    e9_name_text_rect = e9_name_text.get_rect()
+    e9_name_text_rect.center = (992,435)
+
 # Spider BOSS
 if enemy_spider_boss_hp > 0:
     spider_boss_image = loadify(enemy3.img)
@@ -615,7 +744,7 @@ if scelet1_hp > 0 :
 if scelet2_hp > 0 :
     scelet2_image = loadify(enemy0.img)
     scelet2_rect = scelet2_image.get_rect()
-    scelet2_rect.center = (width//2 + 100, height//2 - 200)
+    scelet2_rect.center = (width//2 + 100, height//2 - 100)
 
     e2_name_text = pygame.font.SysFont("Moncerat", 20)
     e2_name_text = e2_name_text.render(enemy0.name, True, red)
@@ -637,7 +766,7 @@ if scelet3_hp > 0 :
 if scelet4_hp > 0 :
     scelet4_image = loadify(enemy0.img)
     scelet4_rect = scelet4_image.get_rect()
-    scelet4_rect.center = (width//2 + 300, height//2 - 200)
+    scelet4_rect.center = (width//2 + 300, height//2 - 100)
 
     e4_name_text = pygame.font.SysFont("Moncerat", 20)
     e4_name_text = e4_name_text.render(enemy0.name, True, red)
@@ -659,7 +788,7 @@ if scelet5_hp > 0 :
 if scelet6_hp > 0 :
     scelet6_image = loadify(enemy0.img)
     scelet6_rect = scelet6_image.get_rect()
-    scelet6_rect.center = (width//2, height//2 - 200)
+    scelet6_rect.center = (width//2, height//2 - 100)
 
     e6_name_text = pygame.font.SysFont("Moncerat", 20)
     e6_name_text = e6_name_text.render(enemy0.name, True, red)
@@ -886,8 +1015,35 @@ while lets_continue:
         text = f_enemy_spider.write(enemy_spider_str)
         f_enemy_spider.close()
 
+# Spider 1 + 2 + 3
+    if spider_hp <= 0: 
+        enemy_spider1 += 1
+        enemy_spider1_str = str(enemy_spider1)
+        try:
+            f_enemy_spider1 = open("players/enemy_spider1.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_spider1.write(enemy_spider1_str)
+        f_enemy_spider1.close()
+        enemy_spider2 += 1
+        enemy_spider2_str = str(enemy_spider2)
+        try:
+            f_enemy_spider2 = open("players/enemy_spider2.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_spider2.write(enemy_spider2_str)
+        f_enemy_spider2.close()
+        enemy_spider3 += 1
+        enemy_spider3_str = str(enemy_spider3)
+        try:
+            f_enemy_spider3 = open("players/enemy_spider3.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_spider3.write(enemy_spider3_str)
+        f_enemy_spider3.close()
+
 # Spider BOSS
-    if spider_hp <= 0:
+    if  spider_hp <= 0 and spider_hp1 <= 0 and spider_hp2 <= 0 and spider_hp3 <= 0:
         enemy_spider_boss += 1
         enemy_spider_boss_str = str(enemy_spider_boss)
         try:
@@ -1275,6 +1431,75 @@ while lets_continue:
             spider_image = loadify(enemy2.img2)         
         if spider_rect.left >= 1000: 
             spider_image = loadify(enemy2.img)
+
+    # Spirder 1
+    if enemy_spider1 > 0:
+        hp_spider1_text = pygame.font.SysFont("Moncerat", 18)
+        if spider_hp1 > 0:      
+            hp_spider1_text = hp_spider1_text.render("HP: " + f"{spider_hp1}", True, white)
+            hp_spider1_text_rect = hp_spider1_text.get_rect()
+            hp_spider1_text_rect.center = (spider_rect1.x + 30, spider_rect1.y + 40)
+            screen.blit(hp_spider1_text,hp_spider1_text_rect)
+        e11_name_text_rect.center = (spider_rect1.x + 30, spider_rect1.y + 50)
+        if spider_hp1 > 0:
+            screen.blit(spider_image1,spider_rect1)
+            screen.blit(e11_name_text,e11_name_text_rect)
+        spider_rect1.x += spider1_x * spider_speed
+        spider_rect1.y += spider1_y * spider_speed
+        if spider_rect1.left < 100 or spider_rect1.left > width - 120:
+            spider1_x = -1 * spider1_x
+        elif spider_rect1.top < 75 or spider_rect1.bottom > height - 120:
+            spider1_y = -1 * spider1_y
+        if spider_rect1.left < 130: 
+            spider_image1 = loadify(enemy2.img2)         
+        if spider_rect1.left >= 1000: 
+            spider_image1 = loadify(enemy2.img)
+
+    # Spirder 2
+    if enemy_spider2 > 0:
+        hp_spider2_text = pygame.font.SysFont("Moncerat", 18)
+        if spider_hp2 > 0:      
+            hp_spider2_text = hp_spider2_text.render("HP: " + f"{spider_hp2}", True, white)
+            hp_spider2_text_rect = hp_spider2_text.get_rect()
+            hp_spider2_text_rect.center = (spider_rect2.x + 30, spider_rect2.y + 40)
+            screen.blit(hp_spider2_text,hp_spider2_text_rect)
+        e9_name_text_rect.center = (spider_rect2.x + 30, spider_rect2.y + 50)
+        if spider_hp2 > 0:
+            screen.blit(spider_image2,spider_rect2)
+            screen.blit(e9_name_text,e9_name_text_rect)
+        spider_rect2.x += spider2_x * spider_speed
+        spider_rect2.y += spider2_y * spider_speed
+        if spider_rect2.left < 100 or spider_rect2.left > width - 120:
+            spider2_x = -1 * spider2_x
+        elif spider_rect2.top < 75 or spider_rect2.bottom > height - 120:
+            spider2_y = -1 * spider2_y
+        if spider_rect2.left < 130: 
+            spider_image2 = loadify(enemy2.img2)         
+        if spider_rect2.left >= 1000: 
+            spider_image2 = loadify(enemy2.img)
+
+    # Spirder 3
+    if enemy_spider3 > 0:
+        hp_spider3_text = pygame.font.SysFont("Moncerat", 18)
+        if spider_hp3 > 0:      
+            hp_spider3_text = hp_spider3_text.render("HP: " + f"{spider_hp3}", True, white)
+            hp_spider3_text_rect = hp_spider3_text.get_rect()
+            hp_spider3_text_rect.center = (spider_rect3.x + 30, spider_rect3.y + 40)
+            screen.blit(hp_spider3_text,hp_spider3_text_rect)
+        e12_name_text_rect.center = (spider_rect3.x + 30, spider_rect3.y + 50)
+        if spider_hp3 > 0:
+            screen.blit(spider_image3,spider_rect3)
+            screen.blit(e12_name_text,e12_name_text_rect)
+        spider_rect3.x += spider3_x * spider_speed
+        spider_rect3.y += spider3_y * spider_speed
+        if spider_rect3.left < 100 or spider_rect3.left > width - 120:
+            spider3_x = -1 * spider3_x
+        elif spider_rect3.top < 75 or spider_rect3.bottom > height - 120:
+            spider3_y = -1 * spider3_y
+        if spider_rect3.left < 130: 
+            spider_image3 = loadify(enemy2.img2)         
+        if spider_rect3.left >= 1000: 
+            spider_image3 = loadify(enemy2.img)
 
 # Spider BOSS
     if enemy_spider_boss > 0:
