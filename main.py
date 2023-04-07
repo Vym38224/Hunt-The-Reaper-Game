@@ -45,11 +45,43 @@ spider_speed = 2
 spider_boss_speed = 3
 scelet_speed = 2
 scelet_boss_speed = 3
+goblin_speed = 3
+goblin_boss_speed = 2
 
 attack_speed = 7
 fmag_distance = 5
 wmag_distance = 8
 human_distance = 5
+
+# Nastavení goblin_hp = 0 na začátku hry
+goblin_hp = 0
+str_goblin_hp = str(goblin_hp)
+try:
+    f_goblin_hp = open("players_hp/goblin_hp.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_goblin_hp.write(str_goblin_hp)
+goblin_hp1 = 0
+str_goblin_hp1 = str(goblin_hp1)
+try:
+    f_goblin_hp1 = open("players_hp/goblin_hp1.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_goblin_hp.write(str_goblin_hp1)
+goblin_hp2 = 0
+str_goblin_hp2 = str(goblin_hp2)
+try:
+    f_goblin_hp2 = open("players_hp/goblin_hp2.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_goblin_hp2.write(str_goblin_hp2)
+goblin_hp3 = 0
+str_goblin_hp3 = str(goblin_hp3)
+try:
+    f_goblin_hp3 = open("players_hp/goblin_hp3.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_goblin_hp3.write(str_goblin_hp3)
 
 # Nastavení spider_hp = 0 na začátku hry
 spider_hp = 0
@@ -138,6 +170,36 @@ try:
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
 text = f_scelet_hp7.write(str_scelet_hp7)
+
+# Nastavení enemy_goblin = 0 na začátku hry
+enemy_goblin = 0
+str_enemy_goblin = str(enemy_goblin)
+try:
+    f_enemy_goblin = open("players/enemy_goblin.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin.write(str_enemy_goblin)
+enemy_goblin1 = 0
+str_enemy_goblin1 = str(enemy_goblin1)
+try:
+    f_enemy_goblin1 = open("players/enemy_goblin1.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin1.write(str_enemy_goblin1)
+enemy_goblin2 = 0
+str_enemy_goblin2 = str(enemy_goblin1)
+try:
+    f_enemy_goblin2 = open("players/enemy_goblin2.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin2.write(str_enemy_goblin2)
+enemy_goblin3 = 0
+str_enemy_goblin3 = str(enemy_goblin3)
+try:
+    f_enemy_goblin3 = open("players/enemy_goblin3.txt","w")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin3.write(str_enemy_goblin3)
 
 # Nastavení enemy_spider = 0 na začátku hry
 enemy_spider = 0
@@ -257,6 +319,16 @@ scelet7_x = random.choice ([-1,1])
 scelet7_y = random.choice([-1,1])
 scelet_boss_x = random.choice ([-1,1])
 scelet_boss_y = random.choice([-1,1])
+goblin_x = random.choice ([-1,1])
+goblin_y = random.choice([-1,1])
+goblin1_x = random.choice ([-1,1])
+goblin1_y = random.choice([-1,1])
+goblin2_x = random.choice ([-1,1])
+goblin2_y = random.choice([-1,1])
+goblin3_x = random.choice ([-1,1])
+goblin3_y = random.choice([-1,1])
+goblin_boss_x = random.choice ([-1,1])
+goblin_boss_y = random.choice([-1,1])
 
 #-----------------------------------------------------------------------------------------------#
 ### HRÁČ V POLI ###
@@ -316,6 +388,86 @@ if player_wmag > 0:
 #-----------------------------------------------------------------------------------------------#
 ### NEPŘÍTEL V POLI ###
 #-----------------------------------------------------------------------------------------------#
+
+# Goblin
+enemy_goblin = int()
+enemy_goblin_str=str(enemy_goblin)
+try:
+    f_enemy_goblin = open("players/enemy_goblin.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin.read(enemy_goblin)
+goblin_hp = (enemy4.hp)
+str_goblin_hp = str(goblin_hp)
+try:
+    f3 = open("players_hp/goblin_hp.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp)
+
+# Goblin 1
+enemy_goblin1= int()
+enemy_goblin1_str=str(enemy_goblin1)
+try:
+    f_enemy_goblin1 = open("players/enemy_goblin1.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin1.read(enemy_goblin1)
+goblin_hp1 = (enemy4.hp)
+str_goblin_hp1 = str(goblin_hp1)
+try:
+    f3 = open("players_hp/goblin_hp1.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp1)
+
+# Goblin 2
+enemy_goblin2= int()
+enemy_goblin2_str=str(enemy_goblin2)
+try:
+    f_enemy_goblin2 = open("players/enemy_goblin2.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin2.read(enemy_goblin2)
+goblin_hp2 = (enemy4.hp)
+str_goblin_hp2 = str(goblin_hp2)
+try:
+    f3 = open("players_hp/goblin_hp2.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp2)
+
+# Goblin 3
+enemy_goblin3= int()
+enemy_goblin3_str=str(enemy_goblin3)
+try:
+    f_enemy_goblin3 = open("players/enemy_goblin3.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin3.read(enemy_goblin3)
+goblin_hp3 = (enemy4.hp)
+str_goblin_hp3 = str(goblin_hp3)
+try:
+    f3 = open("players_hp/goblin_hp3.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp3)
+
+# Goblin BOSS
+enemy_goblin_boss = int()
+enemy_goblin_boss_str=str(enemy_goblin_boss)
+try:
+    f_enemy_goblin_boss  = open("players/enemy_goblin_boss.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin.read(enemy_goblin_boss)
+goblin_boss_hp = (enemy5.hp)
+str_goblin_hp = str(goblin_boss_hp)
+try:
+    f3 = open("players_hp/goblin_boss_hp.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_boss_hp)
 
 # Spider
 enemy_spider= int()
@@ -668,6 +820,11 @@ s_portal_image = loadify("img/spider_portal.png")
 s_portal_image_rect = s_portal_image.get_rect()
 s_portal_image_rect.center = (width//2 + 500, height//2 - 200)
 
+# Goblin Portal
+g_portal_image = loadify("img/goblin_portal.png")
+g_portal_image_rect = g_portal_image.get_rect()
+g_portal_image_rect.center = (width//2 + 500, height//2 - 200)
+
 
 # Spider
 if spider_hp > 0:
@@ -676,7 +833,7 @@ if spider_hp > 0:
     spider_rect.center = (width//2 + 500, height//2 - 200)
 
     e_name_text = pygame.font.SysFont("Moncerat", 20)
-    e_name_text = e_name_text.render(enemy0.name, True, red)
+    e_name_text = e_name_text.render(enemy2.name, True, red)
     e_name_text_rect = e_name_text.get_rect()
     e_name_text_rect.center = (992,435)
 
@@ -687,7 +844,7 @@ if spider_hp1 > 0:
     spider_rect1.center = (width//2 -100, height//2 - 100)
 
     e11_name_text = pygame.font.SysFont("Moncerat", 20)
-    e11_name_text = e11_name_text.render(enemy0.name, True, red)
+    e11_name_text = e11_name_text.render(enemy2.name, True, red)
     e11_name_text_rect = e11_name_text.get_rect()
     e11_name_text_rect.center = (992,435)
 
@@ -698,7 +855,7 @@ if spider_hp2 > 0:
     spider_rect2.center = (width//2 + 100, height//2 - 200)
 
     e12_name_text = pygame.font.SysFont("Moncerat", 20)
-    e12_name_text = e12_name_text.render(enemy0.name, True, red)
+    e12_name_text = e12_name_text.render(enemy2.name, True, red)
     e12_name_text_rect = e12_name_text.get_rect()
     e12_name_text_rect.center = (992,435)
 
@@ -709,7 +866,7 @@ if spider_hp3 > 0:
     spider_rect3.center = (width//2 , height//2 - 200)
 
     e9_name_text = pygame.font.SysFont("Moncerat", 20)
-    e9_name_text = e9_name_text.render(enemy0.name, True, red)
+    e9_name_text = e9_name_text.render(enemy2.name, True, red)
     e9_name_text_rect = e9_name_text.get_rect()
     e9_name_text_rect.center = (992,435)
 
@@ -823,6 +980,61 @@ if enemy_scelet_boss_hp > 0:
     eboss_name_text_rect = eboss_name_text.get_rect()
     eboss_name_text_rect.center = (900,435)
 
+# Goblin
+if goblin_hp > 0:
+    goblin_image = loadify(enemy4.img)
+    goblin_rect = goblin_image.get_rect()
+    goblin_rect.center = (width//2 + 500, height//2 - 200)
+
+    eg_name_text = pygame.font.SysFont("Moncerat", 20)
+    eg_name_text = eg_name_text.render(enemy4.name, True, red)
+    eg_name_text_rect = eg_name_text.get_rect()
+    eg_name_text_rect.center = (992,435)
+
+# Goblin 1
+if goblin_hp1 > 0:
+    goblin_image1 = loadify(enemy4.img)
+    goblin_rect1 = goblin_image1.get_rect()
+    goblin_rect1.center = (width//2 + 300, height//2 - 200)
+
+    eg1_name_text = pygame.font.SysFont("Moncerat", 20)
+    eg1_name_text = eg1_name_text.render(enemy4.name, True, red)
+    eg1_name_text_rect = eg1_name_text.get_rect()
+    eg1_name_text_rect.center = (992,435)
+
+# Goblin 2
+if goblin_hp2 > 0:
+    goblin_image2 = loadify(enemy4.img)
+    goblin_rect2 = goblin_image2.get_rect()
+    goblin_rect2.center = (width//2 + 100, height//2 - 100)
+
+    eg2_name_text = pygame.font.SysFont("Moncerat", 20)
+    eg2_name_text = eg2_name_text.render(enemy4.name, True, red)
+    eg2_name_text_rect = eg2_name_text.get_rect()
+    eg2_name_text_rect.center = (992,435)
+
+# Goblin 3
+if goblin_hp3 > 0:
+    goblin_image3 = loadify(enemy4.img)
+    goblin_rect3 = goblin_image3.get_rect()
+    goblin_rect3.center = (width//2 - 100, height//2 - 200)
+
+    eg3_name_text = pygame.font.SysFont("Moncerat", 20)
+    eg3_name_text = eg3_name_text.render(enemy4.name, True, red)
+    eg3_name_text_rect = eg3_name_text.get_rect()
+    eg3_name_text_rect.center = (992,435)
+
+# Goblin BOSS
+if goblin_boss_hp > 0:
+    goblin_boss_image = loadify(enemy5.img)
+    goblin_boss_rect = goblin_boss_image.get_rect()
+    goblin_boss_rect.center = (width//2 + 500, height//2 - 200)
+
+    eboss3_name_text = pygame.font.SysFont("Moncerat", 20)
+    eboss3_name_text = eboss3_name_text.render(enemy5.name, True, red)
+    eboss3_name_text_rect = eboss3_name_text.get_rect()
+    eboss3_name_text_rect.center = (900,435)
+
 #-----------------------------------------------------------------------------------------------#
 # TEXTY 
 custom1_font = pygame.font.SysFont("Helvetica", 64)
@@ -851,11 +1063,11 @@ while lets_continue:
     if enemy_spider_boss_hp <= 0:
         screen.blit(fzard_portret, fzard_portret_rect)
     if enemy_spider_boss_hp > 0: 
-            screen.blit(fzard_portret_lock, fzard_portret_lock_rect)
+        screen.blit(fzard_portret_lock, fzard_portret_lock_rect)
     if enemy_scelet_boss_hp <= 0:
         screen.blit(wzard_portret, wzard_portret_rect)
-    if  enemy_scelet_boss_hp > 0: 
-            screen.blit(wzard_portret_lock, wzard_portret_lock_rect)
+    if enemy_scelet_boss_hp > 0: 
+        screen.blit(wzard_portret_lock, wzard_portret_lock_rect)
             
     screen.blit(human_portret, human_portret_rect)
 # Spider Portal
@@ -866,9 +1078,14 @@ while lets_continue:
     if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0 or enemy_scelet4 > 0 or enemy_scelet5 > 0 or enemy_scelet6 > 0 or enemy_scelet7 > 0:
         if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0 or scelet4_hp > 0 or scelet5_hp > 0 or scelet6_hp > 0 or scelet7_hp > 0:
             screen.blit(portal_image,portal_image_rect)
+# Goblin Portal
+    if enemy_goblin > 0 or enemy_goblin1 > 0 or enemy_goblin2 > 0 or enemy_goblin3 > 0:
+        if goblin_hp > 0 or goblin_hp1 > 0 or goblin_hp2 > 0 or goblin_hp3 > 0:
+            screen.blit(g_portal_image,g_portal_image_rect)
 # Text bez enemy
     if enemy_spider == 0:     
         screen.blit(custom1_text, custom1_text_rect)
+
 # Buttons
     if start_button.draw(screen):
         run_game = 1
@@ -913,6 +1130,26 @@ while lets_continue:
         custom7_text = custom7_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, red)
         custom7_text_rect = custom7_text.get_rect()
         custom7_text_rect.center = (width//2, height//2 + 350)
+        screen.blit(custom7_text, custom7_text_rect)
+
+# HP Goblin bosse
+    custom8_font = pygame.font.SysFont("Helvetica", 44)
+    custom9_font = pygame.font.SysFont("Helvetica", 44)
+    custom10_font = pygame.font.SysFont("Helvetica", 44)
+    if enemy_goblin_boss > 0 and goblin_boss_hp >= 350:
+        custom8_text = custom8_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, green)
+        custom8_text_rect = custom8_text.get_rect()
+        custom8_text_rect.center = (width//2, height//2 + 350)
+        screen.blit(custom5_text, custom5_text_rect)
+    if enemy_spider_boss > 0 and enemy_spider_boss_hp <= 349 and enemy_spider_boss_hp >= 150:
+        custom9_text = custom9_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, yellow)
+        custom9_text_rect = custom9_text.get_rect()
+        custom9_text_rect.center = (width//2, height//2 + 350)
+        screen.blit(custom6_text, custom6_text_rect)
+    if enemy_spider_boss > 0 and enemy_spider_boss_hp <= 149 and enemy_spider_boss_hp > 0:
+        custom10_text = custom10_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, red)
+        custom10_text_rect = custom10_text.get_rect()
+        custom10_text_rect.center = (width//2, height//2 + 350)
         screen.blit(custom7_text, custom7_text_rect)
 
 
@@ -1153,6 +1390,57 @@ while lets_continue:
         f_enemy_scelet_boss.close()
     if enemy_scelet_boss_hp <= 0:
         pass
+  
+    if enemy_scelet_boss_hp <= 0 and run_game == 1:
+        # Goblin
+        enemy_goblin += 1
+        enemy_goblin_str = str(enemy_goblin)
+        try:
+            f_enemy_goblin = open("players/enemy_goblin.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_goblin.write(enemy_goblin_str)
+        f_enemy_goblin.close()
+        
+        # Goblin 1 + 2 + 3
+        if goblin_hp <= 0: 
+            enemy_goblin1 += 1
+            enemy_goblin1_str = str(enemy_goblin1)
+            try:
+                f_enemy_goblin1 = open("players/enemy_goblin1.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_enemy_goblin1.write(enemy_goblin1_str)
+            f_enemy_goblin1.close()
+            enemy_goblin2 += 1
+            enemy_goblin2_str = str(enemy_goblin2)
+            try:
+                f_enemy_goblin2 = open("players/enemy_goblin2.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_enemy_goblin2.write(enemy_goblin2_str)
+            f_enemy_goblin2.close()
+            enemy_goblin3 += 1
+            enemy_goblin3_str = str(enemy_goblin3)
+            try:
+                f_enemy_goblin3 = open("players/enemy_goblin3.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_enemy_goblin3.write(enemy_goblin3_str)
+            f_enemy_goblin3.close()
+
+    # Goblin BOSS
+        if  goblin_hp <= 0 and goblin_hp1 <= 0 and goblin_hp2 <= 0 and goblin_hp3 <= 0:
+            enemy_goblin_boss += 1
+            enemy_goblin_boss_str = str(enemy_goblin_boss)
+            try:
+                f_enemy_goblin_boss  = open("players/enemy_goblin_boss.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f_enemy_goblin_boss.write(enemy_goblin_boss_str)
+            f_enemy_goblin_boss.close()
+        if goblin_boss_hp <= 0:
+            pass
 
      # Human
     if player_human > 0:
@@ -1425,10 +1713,10 @@ while lets_continue:
             hp_spider_text_rect = hp_spider_text.get_rect()
             hp_spider_text_rect.center = (spider_rect.x + 30, spider_rect.y + 40)
             screen.blit(hp_spider_text,hp_spider_text_rect)
-        e8_name_text_rect.center = (spider_rect.x + 30, spider_rect.y + 50)
+        e9_name_text_rect.center = (spider_rect.x + 30, spider_rect.y + 50)
         if spider_hp > 0:
             screen.blit(spider_image,spider_rect)
-            screen.blit(e8_name_text,e8_name_text_rect)
+            screen.blit(e9_name_text,e9_name_text_rect)
         spider_rect.x += spider_x * spider_speed
         spider_rect.y += spider_y * spider_speed
         if spider_rect.left < 100 or spider_rect.left > width - 120:
@@ -1742,6 +2030,121 @@ while lets_continue:
             
         if scelet_rect.left >= 1000: 
             scelet_boss_image = loadify(enemy1.img)
+
+    # Goblin
+    if enemy_goblin > 0:
+        hp_goblin_text = pygame.font.SysFont("Moncerat", 18)
+        if goblin_hp > 0:      
+            hp_goblin_text = hp_goblin_text.render("HP: " + f"{goblin_hp}", True, white)
+            hp_goblin_text_rect = hp_goblin_text.get_rect()
+            hp_goblin_text_rect.center = (goblin_rect.x + 25, goblin_rect.y + 95)
+            screen.blit(hp_goblin_text,hp_goblin_text_rect)
+        eg_name_text_rect.center = (goblin_rect.x + 25, goblin_rect.y + 105)
+        if goblin_hp > 0:
+            screen.blit(goblin_image,goblin_rect)
+            screen.blit(eg_name_text,eg_name_text_rect)
+        goblin_rect.x += goblin_x * goblin_speed
+        goblin_rect.y += goblin_y * goblin_speed
+        if goblin_rect.left < 100 or goblin_rect.left > width - 120:
+            goblin_x = -1 * goblin_x
+        elif goblin_rect.top < 75 or goblin_rect.bottom > height - 120:
+            goblin_y = -1 * goblin_y
+        if goblin_rect.left < 130: 
+            goblin_image = loadify(enemy4.img2)         
+        if goblin_rect.left >= 1000: 
+            goblin_image = loadify(enemy4.img)
+    
+    # Goblin 1
+    if enemy_goblin1 > 0:
+        hp_goblin1_text = pygame.font.SysFont("Moncerat", 18)
+        if goblin_hp1 > 0:      
+            hp_goblin1_text = hp_goblin1_text.render("HP: " + f"{goblin_hp1}", True, white)
+            hp_goblin1_text_rect = hp_goblin1_text.get_rect()
+            hp_goblin1_text_rect.center = (goblin_rect1.x + 25, goblin_rect1.y + 95)
+            screen.blit(hp_goblin1_text,hp_goblin1_text_rect)
+        eg1_name_text_rect.center = (goblin_rect1.x + 25, goblin_rect1.y + 105)
+        if goblin_hp1 > 0:
+            screen.blit(goblin_image1,goblin_rect1)
+            screen.blit(eg1_name_text,eg1_name_text_rect)
+        goblin_rect1.x += goblin1_x * goblin_speed
+        goblin_rect1.y += goblin1_y * goblin_speed
+        if goblin_rect1.left < 100 or goblin_rect1.left > width - 120:
+            goblin1_x = -1 * goblin1_x
+        elif goblin_rect1.top < 75 or goblin_rect1.bottom > height - 120:
+            goblin1_y = -1 * goblin1_y
+        if goblin_rect1.left < 130: 
+            goblin_image1 = loadify(enemy4.img2)         
+        if goblin_rect1.left >= 1000: 
+            goblin_image1 = loadify(enemy4.img)
+
+    # Goblin 2
+    if enemy_goblin2 > 0:
+        hp_goblin2_text = pygame.font.SysFont("Moncerat", 18)
+        if goblin_hp2 > 0:      
+            hp_goblin2_text = hp_goblin2_text.render("HP: " + f"{goblin_hp2}", True, white)
+            hp_goblin2_text_rect = hp_goblin2_text.get_rect()
+            hp_goblin2_text_rect.center = (goblin_rect2.x + 25, goblin_rect2.y + 95)
+            screen.blit(hp_goblin2_text,hp_goblin2_text_rect)
+        eg2_name_text_rect.center = (goblin_rect2.x + 25, goblin_rect2.y + 105)
+        if goblin_hp2 > 0:
+            screen.blit(goblin_image2,goblin_rect2)
+            screen.blit(eg2_name_text,eg2_name_text_rect)
+        goblin_rect2.x += goblin2_x * goblin_speed
+        goblin_rect2.y += goblin2_y * goblin_speed
+        if goblin_rect2.left < 100 or goblin_rect2.left > width - 120:
+            goblin2_x = -1 * goblin2_x
+        elif goblin_rect2.top < 75 or goblin_rect2.bottom > height - 120:
+            goblin2_y = -1 * goblin2_y
+        if goblin_rect2.left < 130: 
+            goblin_image2 = loadify(enemy4.img2)         
+        if goblin_rect2.left >= 1000: 
+            goblin_image2 = loadify(enemy4.img)
+    
+    # Goblin 3
+    if enemy_goblin3 > 0:
+        hp_goblin3_text = pygame.font.SysFont("Moncerat", 18)
+        if goblin_hp3 > 0:      
+            hp_goblin3_text = hp_goblin3_text.render("HP: " + f"{goblin_hp3}", True, white)
+            hp_goblin3_text_rect = hp_goblin3_text.get_rect()
+            hp_goblin3_text_rect.center = (goblin_rect3.x + 25, goblin_rect3.y + 95)
+            screen.blit(hp_goblin3_text,hp_goblin3_text_rect)
+        eg3_name_text_rect.center = (goblin_rect3.x + 25, goblin_rect3.y + 105)
+        if goblin_hp3 > 0:
+            screen.blit(goblin_image3,goblin_rect3)
+            screen.blit(eg3_name_text,eg3_name_text_rect)
+        goblin_rect3.x += goblin3_x * goblin_speed
+        goblin_rect3.y += goblin3_y * goblin_speed
+        if goblin_rect3.left < 100 or goblin_rect3.left > width - 120:
+            goblin3_x = -1 * goblin3_x
+        elif goblin_rect3.top < 75 or goblin_rect3.bottom > height - 120:
+            goblin3_y = -1 * goblin3_y
+        if goblin_rect3.left < 130: 
+            goblin_image3 = loadify(enemy4.img2)         
+        if goblin_rect3.left >= 1000: 
+            goblin_image3 = loadify(enemy4.img)
+    
+    # Goblin BOSS
+    if enemy_goblin_boss > 0:
+        hp_goblin_boss_text = pygame.font.SysFont("Moncerat", 18)
+        if goblin_boss_hp > 0:      
+            hp_goblin_boss_text = hp_goblin_boss_text.render("HP: " + f"{goblin_boss_hp}", True, white)
+            hp_goblin_boss_text_rect = hp_goblin_boss_text.get_rect()
+            hp_goblin_boss_text_rect.center = (goblin_boss_rect.x + 25, goblin_boss_rect.y + 95)
+            screen.blit(hp_goblin_boss_text,hp_goblin_boss_text_rect)
+        eboss3_name_text_rect.center = (goblin_boss_rect.x + 25, goblin_boss_rect.y + 105)
+        if goblin_boss_hp > 0:
+            screen.blit(goblin_boss_image,goblin_boss_rect)
+            screen.blit(eboss3_name_text,eboss3_name_text_rect)
+        goblin_boss_rect.x += goblin_boss_x * goblin_boss_speed
+        goblin_boss_rect.y += goblin_boss_y * goblin_boss_speed
+        if goblin_boss_rect.left < 100 or goblin_boss_rect.left > width - 120:
+            goblin_boss_x = -1 * goblin_boss_x
+        elif goblin_boss_rect.top < 75 or goblin_boss_rect.bottom > height - 120:
+            goblin_boss_y = -1 * goblin_boss_y
+        if goblin_boss_rect.left < 130: 
+            goblin_boss_image = loadify(enemy5.img2)         
+        if goblin_boss_rect.left >= 1000: 
+            goblin_boss_image = loadify(enemy5.img)
     
 #-----------------------------------------------------------------------------------------------#    
 ### KONTROLA KOLIZE ###
@@ -1917,6 +2320,67 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+
+# goblin --> human
+    if goblin_rect.colliderect(human_rect) or goblin_rect.colliderect(human2_rect):
+        if player_human > 0 and goblin_hp > 0 and enemy_goblin > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# goblin 1 --> human
+    if goblin_rect1.colliderect(human_rect) or goblin_rect1.colliderect(human2_rect):
+        if player_human > 0 and goblin_hp1 > 0 and enemy_goblin1 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# goblin 2 --> human
+    if goblin_rect2.colliderect(human_rect) or goblin_rect2.colliderect(human2_rect):
+        if player_human > 0 and goblin_hp2 > 0 and enemy_goblin2 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# goblin 3 --> human
+    if goblin_rect3.colliderect(human_rect) or goblin_rect3.colliderect(human2_rect):
+        if player_human > 0 and goblin_hp3 > 0 and enemy_goblin3 > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
+# goblin boss --> human
+    if goblin_boss_rect.colliderect(human_rect) or goblin_boss_rect.colliderect(human2_rect):
+        if player_human > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
+            human_hp -= 1
+            str_human_hp = str(human_hp)
+            try:
+                f1 = open("players_hp/human_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_human_hp)
+            f1.close()
+
 #-----------------------------------------------------------------------------------------------#
 # scelet --> firemag
     if scelet_rect.colliderect(fzard_rect) or scelet_rect.colliderect(fzard2_rect):
@@ -1977,10 +2441,70 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+
+# goblin --> firemag
+    if goblin_rect.colliderect(fzard_rect) or goblin_rect.colliderect(fzard2_rect):
+        if player_fmag > 0 and goblin_hp > 0 and enemy_goblin > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+
+# goblin 2 --> firemag
+    if goblin_rect2.colliderect(fzard_rect) or goblin_rect2.colliderect(fzard2_rect):
+        if player_fmag > 0 and goblin_hp2 > 0 and enemy_goblin2 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+        
+# goblin 1 --> firemag
+    if goblin_rect1.colliderect(fzard_rect) or goblin_rect1.colliderect(fzard2_rect):
+        if player_fmag > 0 and goblin_hp1 > 0 and enemy_goblin1 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+        
+# goblin 3 --> firemag
+    if goblin_rect3.colliderect(fzard_rect) or goblin_rect3.colliderect(fzard2_rect):
+        if player_fmag > 0 and goblin_hp3 > 0 and enemy_goblin3 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+
+# goblin boss --> firemag
+    if goblin_boss_rect.colliderect(fzard_rect) or goblin_boss_rect.colliderect(fzard2_rect):
+        if player_fmag > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
 #-----------------------------------------------------------------------------------------------#
 # goblin --> watermag
-    """if _rect.colliderect(wzard_rect) or _rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and _hp > 0 and enemy_ > 0:
+    if goblin_rect.colliderect(wzard_rect) or goblin_rect.colliderect(wzard2_rect):
+        if player_wmag > 0 and goblin_hp > 0 and enemy_goblin > 0:
             wmag_hp -= 1
             str_wmag_hp = str(wmag_hp)
             try:
@@ -1988,7 +2512,55 @@ while lets_continue:
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
             text = f2.write(str_wmag_hp)
-            f2.close()"""
+            f2.close()
+
+# goblin 1 --> watermag
+    if goblin_rect1.colliderect(wzard2_rect) or goblin_rect1.colliderect(wzard2_rect):
+        if player_wmag > 0 and goblin_hp1 > 0 and enemy_goblin1 > 0:
+            wmag_hp -= 1
+            str_wmag_hp = str(wmag_hp)
+            try:
+                f2 = open("players_hp/wmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f2.write(str_wmag_hp)
+            f2.close()
+
+# goblin 2 --> watermag
+    if goblin_rect2.colliderect(wzard_rect) or goblin_rect2.colliderect(wzard2_rect):
+        if player_wmag > 0 and goblin_hp2 > 0 and enemy_goblin2 > 0:
+            wmag_hp -= 1
+            str_wmag_hp = str(wmag_hp)
+            try:
+                f2 = open("players_hp/wmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f2.write(str_wmag_hp)
+            f2.close()
+
+# goblin 3 --> watermag
+    if goblin_rect3.colliderect(wzard_rect) or goblin_rect3.colliderect(wzard2_rect):
+        if player_wmag > 0 and goblin_hp3 > 0 and enemy_goblin3 > 0:
+            wmag_hp -= 1
+            str_wmag_hp = str(wmag_hp)
+            try:
+                f2 = open("players_hp/wmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f2.write(str_wmag_hp)
+            f2.close()
+
+# goblin boss --> watermag
+    if goblin_boss_rect.colliderect(wzard_rect) or goblin_boss_rect.colliderect(wzard2_rect):
+        if player_wmag > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
+            wmag_hp -= 1
+            str_wmag_hp = str(wmag_hp)
+            try:
+                f1 = open("players_hp/wmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_wmag_hp)
+            f1.close()
 
 
 #-----------------------------------------------------------------------------------------------#
@@ -2163,6 +2735,54 @@ while lets_continue:
             text = f3.write(str_enemy_scelet_boss_hp)
             f3.close()
 
+# human_attack --> goblin
+    if human_attack_rect.colliderect(goblin_rect) or human_attack2_rect.colliderect(goblin_rect) :
+        if enemy_goblin > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            goblin_hp -= 0.5
+            str_goblin_hp = str(goblin_hp)
+            try:
+                f3 = open("players_hp/goblin_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp)
+            f3.close()
+
+# human_attack --> goblin 1
+    if human_attack_rect.colliderect(goblin_rect1) or human_attack2_rect.colliderect(goblin_rect1) :
+        if enemy_goblin1 > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            goblin_hp1 -= 0.5
+            str_goblin_hp1 = str(goblin_hp1)
+            try:
+                f3 = open("players_hp/goblin_hp1.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp1)
+            f3.close()
+
+# human_attack --> goblin 2
+    if human_attack_rect.colliderect(goblin_rect2) or human_attack2_rect.colliderect(goblin_rect2) :
+        if enemy_goblin2 > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            goblin_hp2 -= 0.5
+            str_goblin_hp2 = str(goblin_hp2)
+            try:
+                f3 = open("players_hp/goblin_hp2.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp2)
+            f3.close()
+
+# human_attack --> goblin 3
+    if human_attack_rect.colliderect(goblin_rect3) or human_attack2_rect.colliderect(goblin_rect3) :
+        if enemy_goblin3 > 0 and keys [pygame.K_SPACE] and player_human > 0:
+            goblin_hp3 -= 0.5
+            str_goblin_hp3 = str(goblin_hp3)
+            try:
+                f3 = open("players_hp/goblin_hp3.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp3)
+            f3.close()
+
 #-----------------------------------------------------------------------------------------------#
 # fireball --> scelet
     if fball_rect.colliderect(scelet_rect) or fball2_rect.colliderect(scelet_rect):
@@ -2271,20 +2891,102 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f3.write(str_enemy_scelet_boss_hp)
             f3.close()
-#-----------------------------------------------------------------------------------------------#
-# waterball --> goblin
-    """if wzard_attack_rect.colliderect() or wzard_attack2_rect.colliderect():
-        if enemy_scelet > 0 and player_wmag > 0:
-            _hp -= 1
-            str__hp = str(_hp)
+
+# fireball --> goblin
+    if fball_rect.colliderect(goblin_rect) or fball2_rect.colliderect(goblin_rect):
+        if enemy_goblin > 0 and player_fmag > 0:
+            goblin_hp -= 1
+            str_goblin_hp = str(goblin_hp)
             try:
-                f3 = open("players_hp/_hp.txt","w")
+                f3 = open("players_hp/goblin_hp.txt","w")
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
-            text = f3.write(str__hp)
-            f3.close()"""
+            text = f3.write(str_goblin_hp)
+            f3.close()
 
+# fireball --> goblin 1
+    if fball_rect.colliderect(goblin_rect1) or fball2_rect.colliderect(goblin_rect1):
+        if enemy_goblin1 > 0 and player_fmag > 0:
+            goblin_hp1 -= 1
+            str_goblin_hp1 = str(goblin_hp1)
+            try:
+                f3 = open("players_hp/goblin_hp1.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp1)
+            f3.close()
 
+# fireball --> goblin 2
+    if fball_rect.colliderect(goblin_rect2) or fball2_rect.colliderect(goblin_rect2):
+        if enemy_goblin2 > 0 and player_fmag > 0:
+            goblin_hp2 -= 1
+            str_goblin_hp2 = str(goblin_hp2)
+            try:
+                f3 = open("players_hp/goblin_hp2.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp2)
+            f3.close()
+
+# fireball --> goblin 3
+    if fball_rect.colliderect(goblin_rect3) or fball2_rect.colliderect(goblin_rect3):
+        if enemy_goblin3 > 0 and player_fmag > 0:
+            goblin_hp3 -= 1
+            str_goblin_hp3 = str(goblin_hp3)
+            try:
+                f3 = open("players_hp/goblin_hp3.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp3)
+            f3.close()
+#-----------------------------------------------------------------------------------------------#
+# waterball --> goblin
+    if wzard_attack_rect.colliderect(goblin_rect) or wzard_attack2_rect.colliderect(goblin_rect):
+        if enemy_goblin > 0 and player_wmag > 0:
+            goblin_hp -= 2
+            str_goblin_hp = str(goblin_hp)
+            try:
+                f3 = open("players_hp/goblin_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp)
+            f3.close()
+
+# waterball --> goblin 2
+    if wzard_attack_rect.colliderect(goblin_rect2) or wzard_attack2_rect.colliderect(goblin_rect2):
+        if enemy_goblin2 > 0 and player_wmag > 0:
+            goblin_hp2 -= 2
+            str_goblin_hp2 = str(goblin_hp2)
+            try:
+                f3 = open("players_hp/goblin_hp2.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp2)
+            f3.close()
+        
+# waterball --> goblin 1
+    if wzard_attack_rect.colliderect(goblin_rect1) or wzard_attack2_rect.colliderect(goblin_rect1):
+        if enemy_goblin1 > 0 and player_wmag > 0:
+            goblin_hp1 -= 2
+            str_goblin_hp1 = str(goblin_hp1)
+            try:
+                f3 = open("players_hp/goblin_hp1.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp1)
+            f3.close()
+    
+# waterball --> goblin 3
+    if wzard_attack_rect.colliderect(goblin_rect3) or wzard_attack2_rect.colliderect(goblin_rect3):
+        if enemy_goblin3 > 0 and player_wmag > 0:
+            goblin_hp3 -= 2
+            str_goblin_hp3 = str(goblin_hp3)
+            try:
+                f3 = open("players_hp/goblin_hp3.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f3.write(str_goblin_hp3)
+            f3.close()
 
 
 #-----------------------------------------------------------------------------------------------#

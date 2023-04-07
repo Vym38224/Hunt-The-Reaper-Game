@@ -49,11 +49,14 @@ player8 = ArcherPlayer("Amy", "wolf", 1)"""
 
 #enemáci
  
-enemy0 = EnemyPlayer("Kostlivec", 30,("img/sceleton.png"),("img/sceleton2.png"))
-enemy1 = EnemyPlayer("BOSS Kostlivec", 200,("img/scelet_boss.png"),("img/scelet_boss2.png"))
+enemy0 = EnemyPlayer("Kostlivec", 1,("img/sceleton.png"),("img/sceleton2.png"))
+enemy1 = EnemyPlayer("BOSS Kostlivec", 1,("img/scelet_boss.png"),("img/scelet_boss2.png"))
 
-enemy2 = EnemyPlayer("Pavouk", 15, ("img/spider.png"),("img/spider2.png"))
-enemy3 = EnemyPlayer("BOSS Pavouk", 125, ("img/spider_boss.png"),("img/spider_boss2.png"))
+enemy2 = EnemyPlayer("Pavouk", 1, ("img/spider.png"),("img/spider2.png"))
+enemy3 = EnemyPlayer("BOSS Pavouk", 1, ("img/spider_boss.png"),("img/spider_boss2.png"))
+
+enemy4 = EnemyPlayer("Goblin", 50, ("img/goblin.png"),("img/goblin2.png"))
+enemy5 = EnemyPlayer("BOSS Goblin", 500, ("img/goblin_boss.png"),("img/goblin_boss2.png"))
 
 
 
