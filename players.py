@@ -20,8 +20,8 @@ class WizardPlayer(Player):
     
 
 class ArcherPlayer(Player):
-    def __init__(self, name, animal, hp):
-        super().__init__(name, hp, in_map = False)
+    def __init__(self, name, animal, hp, img, img2, img_attack, img_attack2):
+        super().__init__(name, hp, img, img2, img_attack, img_attack2)
         self.animal = animal
         
 class EnemyPlayer:
@@ -44,8 +44,7 @@ player1 = WizardPlayer("Dave","fire", 300,("img/firemag.png"),("img/firemag2.png
 player2 = WizardPlayer("Anna", "water", 125,("img/watermag.png"),("img/watermag2.png"),("img/watermag_attack.png"),("img/watermag_attack2.png"))
 
 #lukostřelci
-"""player6 = ArcherPlayer("Robin", "bird", 1)
-player8 = ArcherPlayer("Amy", "wolf", 1)"""
+player3 = ArcherPlayer("Robin", "bird", 400,("img/archer.png"),("img/archer2.png"),("img/arrow.png"),("img/arrow2.png"))
 
 #enemáci
  
@@ -55,8 +54,8 @@ enemy1 = EnemyPlayer("BOSS Kostlivec", 1,("img/scelet_boss.png"),("img/scelet_bo
 enemy2 = EnemyPlayer("Pavouk", 1, ("img/spider.png"),("img/spider2.png"))
 enemy3 = EnemyPlayer("BOSS Pavouk", 1, ("img/spider_boss.png"),("img/spider_boss2.png"))
 
-enemy4 = EnemyPlayer("Goblin", 50, ("img/goblin.png"),("img/goblin2.png"))
-enemy5 = EnemyPlayer("BOSS Goblin", 500, ("img/goblin_boss.png"),("img/goblin_boss2.png"))
+enemy4 = EnemyPlayer("Goblin", 1, ("img/goblin.png"),("img/goblin2.png"))
+enemy5 = EnemyPlayer("BOSS Goblin", 1, ("img/goblin_boss.png"),("img/goblin_boss2.png"))
 
 
 
