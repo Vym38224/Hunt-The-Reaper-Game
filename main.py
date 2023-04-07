@@ -726,14 +726,14 @@ background_img_rect = background_img.get_rect()
 
 # Buttons
 start_img = pygame.image.load("img/start_btn.png").convert_alpha()
-start_button = buttons.Button(940,0,start_img,0.8)
+start_button = buttons.Button(0,0,start_img,0.8)
 exit_img = pygame.image.load("img/exit_btn.png").convert_alpha()
 exit_button = buttons.Button(1070,0,exit_img,0.8)
 
 # Human
 human_portret = loadify("img/human_portret.png")
 human_portret_rect = human_portret.get_rect()
-human_portret_rect.center = (35, 35)
+human_portret_rect.center = (width//2 - 105, 35)
 
 human_image = loadify(player0.img)
 human_rect = human_image.get_rect()
@@ -765,11 +765,11 @@ name0_text_rect.center = (600,425)
 # Firemag
 fzard_portret = loadify("img/fmag_portret.png")
 fzard_portret_rect = fzard_portret.get_rect()
-fzard_portret_rect.center = (105, 35)
+fzard_portret_rect.center = (width//2 - 35, 35)
 
 fzard_portret_lock = loadify("img/fmag_portret_lock.png")
 fzard_portret_lock_rect = fzard_portret_lock.get_rect()
-fzard_portret_lock_rect.center = (105, 35)
+fzard_portret_lock_rect.center = (width//2 - 35, 35)
 
 fzard_image = loadify(player1.img)
 fzard_rect = fzard_image.get_rect()
@@ -799,11 +799,11 @@ name1_text_rect.center = (600,440)
 # Watermag
 wzard_portret = loadify("img/wzard_portret.png")
 wzard_portret_rect = wzard_portret.get_rect()
-wzard_portret_rect.center = (175, 35)
+wzard_portret_rect.center = (width//2 + 35, 35)
 
 wzard_portret_lock = loadify("img/wzard_portret_lock.png")
 wzard_portret_lock_rect = wzard_portret_lock.get_rect()
-wzard_portret_lock_rect.center = (175, 35)
+wzard_portret_lock_rect.center = (width//2 + 35, 35)
 
 wzard_image = loadify(player2.img)
 wzard_rect = wzard_image.get_rect()
@@ -833,11 +833,11 @@ name2_text_rect.center = (600,435)
 # Archer
 archer_portret = loadify("img/archer_portret.png")
 archer_portret_rect = archer_portret.get_rect()
-archer_portret_rect.center = (245, 35)
+archer_portret_rect.center = (width//2 + 105, 35)
 
 archer_portret_lock = loadify("img/archer_portret_lock.png")
 archer_portret_lock_rect = archer_portret_lock.get_rect()
-archer_portret_lock_rect.center = (245, 35)
+archer_portret_lock_rect.center = (width//2 + 105, 35)
 
 archer_image = loadify(player3.img)
 archer_rect = archer_image.get_rect()
@@ -942,7 +942,7 @@ if scelet_hp > 0:
     scelet_rect.center = (width//2 + 500, height//2 - 200)
 
     e8_name_text = pygame.font.SysFont("Moncerat", 20)
-    e8_name_text = e8_name_text.render(enemy2.name, True, red)
+    e8_name_text = e8_name_text.render(enemy0.name, True, red)
     e8_name_text_rect = e8_name_text.get_rect()
     e8_name_text_rect.center = (992,435)
 
@@ -2048,10 +2048,10 @@ while lets_continue:
             hp3_text_rect = hp3_text.get_rect()
             hp3_text_rect.center = (scelet_rect.x + 30, scelet_rect.y + 125)
             screen.blit(hp3_text,hp3_text_rect)
-        e_name_text_rect.center = (scelet_rect.x + 30, scelet_rect.y + 110)
+        e8_name_text_rect.center = (scelet_rect.x + 30, scelet_rect.y + 110)
         if scelet_hp > 0:
             screen.blit(scelet_image,scelet_rect)
-            screen.blit(e_name_text,e_name_text_rect)
+            screen.blit(e8_name_text,e8_name_text_rect)
         scelet_rect.x += scelet_x * scelet_speed
         scelet_rect.y += scelet_y * scelet_speed
         if scelet_rect.left < 100 or scelet_rect.left > width - 120:
@@ -2357,7 +2357,7 @@ while lets_continue:
         goblin_boss_rect.y += goblin_boss_y * goblin_boss_speed
         if goblin_boss_rect.left < 100 or goblin_boss_rect.left > width - 120:
             goblin_boss_x = -1 * goblin_boss_x
-        elif goblin_boss_rect.top < 75 or goblin_boss_rect.bottom > height - 220:
+        elif goblin_boss_rect.top < 75 or goblin_boss_rect.bottom > height - 160:
             goblin_boss_y = -1 * goblin_boss_y
         if goblin_boss_rect.left < 130: 
             goblin_boss_image = loadify(enemy5.img2)         
@@ -2648,6 +2648,54 @@ while lets_continue:
             text = f1.write(str_fmag_hp)
             f1.close()
 
+# scelet4 --> firemag
+    if scelet4_rect.colliderect(fzard_rect) or scelet4_rect.colliderect(fzard2_rect):
+        if player_fmag > 0 and scelet4_hp > 0 and enemy_scelet4 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+
+# scelet5 --> firemag
+    if scelet5_rect.colliderect(fzard_rect) or scelet5_rect.colliderect(fzard2_rect):
+        if player_fmag > 0 and scelet5_hp > 0 and enemy_scelet5 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+
+# scelet6 --> firemag
+    if scelet6_rect.colliderect(fzard_rect) or scelet6_rect.colliderect(fzard2_rect):
+        if player_fmag > 0 and scelet6_hp > 0 and enemy_scelet6 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+
+# scelet7 --> firemag
+    if scelet7_rect.colliderect(fzard_rect) or scelet7_rect.colliderect(fzard2_rect):
+        if player_fmag > 0 and scelet7_hp > 0 and enemy_scelet7 > 0:
+            fmag_hp -= 1
+            str_fmag_hp = str(fmag_hp)
+            try:
+                f1 = open("players_hp/fmag_hp.txt","w")
+            except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+            text = f1.write(str_fmag_hp)
+            f1.close()
+
 # sceletboss --> firemag
     if scelet_boss_rect.colliderect(fzard_rect) or scelet_boss_rect.colliderect(fzard2_rect):
         if player_fmag > 0 and enemy_scelet_boss_hp > 0 and enemy_scelet_boss > 0:
@@ -2767,18 +2815,6 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f2.write(str_wmag_hp)
             f2.close()
-
-# goblin boss --> watermag
-    if goblin_boss_rect.colliderect(wzard_rect) or goblin_boss_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
-            wmag_hp -= 1
-            str_wmag_hp = str(wmag_hp)
-            try:
-                f1 = open("players_hp/wmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_wmag_hp)
-            f1.close()
 
 # goblin boss --> watermag
     if goblin_boss_rect.colliderect(wzard_rect) or goblin_boss_rect.colliderect(wzard2_rect):
@@ -3266,14 +3302,13 @@ while lets_continue:
     pygame.draw.line(screen, black, (1,1),(1,70), 3)
     pygame.draw.line(screen, black, (1198,1),(1198,70), 3)
 
-    pygame.draw.line(screen, black, (70,70),(70,0), 3)
-    pygame.draw.line(screen, black, (140,70),(140,0), 3)
-    pygame.draw.line(screen, black, (210,70),(210,0), 3)
-    pygame.draw.line(screen, black, (280,70),(280,0), 3)
-    pygame.draw.line(screen, black, (350,70),(350,0), 3)
+    pygame.draw.line(screen, black, (width//2 - 140,70),(width//2 - 140,0), 3)
+    pygame.draw.line(screen, black, (width//2 - 70,70),(width//2 - 70,0), 3)
+    pygame.draw.line(screen, black, (width//2,70),(width//2,0), 3)
+    pygame.draw.line(screen, black, (width//2 + 70,70),(width//2 + 70,0), 3)
+    pygame.draw.line(screen, black, (width//2 + 140,70),(width//2 + 140,0), 3)
     pygame.draw.line(screen, black, (1069,70),(1069,0), 3)
-
-
+    pygame.draw.line(screen, black, (127,70),(127,0), 3)
 
     pygame.display.update()
     clock.tick_busy_loop(fps)
