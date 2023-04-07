@@ -658,10 +658,16 @@ name2_text = name2_text.render(player2.name, True, white)
 name2_text_rect = name2_text.get_rect()
 name2_text_rect.center = (600,435)
 
-# Portal
+# Skelet Portal
 portal_image = loadify("img/portal.png")
 portal_image_rect = portal_image.get_rect()
 portal_image_rect.center = (width//2 + 500, height//2 - 200)
+
+# Spider Portal
+s_portal_image = loadify("img/spider_portal.png")
+s_portal_image_rect = s_portal_image.get_rect()
+s_portal_image_rect.center = (width//2 + 500, height//2 - 200)
+
 
 # Spider
 if spider_hp > 0:
@@ -850,11 +856,13 @@ while lets_continue:
         screen.blit(wzard_portret, wzard_portret_rect)
     if  enemy_scelet_boss_hp > 0: 
             screen.blit(wzard_portret_lock, wzard_portret_lock_rect)
-    
-    
+            
     screen.blit(human_portret, human_portret_rect)
-
-# Portal
+# Spider Portal
+    if enemy_spider > 0 or enemy_spider1 > 0 or enemy_spider2 > 0 or enemy_spider3 > 0:
+        if scelet_hp > 0 or spider_hp1 > 0 or spider_hp2 > 0 or spider_hp3 > 0:
+            screen.blit(s_portal_image,s_portal_image_rect)
+# Skelet Portal
     if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0 or enemy_scelet4 > 0 or enemy_scelet5 > 0 or enemy_scelet6 > 0 or enemy_scelet7 > 0:
         if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0 or scelet4_hp > 0 or scelet5_hp > 0 or scelet6_hp > 0 or scelet7_hp > 0:
             screen.blit(portal_image,portal_image_rect)
