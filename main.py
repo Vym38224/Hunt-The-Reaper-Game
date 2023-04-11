@@ -749,8 +749,20 @@ text = f3.read(ghost_boss_hp)
 ### BACKGROUND, OBRÁZKY, TEXTY ###
 #-----------------------------------------------------------------------------------------------#
 # BACKGROUND
-background_img = loadify(background.img)
-background_img_rect = background_img.get_rect()
+home_background_img = loadify(background_home.img)
+home_background_img_rect = home_background_img.get_rect()
+
+spider_background_img = loadify(background_spider.img)
+spider_background_img_rect = spider_background_img.get_rect()
+
+skelet_background_img = loadify(background_skelet.img)
+skelet_background_img_rect = skelet_background_img.get_rect()
+
+goblin_background_img = loadify(background_goblin.img)
+goblin_background_img_rect = goblin_background_img.get_rect()
+
+ghost_background_img = loadify(background_ghost.img)
+ghost_background_img_rect = ghost_background_img.get_rect()
 
 #-----------------------------------------------------------------------------------------------#
 
@@ -1156,11 +1168,25 @@ while lets_continue:
 
 #-----------------------------------------------------------------------------------------------#
 ### OBRÁZKY BLIT ###
-#-----------------------------------------------------------------------------------------------#
-
-# Bg
-    screen.blit(background_img, background_img_rect)
-
+#-----------------------------------------------------------------------------------------------#  
+# Backgrounds
+    if enemy_spider == 0:
+        screen.blit(home_background_img, home_background_img_rect)
+    if enemy_spider > 0 or enemy_spider1 > 0 or enemy_spider2 > 0 or enemy_spider3 > 0 or enemy_spider_boss > 0:
+        if scelet_hp > 0 or spider_hp1 > 0 or spider_hp2 > 0 or spider_hp3 > 0 or enemy_spider_boss_hp > 0:
+            screen.blit(spider_background_img, spider_background_img_rect)
+    if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0 or enemy_scelet_boss > 0:
+        if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0 or enemy_scelet_boss_hp > 0:
+            screen.blit(skelet_background_img, skelet_background_img_rect)
+    if enemy_goblin > 0 or enemy_goblin1 > 0 or enemy_goblin2 > 0 or enemy_goblin3 > 0 or enemy_goblin_boss > 0:
+        if goblin_hp > 0 or goblin_hp1 > 0 or goblin_hp2 > 0 or goblin_hp3 > 0 or goblin_boss_hp > 0:
+            screen.blit(goblin_background_img, goblin_background_img_rect)
+    if enemy_ghost > 0 or enemy_ghost1 > 0 or enemy_ghost2 > 0 or enemy_ghost3 > 0 or enemy_ghost_boss > 0:
+        if ghost_hp > 0 or ghost_hp1 > 0 or ghost_hp2 > 0 or ghost_hp3 > 0 or ghost_boss_hp > 0:
+            screen.blit(ghost_background_img, ghost_background_img_rect)
+    if ghost_boss_hp <= 0:
+        screen.blit(home_background_img, home_background_img_rect)
+         
 # Portréty
     if enemy_spider_boss_hp <= 0:
         screen.blit(fzard_portret, fzard_portret_rect)
@@ -1176,10 +1202,11 @@ while lets_continue:
         screen.blit(archer_portret_lock, archer_portret_lock_rect)
             
     screen.blit(human_portret, human_portret_rect)
+
 # Spider Portal
     if enemy_spider > 0 or enemy_spider1 > 0 or enemy_spider2 > 0 or enemy_spider3 > 0:
         if scelet_hp > 0 or spider_hp1 > 0 or spider_hp2 > 0 or spider_hp3 > 0:
-            screen.blit(s_portal_image,s_portal_image_rect)
+            screen.blit(s_portal_image,s_portal_image_rect)     
 # Skelet Portal
     if enemy_scelet > 0 or enemy_scelet1 > 0 or enemy_scelet2 > 0 or enemy_scelet3 > 0:
         if scelet_hp > 0 or scelet1_hp > 0 or scelet2_hp > 0 or scelet3_hp > 0:
@@ -1192,6 +1219,7 @@ while lets_continue:
     if enemy_ghost > 0 or enemy_ghost1 > 0 or enemy_ghost2 > 0 or enemy_ghost3 > 0:
         if ghost_hp > 0 or ghost_hp1 > 0 or ghost_hp2 > 0 or ghost_hp3 > 0:
             screen.blit(gh_portal_image,gh_portal_image_rect)
+    
 # Text bez enemy
     if enemy_spider == 0:     
         screen.blit(custom1_text, custom1_text_rect)

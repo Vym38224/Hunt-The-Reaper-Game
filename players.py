@@ -34,7 +34,11 @@ class EnemyPlayer:
 
 
 #Background
-background = Background(("img/background.png"))
+background_home = Background(("img/background_home.png"))
+background_spider = Background(("img/background_spider.png"))
+background_skelet = Background(("img/background_skelet.png"))
+background_goblin = Background(("img/background_goblin.png"))
+background_ghost = Background(("img/background_ghost.png"))
     
 #lidi
 player0 = Player("Sam", 1000,("img/human.png"),("img/human2.png"),("img/human_attack.png"),("img/human_attack2.png"))
@@ -48,14 +52,14 @@ player3 = ArcherPlayer("Robin", "bird", 400,("img/archer.png"),("img/archer2.png
 
 #enemáci
  
-enemy0 = EnemyPlayer("Kostlivec", 1,("img/sceleton.png"),("img/sceleton2.png"))
-enemy1 = EnemyPlayer("BOSS Kostlivec", 1,("img/scelet_boss.png"),("img/scelet_boss2.png"))
+enemy0 = EnemyPlayer("Kostlivec", 25,("img/sceleton.png"),("img/sceleton2.png"))
+enemy1 = EnemyPlayer("BOSS Kostlivec", 200,("img/scelet_boss.png"),("img/scelet_boss2.png"))
 
-enemy2 = EnemyPlayer("Pavouk", 1, ("img/spider.png"),("img/spider2.png"))
-enemy3 = EnemyPlayer("BOSS Pavouk", 1, ("img/spider_boss.png"),("img/spider_boss2.png"))
+enemy2 = EnemyPlayer("Pavouk", 15, ("img/spider.png"),("img/spider2.png"))
+enemy3 = EnemyPlayer("BOSS Pavouk", 125, ("img/spider_boss.png"),("img/spider_boss2.png"))
 
-enemy4 = EnemyPlayer("Goblin", 1, ("img/goblin.png"),("img/goblin2.png"))
-enemy5 = EnemyPlayer("BOSS Goblin", 1, ("img/goblin_boss.png"),("img/goblin_boss2.png"))
+enemy4 = EnemyPlayer("Goblin", 50, ("img/goblin.png"),("img/goblin2.png"))
+enemy5 = EnemyPlayer("BOSS Goblin", 1000, ("img/goblin_boss.png"),("img/goblin_boss2.png"))
 
 enemy6 = EnemyPlayer("Ghost", 60, ("img/ghost.png"),("img/ghost2.png"))
 enemy7 = EnemyPlayer("Ghost", 750, ("img/ghost_boss.png"),("img/ghost_boss2.png"))
