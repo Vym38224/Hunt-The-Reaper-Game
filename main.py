@@ -43,13 +43,13 @@ attack_x = 1
 attack_1x = -1* attack_x
 
 ghost_speed = 4
-ghost_boss_speed = 4
+ghost_boss_speed = 5
 spider_speed = 2
 spider_boss_speed = 3
 scelet_speed = 2
 scelet_boss_speed = 3
 goblin_speed = 3
-goblin_boss_speed = 2
+goblin_boss_speed = 3
 
 archer_attack_speed = 15
 wzard_attack_speed = 4
@@ -57,8 +57,8 @@ fball_speed = 9
 
 fmag_distance = 5
 wmag_distance = 6
-human_distance = 5
-archer_distance = 6
+human_distance = 4
+archer_distance = 5
 
 # Nastavení ghost_hp = 0 na začátku hry
 ghost_hp = 0
@@ -1682,7 +1682,6 @@ while lets_continue:
         text = f_enemy_ghost_boss.write(enemy_ghost_boss_str)
         f_enemy_ghost_boss.close()
    
-
 # Human
     if player_human > 0 and enemy_spider > 0:
         if human_hp > 0:
@@ -1920,7 +1919,7 @@ while lets_continue:
             screen.blit(wzard_attack_image,wzard_attack_rect)
             wzard_attack_rect.x += attack_x * wzard_attack_speed  
 
-        if wzard_attack_rect.right > width or wzard_attack2_rect.left < 0:
+        if ghost_hp1 <= 0 and ghost_hp2 <= 0 and ghost_hp3 <= 0 :
             wire_attack == 0
               
         if mirror == 0:
@@ -1949,9 +1948,9 @@ while lets_continue:
     if player_archer > 0 and enemy_spider_boss_hp <= 0:  
         hp3_text = pygame.font.SysFont("Moncerat", 18)
         if archer_hp >= 125:
-            hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, green)
-        if archer_hp <= 119 and archer_hp >= 80:
-            hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, yellow)
+            hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, green)        
+        if archer_hp <= 124 and archer_hp >= 80:
+            hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, yellow)     
         if archer_hp <= 79 and archer_hp > 0:
             hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, red)
         if archer_hp < 0:
