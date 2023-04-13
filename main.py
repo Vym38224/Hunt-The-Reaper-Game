@@ -1199,6 +1199,19 @@ custom_end2_font = pygame.font.SysFont("Helvetica", 60, 1.5)
 custom_end2_text = custom_end2_font.render("YOU WIN", True, yellow)
 custom_end2_text_rect = custom_end2_text.get_rect()
 custom_end2_text_rect.center = (width//2, height//2 + 300)
+#-----------------------------------------------------------------------------------------------#
+### MUSIC ###
+#-----------------------------------------------------------------------------------------------#
+# BACKGOUND MUSIC
+if run_game == 0:
+    pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/home_background_music.wav"))
+    pygame.mixer.Channel(5).set_volume(0.1)
+
+# START FIGHT MUSIC
+if run_game == 1 and keys[pygame.K_1]:
+        pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/fight.wav"))
+        pygame.mixer.Channel(6).set_volume(1)
+
 
 #-----------------------------------------------------------------------------------------------#
 #### HLAVNÍ CYKLUS ####
@@ -1239,12 +1252,29 @@ while lets_continue:
             run_game = 1
 
     if run_game == 1 and player_human > 0 or player_archer > 0 or player_fmag > 0 or player_wmag > 0:
+        pygame.mixer.Channel(5).stop()
+
+
         # Button exit   
         if exit_button.draw(screen):
             import sys
             import os
             python = sys.executable
             os.execl(python, python, * sys.argv)
+
+    # START FIGHT MUSIC
+    if run_game == 1 and keys[pygame.K_1]:
+        pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/human_hello.wav"))
+        pygame.mixer.Channel(6).set_volume(0.02)
+    if run_game == 1 and keys[pygame.K_2]and enemy_spider_boss_hp <= 0 and archer_hp >0:
+        pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/archer_hello.wav"))
+        pygame.mixer.Channel(6).set_volume(0.1)
+    if run_game == 1 and keys[pygame.K_3] and enemy_scelet_boss_hp <= 0 and fmag_hp >0:
+        pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/fire_hello.wav"))
+        pygame.mixer.Channel(6).set_volume(0.05)
+    if run_game == 1 and keys[pygame.K_4] and goblin_boss_hp <= 0 and wmag_hp >0:
+        pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/war_hello.wav"))
+        pygame.mixer.Channel(6).set_volume(0.1)
 #-----------------------------------------------------------------------------------------------#
 # KONEC HRY
 #-----------------------------------------------------------------------------------------------#
@@ -2719,6 +2749,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 # spider1 --> human
     if spider_rect1.colliderect(human_rect) or spider_rect1.colliderect(human2_rect):
         if player_human > 0 and spider_hp1 > 0 and enemy_spider1 > 0:
@@ -2730,6 +2762,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # spider2 --> human
     if spider_rect2.colliderect(human_rect) or spider_rect2.colliderect(human2_rect):
@@ -2742,6 +2776,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # spider3 --> human
     if spider_rect3.colliderect(human_rect) or spider_rect3.colliderect(human2_rect):
@@ -2754,6 +2790,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # spiderboss --> human
     if spider_boss_rect.colliderect(human_rect) or spider_boss_rect.colliderect(human2_rect):
@@ -2766,6 +2804,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # scelet --> human
     if scelet_rect.colliderect(human_rect) or scelet_rect.colliderect(human2_rect):
@@ -2778,6 +2818,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
  # scelet1 --> human
     if scelet1_rect.colliderect(human_rect) or scelet1_rect.colliderect(human2_rect) :
@@ -2790,6 +2832,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # scelet2 --> human
     if scelet2_rect.colliderect(human_rect) or scelet2_rect.colliderect(human2_rect) :
@@ -2802,6 +2846,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # sceletboss --> human
     if scelet_boss_rect.colliderect(human_rect) or scelet_boss_rect.colliderect(human2_rect) and human_attack == 1 and keys [pygame.K_SPACE]:
@@ -2814,6 +2860,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin --> human
     if goblin_rect.colliderect(human_rect) or goblin_rect.colliderect(human2_rect):
@@ -2826,6 +2874,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin 1 --> human
     if goblin_rect1.colliderect(human_rect) or goblin_rect1.colliderect(human2_rect):
@@ -2838,6 +2888,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin 2 --> human
     if goblin_rect2.colliderect(human_rect) or goblin_rect2.colliderect(human2_rect):
@@ -2850,6 +2902,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin 3 --> human
     if goblin_rect3.colliderect(human_rect) or goblin_rect3.colliderect(human2_rect):
@@ -2862,6 +2916,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin boss --> human
     if goblin_boss_rect.colliderect(human_rect) or goblin_boss_rect.colliderect(human2_rect):
@@ -2886,6 +2942,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 1 --> human
     if ghost1_rect.colliderect(human_rect) or ghost1_rect.colliderect(human2_rect):
@@ -2898,6 +2956,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 2 --> human
     if ghost2_rect.colliderect(human_rect) or ghost2_rect.colliderect(human2_rect):
@@ -2910,6 +2970,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 3 --> human
     if ghost3_rect.colliderect(human_rect) or ghost3_rect.colliderect(human2_rect):
@@ -2922,6 +2984,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost boss --> human
     if ghost_boss_rect.colliderect(human_rect) or ghost_boss_rect.colliderect(human2_rect):
@@ -2934,6 +2998,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_human_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 #-----------------------------------------------------------------------------------------------#
 # scelet --> archer
@@ -2947,6 +3013,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
  # scelet1 --> archer
     if scelet1_rect.colliderect(archer_rect) or scelet1_rect.colliderect(archer2_rect):
@@ -2971,6 +3039,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # scelet3 --> archer
     if scelet3_rect.colliderect(archer_rect) or scelet3_rect.colliderect(archer2_rect):
@@ -2983,6 +3053,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # sceletboss --> archer
     if scelet_boss_rect.colliderect(archer_rect) or scelet_boss_rect.colliderect(archer2_rect):
@@ -3007,6 +3079,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin1 --> archer
     if goblin_rect1.colliderect(archer_rect) or goblin_rect1.colliderect(archer2_rect):
@@ -3019,6 +3093,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
         
 # goblin2 --> archer
     if goblin_rect2.colliderect(archer_rect) or goblin_rect1.colliderect(archer2_rect):
@@ -3031,6 +3107,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
         
 # goblin3 --> archer
     if goblin_rect3.colliderect(archer_rect) or goblin_rect3.colliderect(archer2_rect):
@@ -3043,6 +3121,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin boss --> archer
     if goblin_boss_rect.colliderect(archer_rect) or goblin_boss_rect.colliderect(archer2_rect):
@@ -3055,6 +3135,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost --> archer
     if ghost_rect.colliderect(archer_rect) or ghost_rect.colliderect(archer2_rect):
@@ -3079,6 +3161,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 2 --> archer
     if ghost2_rect.colliderect(archer_rect) or ghost2_rect.colliderect(archer2_rect):
@@ -3091,6 +3175,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 3 --> archer
     if ghost3_rect.colliderect(archer_rect) or ghost3_rect.colliderect(archer2_rect):
@@ -3103,6 +3189,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost boss --> archer
     if ghost_boss_rect.colliderect(archer_rect) or ghost_boss_rect.colliderect(archer2_rect):
@@ -3115,6 +3203,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_archer_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 #-----------------------------------------------------------------------------------------------#
 # goblin --> firemag
     if goblin_rect.colliderect(fzard_rect) or goblin_rect.colliderect(fzard2_rect):
@@ -3127,6 +3217,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin 2 --> firemag
     if goblin_rect2.colliderect(fzard_rect) or goblin_rect2.colliderect(fzard2_rect):
@@ -3139,6 +3231,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
         
 # goblin 1 --> firemag
     if goblin_rect1.colliderect(fzard_rect) or goblin_rect1.colliderect(fzard2_rect):
@@ -3163,6 +3257,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # goblin boss --> firemag
     if goblin_boss_rect.colliderect(fzard_rect) or goblin_boss_rect.colliderect(fzard2_rect):
@@ -3175,6 +3271,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost --> firemag
     if ghost_rect.colliderect(fzard_rect) or ghost_rect.colliderect(fzard2_rect):
@@ -3187,6 +3285,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 1 --> firemag
     if ghost1_rect.colliderect(fzard_rect) or ghost1_rect.colliderect(fzard2_rect):
@@ -3211,6 +3311,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
 # ghost 3 --> firemag
     if ghost3_rect.colliderect(fzard_rect) or ghost3_rect.colliderect(fzard2_rect):
@@ -3235,6 +3337,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_fmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 #-----------------------------------------------------------------------------------------------#
 # ghost --> watermag
     if ghost_rect.colliderect(wzard_rect) or ghost_rect.colliderect(wzard2_rect):
@@ -3247,6 +3351,9 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_wmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.01)
+            
 
 # ghost 1 --> watermag
     if ghost1_rect.colliderect(wzard_rect) or ghost1_rect.colliderect(wzard2_rect):
@@ -3259,6 +3366,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_wmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.01)
 
 # ghost 2 --> watermag
     if ghost2_rect.colliderect(wzard_rect) or ghost2_rect.colliderect(wzard2_rect):
@@ -3271,10 +3380,12 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_wmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.01)
 
 # ghost 3 --> watermag
-    if ghost2_rect.colliderect(wzard_rect) or ghost2_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and ghost_hp2 > 0 and enemy_ghost2 > 0:
+    if ghost3_rect.colliderect(wzard_rect) or ghost3_rect.colliderect(wzard2_rect):
+        if player_wmag > 0 and ghost_hp3 > 0 and enemy_ghost3 > 0:
             wmag_hp -= 1
             str_wmag_hp = str(wmag_hp)
             try:
@@ -3283,6 +3394,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_wmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.01)
 
 # ghost boss --> watermag
     if ghost_boss_rect.colliderect(wzard_rect) or ghost_boss_rect.colliderect(wzard2_rect):
@@ -3295,6 +3408,8 @@ while lets_continue:
                     print("Soubor nebyl nalezen")
             text = f1.write(str_wmag_hp)
             f1.close()
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
+            pygame.mixer.Channel(7).set_volume(0.01)
 
 #-----------------------------------------------------------------------------------------------#
 # Attack a Enemy
