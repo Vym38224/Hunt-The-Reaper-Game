@@ -1180,7 +1180,7 @@ if goblin_boss_hp > 0:
 #-----------------------------------------------------------------------------------------------#
 # TEXTY 
 custom1_font = pygame.font.SysFont("Helvetica", 60, 1.5)
-custom1_text = custom1_font.render("HUNT THE REAPER", True, orange)
+custom1_text = custom1_font.render("WELCOME TO THE GAME", True, orange)
 custom1_text_rect = custom1_text.get_rect()
 custom1_text_rect.center = (width//2, height//2 - 339)
 
