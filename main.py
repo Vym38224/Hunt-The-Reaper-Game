@@ -26,6 +26,7 @@ orange = (255,140,0)
 grey = (130,130,130)
 green = (124, 252, 0)
 
+
 #-----------------------------------------------------------------------------------------------#   
 ### NASTAVENÍ ###
 #-----------------------------------------------------------------------------------------------#
@@ -1185,7 +1186,7 @@ custom1_text_rect.center = (width//2, height//2 - 339)
 custom_end_font = pygame.font.SysFont("Helvetica", 60, 1.5)
 custom_end_text = custom_end_font.render("GAME OVER", True, orange)
 custom_end_text_rect = custom_end_text.get_rect()
-custom_end_text_rect.center = (width//2, height//2 - 345)
+custom_end_text_rect.center = (width//2, height//2 - 339)
 
 custom_end1_font = pygame.font.SysFont("Helvetica", 60, 1.5)
 custom_end1_text = custom_end1_font.render("YOU LOSE", True, red)
@@ -1228,6 +1229,11 @@ while lets_continue:
     if ghost_boss_hp <= 0:
         screen.blit(home_background_img, home_background_img_rect)
 
+    # Button start
+    if start_button.draw(screen):
+        run_game = 1
+    
+
 #-----------------------------------------------------------------------------------------------#
 # KONEC HRY
 #-----------------------------------------------------------------------------------------------#
@@ -1235,15 +1241,16 @@ while lets_continue:
 # PROHRA
     if human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and wmag_hp <= 0 and run_game == 1:
         screen.blit(end_background_img, end_background_img_rect)
+        pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))
         screen.blit(custom_end_text, custom_end_text_rect)
         screen.blit(custom_end1_text, custom_end1_text_rect)
-        ghost_boss_hp -= 1000
-        str_ghost_boss_hp = str(ghost_boss_hp)
+        enemy_ghost_boss -= 1000
+        str_enemy_ghost_boss = str(enemy_ghost_boss)
         try:
-            f_ghost_boss_hp = open("players_hp/ghost_boss_hp.txt","w")
+            f_enemy_ghost_boss = open("players_hp/enemy_ghost_boss.txt","w")
         except FileNotFoundError:
                 print("Soubor nebyl nalezen")
-        text = f_ghost_boss_hp.write(str_ghost_boss_hp)
+        text = f_enemy_ghost_boss.write(str_enemy_ghost_boss)
         enemy_spider -= 1000
         str_enemy_spider = str(enemy_spider)
         try:
@@ -1255,8 +1262,11 @@ while lets_continue:
 # VÝHRA
     if ghost_boss_hp <= 0 and run_game == 1:
         screen.blit(win_background_img, win_background_img_rect)
+        pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))
         screen.blit(custom_end_text, custom_end_text_rect)
         screen.blit(custom_end2_text, custom_end2_text_rect)
+        pygame.draw.rect(screen,grey,(3,3,width//2 - 144,66))
+        pygame.draw.rect(screen,grey,(width//2 + 143,3,325,66))
         enemy_spider -= 1000
         str_enemy_spider = str(enemy_spider)
         try:
@@ -1297,8 +1307,6 @@ while lets_continue:
         text = f1.write(str_fmag_hp)
         f1.close()
          
-
-         
 # Portréty
     if enemy_spider > 0:
         if enemy_spider_boss_hp <= 0:
@@ -1330,8 +1338,7 @@ while lets_continue:
         if human_hp <= 0:                 
             screen.blit(human_portret_dead, human_portret_dead_rect)
 
-        
-
+    
 # Spider Portal
     if enemy_spider > 0 or enemy_spider1 > 0 or enemy_spider2 > 0 or enemy_spider3 > 0:
         if scelet_hp > 0 or spider_hp1 > 0 or spider_hp2 > 0 or spider_hp3 > 0:
@@ -1353,11 +1360,10 @@ while lets_continue:
     if enemy_spider == 0:     
         screen.blit(custom1_text, custom1_text_rect)
 
-# Buttons
-    if start_button.draw(screen):
-        run_game = 1
+# Button exit
     if exit_button.draw(screen):
-        lets_continue = False
+        pass
+        
 
 # HP Ghost bosse
     customgh1_font = pygame.font.SysFont("Helvetica", 44)
@@ -3779,15 +3785,26 @@ while lets_continue:
     pygame.draw.line(screen, black, (1,1),(1,70), 3)
     pygame.draw.line(screen, black, (1198,1),(1198,70), 3)
 
+    pygame.draw.line(screen, black, (1069,70),(1069,0), 3)
+
+    if run_game == 0:
+        pygame.draw.line(screen, black, (127,70),(127,0), 3)
+
     if enemy_spider > 0:
         pygame.draw.line(screen, black, (width//2 - 140,70),(width//2 - 140,0), 3)
         pygame.draw.line(screen, black, (width//2 - 70,70),(width//2 - 70,0), 3)
         pygame.draw.line(screen, black, (width//2,70),(width//2,0), 3)
         pygame.draw.line(screen, black, (width//2 + 70,70),(width//2 + 70,0), 3)
         pygame.draw.line(screen, black, (width//2 + 140,70),(width//2 + 140,0), 3)
+        pygame.draw.rect(screen,grey,(3,3,width//2 - 144,66))
+        pygame.draw.rect(screen,grey,(width//2 + 143,3,325,66))
 
-    pygame.draw.line(screen, black, (1069,70),(1069,0), 3)
-    pygame.draw.line(screen, black, (127,70),(127,0), 3)
+    if ghost_boss_hp <= 0 and run_game == 1:
+         screen.blit(custom_end_text, custom_end_text_rect)
+
+
+
+
 #-----------------------------------------------------------------------------------------------#
 
     pygame.display.update()
