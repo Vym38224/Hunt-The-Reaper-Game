@@ -1207,12 +1207,6 @@ if run_game == 0:
     pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/home_background_music.wav"))
     pygame.mixer.Channel(5).set_volume(0.1)
 
-# START FIGHT MUSIC
-if run_game == 1 and keys[pygame.K_1]:
-        pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/fight.wav"))
-        pygame.mixer.Channel(6).set_volume(1)
-
-
 #-----------------------------------------------------------------------------------------------#
 #### HLAVNÍ CYKLUS ####
 #-----------------------------------------------------------------------------------------------#
@@ -1247,6 +1241,7 @@ while lets_continue:
     pygame.draw.rect(screen,grey,(3,3,126,66))
 
     if run_game == 0:
+        pygame.mixer.Channel(7).stop()
         # Button start
         if start_button.draw(screen):
             run_game = 1
@@ -1271,7 +1266,7 @@ while lets_continue:
         pygame.mixer.Channel(6).set_volume(0.1)
     if run_game == 1 and keys[pygame.K_3] and enemy_scelet_boss_hp <= 0 and fmag_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/fire_hello.wav"))
-        pygame.mixer.Channel(6).set_volume(0.05)
+        pygame.mixer.Channel(6).set_volume(0.01)
     if run_game == 1 and keys[pygame.K_4] and goblin_boss_hp <= 0 and wmag_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/war_hello.wav"))
         pygame.mixer.Channel(6).set_volume(0.1)
@@ -1285,6 +1280,9 @@ while lets_continue:
         pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))
         screen.blit(custom_end_text, custom_end_text_rect)
         screen.blit(custom_end1_text, custom_end1_text_rect)
+        if enemy_ghost_boss > 0:
+            pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/end_background_music.wav"))
+            pygame.mixer.Channel(5).set_volume(1)
         enemy_ghost_boss -= 1000
         str_enemy_ghost_boss = str(enemy_ghost_boss)
         try:
@@ -1306,6 +1304,8 @@ while lets_continue:
             python = sys.executable
             os.execl(python, python, * sys.argv)
         pygame.draw.line(screen, black, (127,70),(127,0), 3)
+        
+
     
 # VÝHRA
     if ghost_boss_hp <= 0 and run_game == 1:
@@ -1709,8 +1709,8 @@ while lets_continue:
                 print("Soubor nebyl nalezen")
         text = f_enemy_spider_boss.write(enemy_spider_boss_str)
         f_enemy_spider_boss.close()
-         
-
+        
+        
     if enemy_spider_boss_hp <= 0 and run_game == 1:
 # Skeleton 
         enemy_scelet += 1
@@ -1888,7 +1888,7 @@ while lets_continue:
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and human_rect.top > 100 and human2_rect.top > 100:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             human_move_image_rect.y = human_move_image_rect.y - human_distance
             human_move_image2_rect.y = human_move_image2_rect.y - human_distance
             human_rect.y = human_rect.y - human_distance
@@ -1897,7 +1897,7 @@ while lets_continue:
             hp0_text_rect.y = hp0_text_rect.y - human_distance
         elif keys [pygame.K_s] and human_rect.bottom < height - 120 and human2_rect.bottom < height - 120:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             human_move_image_rect.y = human_move_image_rect.y + human_distance
             human_move_image2_rect.y = human_move_image2_rect.y + human_distance
             human_rect.y = human_rect.y + human_distance
@@ -1906,7 +1906,7 @@ while lets_continue:
             hp0_text_rect.y = hp0_text_rect.y + human_distance
         elif keys [pygame.K_a] and human_rect.left > 25 and human2_rect.left > 25:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             human_move_image_rect.x = human_move_image_rect.x - human_distance
             human_move_image2_rect.x = human_move_image2_rect.x - human_distance
             human_rect.x = human_rect.x - human_distance
@@ -1916,7 +1916,7 @@ while lets_continue:
             mirror = 1
         elif keys [pygame.K_d] and human_rect.right > 0 and human2_rect.right < width:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             human_move_image_rect.x = human_move_image_rect.x + human_distance
             human_move_image2_rect.x = human_move_image2_rect.x + human_distance
             human_rect.x = human_rect.x + human_distance
@@ -1932,13 +1932,13 @@ while lets_continue:
    
         if human_attack == 1 and keys [pygame.K_SPACE]:
                 pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds/human_attack.wav'))
-                pygame.mixer.Channel(2).set_volume(0.1)
+                pygame.mixer.Channel(2).set_volume(0.05)
                 human_attack2_rect.center = (human2_rect.x - 25 ,human2_rect.y + 45)
                 screen.blit(human_attack2_image,human_attack2_rect)
             
         if human_attack == 2 and keys [pygame.K_SPACE]:
                 pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds/human_attack.wav'))
-                pygame.mixer.Channel(2).set_volume(0.1)        
+                pygame.mixer.Channel(2).set_volume(0.05)        
                 human_attack_rect.center = (human_rect.x + 125 ,human_rect.y + 45)
                 screen.blit(human_attack_image,human_attack_rect)
             
@@ -1988,21 +1988,21 @@ while lets_continue:
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and fzard_rect.top > 100 and fzard2_rect.top > 100:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             fzard_rect.y = fzard_rect.y - fmag_distance
             fzard2_rect.y = fzard2_rect.y - fmag_distance
             name1_text_rect.y = name1_text_rect.y - fmag_distance 
             hp1_text_rect.y = hp1_text_rect.y - fmag_distance
         elif keys [pygame.K_s] and fzard_rect.bottom < height - 120 and fzard2_rect.bottom < height - 120:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             fzard_rect.y = fzard_rect.y + fmag_distance
             fzard2_rect.y = fzard2_rect.y + fmag_distance
             name1_text_rect.y = name1_text_rect.y + fmag_distance
             hp1_text_rect.y = hp1_text_rect.y + fmag_distance
         elif keys [pygame.K_a] and fzard_rect.left > 25 and fzard2_rect.left > 25:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             fzard_rect.x = fzard_rect.x - fmag_distance
             fzard2_rect.x = fzard2_rect.x - fmag_distance
             name1_text_rect.x = name1_text_rect.x - fmag_distance
@@ -2010,7 +2010,7 @@ while lets_continue:
             mirror = 1
         elif keys [pygame.K_d] and fzard_rect.right > 0 and fzard2_rect.right < width:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             fzard_rect.x = fzard_rect.x +fmag_distance
             fzard2_rect.x = fzard2_rect.x + fmag_distance
             name1_text_rect.x = name1_text_rect.x + fmag_distance
@@ -2084,7 +2084,7 @@ while lets_continue:
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and wzard_rect.top > 100 and wzard2_rect.top > 100:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             wzard_move_image_rect.y = wzard_move_image_rect.y - wmag_distance
             wzard_move_image2_rect.y = wzard_move_image2_rect.y - wmag_distance
             wzard_rect.y = wzard_rect.y - wmag_distance
@@ -2093,7 +2093,7 @@ while lets_continue:
             hp2_text_rect.y = hp2_text_rect.y - wmag_distance
         elif keys [pygame.K_s] and wzard_rect.bottom < height - 120 and wzard2_rect.bottom < height - 120:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             wzard_move_image_rect.y = wzard_move_image_rect.y + wmag_distance
             wzard_move_image2_rect.y = wzard_move_image2_rect.y + wmag_distance
             wzard_rect.y = wzard_rect.y + wmag_distance
@@ -2102,7 +2102,7 @@ while lets_continue:
             hp2_text_rect.y = hp2_text_rect.y + wmag_distance
         elif keys [pygame.K_a] and wzard_rect.left > 25 and wzard2_rect.left > 25:  
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)               
+            pygame.mixer.Channel(0).set_volume(0.2)               
             wzard_move_image_rect.x = wzard_move_image_rect.x - wmag_distance
             wzard_rect.x = wzard_rect.x - wmag_distance
             wzard2_rect.x = wzard2_rect.x - wmag_distance
@@ -2111,7 +2111,7 @@ while lets_continue:
             mirror = 1
         elif keys [pygame.K_d] and wzard_rect.right > 0 and wzard2_rect.right < width:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             wzard_move_image_rect.x = wzard_move_image_rect.x + wmag_distance
             wzard_rect.x = wzard_rect.x + wmag_distance
             wzard2_rect.x = wzard2_rect.x + wmag_distance
@@ -2121,12 +2121,12 @@ while lets_continue:
               
         elif keys [pygame.K_SPACE] and mirror == 1:
             pygame.mixer.Channel(3).play(pygame.mixer.Sound('sounds/war_attack.wav'))
-            pygame.mixer.Channel(3).set_volume(0.5)
+            pygame.mixer.Channel(3).set_volume(0.3)
             wzard_attack2_rect.center = (wzard2_rect.x + 10,wzard2_rect.y + 70)
             wire_attack = 1
         elif keys [pygame.K_SPACE] and mirror == 0:
             pygame.mixer.Channel(3).play(pygame.mixer.Sound('sounds/war_attack.wav'))
-            pygame.mixer.Channel(3).set_volume(0.5)
+            pygame.mixer.Channel(3).set_volume(0.3)
             wzard_attack_rect.center = (wzard_rect.x + 125,wzard_rect.y + 70)
             wire_attack = 2
         
@@ -2186,7 +2186,7 @@ while lets_continue:
         keys = pygame.key.get_pressed()
         if keys [pygame.K_w] and archer_rect.top > 100 and archer2_rect.top > 100:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)         
+            pygame.mixer.Channel(0).set_volume(0.2)         
             archer_move_image_rect.y = archer_move_image_rect.y - archer_distance
             archer_move_image2_rect.y = archer_move_image2_rect.y - archer_distance
             archer_rect.y = archer_rect.y - archer_distance
@@ -2195,7 +2195,7 @@ while lets_continue:
             hp3_text_rect.y = hp3_text_rect.y - archer_distance
         elif keys [pygame.K_s] and archer_rect.bottom < height - 120 and archer2_rect.bottom < height - 120:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)     
+            pygame.mixer.Channel(0).set_volume(0.2)     
             archer_move_image_rect.y = archer_move_image_rect.y + archer_distance
             archer_move_image2_rect.y = archer_move_image2_rect.y + archer_distance
             archer_rect.y = archer_rect.y + archer_distance
@@ -2204,7 +2204,7 @@ while lets_continue:
             hp3_text_rect.y = hp3_text_rect.y + archer_distance
         elif keys [pygame.K_a] and archer_rect.left > 25 and archer2_rect.left > 25: 
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             archer_move_image_rect.x = archer_move_image_rect.x - archer_distance
             archer_rect.x = archer_rect.x - archer_distance
             archer2_rect.x = archer2_rect.x - archer_distance
@@ -2213,7 +2213,7 @@ while lets_continue:
             mirror = 1
         elif keys [pygame.K_d] and archer_rect.right > 0 and archer2_rect.right < width:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
-            pygame.mixer.Channel(0).set_volume(0.5)
+            pygame.mixer.Channel(0).set_volume(0.2)
             archer_move_image_rect.x = archer_move_image_rect.x + archer_distance
             archer_rect.x = archer_rect.x + archer_distance
             archer2_rect.x = archer2_rect.x + archer_distance
@@ -2223,13 +2223,13 @@ while lets_continue:
 
         elif keys [pygame.K_SPACE] and mirror == 1:
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds/arrow.wav'))
-            pygame.mixer.Channel(1).set_volume(0.6)
+            pygame.mixer.Channel(1).set_volume(0.5)
             
             arrow2_rect.center = (archer2_rect.x + 30,archer2_rect.y + 55)
             arrow_attack = 1
         elif keys [pygame.K_SPACE] and mirror == 0:
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds/arrow.wav'))
-            pygame.mixer.Channel(1).set_volume(0.6)
+            pygame.mixer.Channel(1).set_volume(0.5)
             
             arrow_rect.center = (archer_rect.x + 55,archer_rect.y + 55)
             arrow_attack = 2
@@ -2382,6 +2382,9 @@ while lets_continue:
             
         if spider_boss_rect.left >= 1000: 
             spider_boss_image = loadify(enemy3.img)
+        if spider_boss_rect.colliderect(s_portal_image_rect) and enemy_spider_boss_hp > 0:
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/spider.wav"))
+            pygame.mixer.Channel(7).set_volume(0.04)
         
     # Skeleton
     if enemy_scelet > 0:
@@ -2499,6 +2502,10 @@ while lets_continue:
             
         if scelet_rect.left >= 1000: 
             scelet_boss_image = loadify(enemy1.img)
+        
+        if scelet_boss_rect.colliderect(portal_image_rect) and enemy_scelet_boss_hp > 0:
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/skelet.wav"))
+            pygame.mixer.Channel(7).set_volume(0.1)
 
     # Goblin
     if enemy_goblin > 0:
@@ -2614,6 +2621,10 @@ while lets_continue:
             goblin_boss_image = loadify(enemy5.img2)         
         if goblin_boss_rect.left >= 900: 
             goblin_boss_image = loadify(enemy5.img)
+        
+        if goblin_boss_rect.colliderect(g_portal_image_rect) and goblin_boss_hp > 0:
+            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/goblin.wav"))
+            pygame.mixer.Channel(7).set_volume(0.4)
 
     # Ghost
     if enemy_ghost > 0:
@@ -2729,6 +2740,10 @@ while lets_continue:
             ghost_boss_image = loadify(enemy7.img2)         
         if ghost_boss_rect.left >= 950: 
             ghost_boss_image = loadify(enemy7.img)
+        
+        if ghost_boss_rect.colliderect(gh_portal_image_rect) and ghost_boss_hp > 0:
+            pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/ghost.wav"))
+            pygame.mixer.Channel(6).set_volume(0.005)
     
 #-----------------------------------------------------------------------------------------------#    
 ### KONTROLA KOLIZE ###

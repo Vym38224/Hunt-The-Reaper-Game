@@ -66,7 +66,7 @@ enemy4 = EnemyPlayer("Goblin", 1, ("img/goblin.png"),("img/goblin2.png"))
 enemy5 = EnemyPlayer("BOSS Goblin", 1, ("img/goblin_boss.png"),("img/goblin_boss2.png"))
 
 enemy6 = EnemyPlayer("Ghost", 1, ("img/ghost.png"),("img/ghost2.png"))
-enemy7 = EnemyPlayer("BOSS Ghost", 1, ("img/ghost_boss.png"),("img/ghost_boss2.png"))
+enemy7 = EnemyPlayer("BOSS Ghost", 750, ("img/ghost_boss.png"),("img/ghost_boss2.png"))
 
 
 
