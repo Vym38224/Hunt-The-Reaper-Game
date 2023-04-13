@@ -13,7 +13,7 @@ pygame.init()
 width = 1200
 height = 750
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Hra")
+pygame.display.set_caption("Hunt the reaper")
 
 # Barvičky 
 black = (0, 0, 0)
@@ -22,6 +22,7 @@ red = (255, 0, 0)
 dark_green = (0, 100, 0)
 blue = (0, 0, 255)
 yellow = (255, 255, 0)
+orange = (255,140,0)
 grey = (130,130,130)
 green = (124, 252, 0)
 
@@ -43,7 +44,7 @@ attack_x = 1
 attack_1x = -1* attack_x
 
 ghost_speed = 4
-ghost_boss_speed = 5
+ghost_boss_speed = 4
 spider_speed = 2
 spider_boss_speed = 3
 scelet_speed = 2
@@ -766,6 +767,13 @@ goblin_background_img_rect = goblin_background_img.get_rect()
 ghost_background_img = loadify(background_ghost.img)
 ghost_background_img_rect = ghost_background_img.get_rect()
 
+end_background_img = loadify(background_end.img)
+end_background_img_rect = end_background_img.get_rect()
+
+win_background_img = loadify(background_win.img)
+win_background_img_rect = win_background_img.get_rect()
+
+
 #-----------------------------------------------------------------------------------------------#
 
 # OBRÁZKY
@@ -780,6 +788,10 @@ exit_button = buttons.Button(1070,0,exit_img,0.8)
 human_portret = loadify("img/human_portret.png")
 human_portret_rect = human_portret.get_rect()
 human_portret_rect.center = (width//2 - 105, 35)
+
+human_portret_dead = loadify("img/human_portret_dead.png")
+human_portret_dead_rect = human_portret_dead.get_rect()
+human_portret_dead_rect.center = (width//2 - 105, 35)
 
 human_image = loadify(player0.img)
 human_rect = human_image.get_rect()
@@ -812,6 +824,10 @@ name0_text_rect.center = (600,425)
 fzard_portret = loadify("img/fmag_portret.png")
 fzard_portret_rect = fzard_portret.get_rect()
 fzard_portret_rect.center = (width//2 + 35, 35)
+
+fzard_portret_dead = loadify("img/fmag_portret_dead.png")
+fzard_portret_dead_rect = fzard_portret_dead.get_rect()
+fzard_portret_dead_rect.center = (width//2 + 35, 35)
 
 fzard_portret_lock = loadify("img/fmag_portret_lock.png")
 fzard_portret_lock_rect = fzard_portret_lock.get_rect()
@@ -847,6 +863,10 @@ wzard_portret = loadify("img/wzard_portret.png")
 wzard_portret_rect = wzard_portret.get_rect()
 wzard_portret_rect.center = (width//2 + 105, 35)
 
+wzard_portret_dead = loadify("img/wzard_portret_dead.png")
+wzard_portret_dead_rect = wzard_portret_dead.get_rect()
+wzard_portret_dead_rect.center = (width//2 + 105, 35)
+
 wzard_portret_lock = loadify("img/wzard_portret_lock.png")
 wzard_portret_lock_rect = wzard_portret_lock.get_rect()
 wzard_portret_lock_rect.center = (width//2 + 105, 35)
@@ -880,6 +900,10 @@ name2_text_rect.center = (600,430)
 archer_portret = loadify("img/archer_portret.png")
 archer_portret_rect = archer_portret.get_rect()
 archer_portret_rect.center = (width//2 - 35, 35)
+
+archer_portret_dead = loadify("img/archer_portret_dead.png")
+archer_portret_dead_rect = archer_portret_dead.get_rect()
+archer_portret_dead_rect.center = (width//2 - 35, 35)
 
 archer_portret_lock = loadify("img/archer_portret_lock.png")
 archer_portret_lock_rect = archer_portret_lock.get_rect()
@@ -1153,10 +1177,26 @@ if goblin_boss_hp > 0:
 
 #-----------------------------------------------------------------------------------------------#
 # TEXTY 
-custom1_font = pygame.font.SysFont("Helvetica", 64)
-custom1_text = custom1_font.render("WELCOME TO THE GAME", True, yellow)
+custom1_font = pygame.font.SysFont("Helvetica", 60, 1.5)
+custom1_text = custom1_font.render("HUNT THE REAPER", True, orange)
 custom1_text_rect = custom1_text.get_rect()
-custom1_text_rect.center = (width//2, height//2 - 338)
+custom1_text_rect.center = (width//2, height//2 - 339)
+
+custom_end_font = pygame.font.SysFont("Helvetica", 60, 1.5)
+custom_end_text = custom_end_font.render("GAME OVER", True, orange)
+custom_end_text_rect = custom_end_text.get_rect()
+custom_end_text_rect.center = (width//2, height//2 - 345)
+
+custom_end1_font = pygame.font.SysFont("Helvetica", 60, 1.5)
+custom_end1_text = custom_end1_font.render("YOU LOSE", True, red)
+custom_end1_text_rect = custom_end1_text.get_rect()
+custom_end1_text_rect.center = (width//2, height//2 + 350)
+
+custom_end2_font = pygame.font.SysFont("Helvetica", 60, 1.5)
+custom_end2_text = custom_end2_font.render("YOU WIN", True, yellow)
+custom_end2_text_rect = custom_end2_text.get_rect()
+custom_end2_text_rect.center = (width//2, height//2 + 350)
+
 #-----------------------------------------------------------------------------------------------#
 #### HLAVNÍ CYKLUS ####
 #-----------------------------------------------------------------------------------------------#
@@ -1187,23 +1227,110 @@ while lets_continue:
             screen.blit(ghost_background_img, ghost_background_img_rect)
     if ghost_boss_hp <= 0:
         screen.blit(home_background_img, home_background_img_rect)
+
+#-----------------------------------------------------------------------------------------------#
+# KONEC HRY
+#-----------------------------------------------------------------------------------------------#
+
+# PROHRA
+    if human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and wmag_hp <= 0 and run_game == 1:
+        screen.blit(end_background_img, end_background_img_rect)
+        screen.blit(custom_end_text, custom_end_text_rect)
+        screen.blit(custom_end1_text, custom_end1_text_rect)
+        ghost_boss_hp -= 1000
+        str_ghost_boss_hp = str(ghost_boss_hp)
+        try:
+            f_ghost_boss_hp = open("players_hp/ghost_boss_hp.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_ghost_boss_hp.write(str_ghost_boss_hp)
+        enemy_spider -= 1000
+        str_enemy_spider = str(enemy_spider)
+        try:
+            f_enemy_spider = open("players/enemy_spider.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_spider.write(str_enemy_spider)
+    
+# VÝHRA
+    if ghost_boss_hp <= 0 and run_game == 1:
+        screen.blit(win_background_img, win_background_img_rect)
+        screen.blit(custom_end_text, custom_end_text_rect)
+        screen.blit(custom_end2_text, custom_end2_text_rect)
+        enemy_spider -= 1000
+        str_enemy_spider = str(enemy_spider)
+        try:
+            f_enemy_spider = open("players/enemy_spider.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f_enemy_spider.write(str_enemy_spider)
+        wmag_hp -= 10000 # war
+        str_wmag_hp = str(wmag_hp)
+        try:
+            f1 = open("players_hp/wmag_hp.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f1.write(str_wmag_hp)
+        f1.close()
+        archer_hp -= 10000 # arhcer
+        str_archer_hp = str(archer_hp)
+        try:
+            f1 = open("players_hp/archer_hp.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f1.write(str_archer_hp)
+        f1.close()
+        human_hp -= 10000 # human
+        str_human_hp = str(human_hp)
+        try:
+            f1 = open("players_hp/human_hp.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f1.write(str_human_hp)
+        f1.close()
+        fmag_hp -= 10000 # fmag
+        str_fmag_hp = str(fmag_hp)
+        try:
+            f1 = open("players_hp/fmag_hp.txt","w")
+        except FileNotFoundError:
+                print("Soubor nebyl nalezen")
+        text = f1.write(str_fmag_hp)
+        f1.close()
+         
+
          
 # Portréty
     if enemy_spider > 0:
         if enemy_spider_boss_hp <= 0:
-            screen.blit(archer_portret, archer_portret_rect)
+            if archer_hp > 0:
+                screen.blit(archer_portret, archer_portret_rect)
+            if archer_hp <= 0:
+                screen.blit(archer_portret_dead, archer_portret_dead_rect)
         if enemy_spider_boss_hp > 0: 
             screen.blit(archer_portret_lock, archer_portret_lock_rect)
+
         if enemy_scelet_boss_hp <= 0:
-            screen.blit(fzard_portret, fzard_portret_rect)
+            if fmag_hp > 0:
+                screen.blit(fzard_portret, fzard_portret_rect)
+            if fmag_hp <= 0:
+                screen.blit(fzard_portret_dead, fzard_portret_dead_rect)
         if enemy_scelet_boss_hp > 0: 
             screen.blit(fzard_portret_lock, fzard_portret_lock_rect)
+
         if goblin_boss_hp <= 0:
-            screen.blit(wzard_portret, wzard_portret_rect)
+            if wmag_hp > 0:
+                screen.blit(wzard_portret, wzard_portret_rect)
+            if wmag_hp <= 0:
+                screen.blit(wzard_portret_dead, wzard_portret_dead_rect)
         if goblin_boss_hp > 0: 
             screen.blit(wzard_portret_lock, wzard_portret_lock_rect)
-                
-        screen.blit(human_portret, human_portret_rect)
+
+        if human_hp > 0:                 
+            screen.blit(human_portret, human_portret_rect)
+        if human_hp <= 0:                 
+            screen.blit(human_portret_dead, human_portret_dead_rect)
+
+        
 
 # Spider Portal
     if enemy_spider > 0 or enemy_spider1 > 0 or enemy_spider2 > 0 or enemy_spider3 > 0:
@@ -1692,7 +1819,7 @@ while lets_continue:
             hp0_text = hp0_text.render("HP: " + f"{human_hp}", True, yellow)
         if human_hp <= 349 and human_hp > 0:
             hp0_text = hp0_text.render("HP: " + f"{human_hp}", True, red)
-        if human_hp < 0:
+        if human_hp <= 0:
             player_human -= 100000000
             player_human_str = str(player_human)
             try:
@@ -1780,7 +1907,7 @@ while lets_continue:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, yellow)
         if fmag_hp <= 99 and fmag_hp > 0:
             hp1_text = hp1_text.render("HP: " + f"{fmag_hp}", True, red)
-        if fmag_hp < 0:
+        if fmag_hp <= 0:
             player_fmag -= 100000000
             player_fmag_str = str(player_fmag)
             try:
@@ -1864,7 +1991,7 @@ while lets_continue:
             hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, yellow)
         if wmag_hp <= 39 and wmag_hp > 0:
             hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, red)
-        if wmag_hp < 0:
+        if wmag_hp <= 0:
             player_wmag -= 100000000
             player_wmag_str = str(player_wmag)
             try:
@@ -1953,7 +2080,8 @@ while lets_continue:
             hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, yellow)     
         if archer_hp <= 79 and archer_hp > 0:
             hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, red)
-        if archer_hp < 0:
+        if archer_hp <= 0:
+            hp3_text = hp3_text.render("HP: " + f"{archer_hp}", True, red)
             player_archer -= 100000000
             player_archer_str = str(player_archer)
             try:
@@ -2723,7 +2851,7 @@ while lets_continue:
 # ghost boss --> human
     if ghost_boss_rect.colliderect(human_rect) or ghost_boss_rect.colliderect(human2_rect):
         if player_human > 0 and ghost_boss_hp > 0 and enemy_ghost_boss > 0:
-            human_hp -= 5
+            human_hp -= 50
             str_human_hp = str(human_hp)
             try:
                 f1 = open("players_hp/human_hp.txt","w")
@@ -3642,8 +3770,6 @@ while lets_continue:
             text = f3.write(str_ghost_boss_hp)
             f3.close()
 #-----------------------------------------------------------------------------------------------#
-
-#-----------------------------------------------------------------------------------------------#
 # OBRAZCE
 #-----------------------------------------------------------------------------------------------#
 
@@ -3662,6 +3788,7 @@ while lets_continue:
 
     pygame.draw.line(screen, black, (1069,70),(1069,0), 3)
     pygame.draw.line(screen, black, (127,70),(127,0), 3)
+#-----------------------------------------------------------------------------------------------#
 
     pygame.display.update()
     clock.tick_busy_loop(fps)
