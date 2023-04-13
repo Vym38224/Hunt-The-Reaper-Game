@@ -1240,6 +1240,11 @@ while lets_continue:
         screen.blit(home_background_img, home_background_img_rect)
     pygame.draw.rect(screen,grey,(3,3,126,66))
 
+    # Text  + fill bez enemy
+    if enemy_spider == 0:   
+        pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))  
+        screen.blit(custom1_text, custom1_text_rect)
+        
     if run_game == 0:
         pygame.mixer.Channel(7).stop()
         # Button start
@@ -1248,8 +1253,6 @@ while lets_continue:
 
     if run_game == 1 and player_human > 0 or player_archer > 0 or player_fmag > 0 or player_wmag > 0:
         pygame.mixer.Channel(5).stop()
-
-
         # Button exit   
         if exit_button.draw(screen):
             import sys
@@ -1275,14 +1278,18 @@ while lets_continue:
 #-----------------------------------------------------------------------------------------------#
 
 # PROHRA
+    if enemy_ghost_boss > 0 and human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and wmag_hp <= 0 and run_game == 1:
+            pygame.mixer.Channel(4).stop()
+            pygame.mixer.Channel(6).stop()
+            pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/end_background_music.wav"))
+            pygame.mixer.Channel(5).set_volume(0.5)
     if human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and wmag_hp <= 0 and run_game == 1:
+        pygame.mixer.Channel(4).stop()
+        pygame.mixer.Channel(6).stop()
         screen.blit(end_background_img, end_background_img_rect)
         pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))
         screen.blit(custom_end_text, custom_end_text_rect)
         screen.blit(custom_end1_text, custom_end1_text_rect)
-        if enemy_ghost_boss > 0:
-            pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/end_background_music.wav"))
-            pygame.mixer.Channel(5).set_volume(1)
         enemy_ghost_boss -= 1000
         str_enemy_ghost_boss = str(enemy_ghost_boss)
         try:
@@ -1305,10 +1312,13 @@ while lets_continue:
             os.execl(python, python, * sys.argv)
         pygame.draw.line(screen, black, (127,70),(127,0), 3)
         
-
-    
 # VÝHRA
+    if enemy_spider > 0 and run_game == 1 and ghost_boss_hp <= 0:
+            pygame.mixer.Channel(5).stop()
+            pygame.mixer.Channel(3).play(pygame.mixer.Sound("music/home_background_music.wav"))
+            pygame.mixer.Channel(3).set_volume(0.05)
     if ghost_boss_hp <= 0 and run_game == 1:
+        pygame.mixer.Channel(5).stop()
         screen.blit(win_background_img, win_background_img_rect)
         pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))
         screen.blit(custom_end_text, custom_end_text_rect)
@@ -1409,10 +1419,6 @@ while lets_continue:
     if enemy_ghost > 0 or enemy_ghost1 > 0 or enemy_ghost2 > 0 or enemy_ghost3 > 0:
         if ghost_hp > 0 or ghost_hp1 > 0 or ghost_hp2 > 0 or ghost_hp3 > 0:
             screen.blit(gh_portal_image,gh_portal_image_rect)
-    
-# Text bez enemy
-    if enemy_spider == 0:     
-        screen.blit(custom1_text, custom1_text_rect)
         
 # HP Ghost bosse
     customgh1_font = pygame.font.SysFont("Helvetica", 44)
