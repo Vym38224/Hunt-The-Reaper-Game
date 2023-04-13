@@ -1263,16 +1263,16 @@ while lets_continue:
     # START FIGHT MUSIC
     if run_game == 1 and keys[pygame.K_1]:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/human_hello.wav"))
-        pygame.mixer.Channel(6).set_volume(0.02)
+        pygame.mixer.Channel(6).set_volume(0.01)
     if run_game == 1 and keys[pygame.K_2]and enemy_spider_boss_hp <= 0 and archer_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/archer_hello.wav"))
-        pygame.mixer.Channel(6).set_volume(0.1)
+        pygame.mixer.Channel(6).set_volume(0.05)
     if run_game == 1 and keys[pygame.K_3] and enemy_scelet_boss_hp <= 0 and fmag_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/fire_hello.wav"))
         pygame.mixer.Channel(6).set_volume(0.01)
     if run_game == 1 and keys[pygame.K_4] and goblin_boss_hp <= 0 and wmag_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/war_hello.wav"))
-        pygame.mixer.Channel(6).set_volume(0.1)
+        pygame.mixer.Channel(6).set_volume(0.03)
 #-----------------------------------------------------------------------------------------------#
 # KONEC HRY
 #-----------------------------------------------------------------------------------------------#
@@ -1938,13 +1938,13 @@ while lets_continue:
    
         if human_attack == 1 and keys [pygame.K_SPACE]:
                 pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds/human_attack.wav'))
-                pygame.mixer.Channel(2).set_volume(0.05)
+                pygame.mixer.Channel(2).set_volume(0.01)
                 human_attack2_rect.center = (human2_rect.x - 25 ,human2_rect.y + 45)
                 screen.blit(human_attack2_image,human_attack2_rect)
             
         if human_attack == 2 and keys [pygame.K_SPACE]:
                 pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds/human_attack.wav'))
-                pygame.mixer.Channel(2).set_volume(0.05)        
+                pygame.mixer.Channel(2).set_volume(0.01)        
                 human_attack_rect.center = (human_rect.x + 125 ,human_rect.y + 45)
                 screen.blit(human_attack_image,human_attack_rect)
             
@@ -2127,12 +2127,12 @@ while lets_continue:
               
         elif keys [pygame.K_SPACE] and mirror == 1:
             pygame.mixer.Channel(3).play(pygame.mixer.Sound('sounds/war_attack.wav'))
-            pygame.mixer.Channel(3).set_volume(0.3)
+            pygame.mixer.Channel(3).set_volume(0.1)
             wzard_attack2_rect.center = (wzard2_rect.x + 10,wzard2_rect.y + 70)
             wire_attack = 1
         elif keys [pygame.K_SPACE] and mirror == 0:
             pygame.mixer.Channel(3).play(pygame.mixer.Sound('sounds/war_attack.wav'))
-            pygame.mixer.Channel(3).set_volume(0.3)
+            pygame.mixer.Channel(3).set_volume(0.1)
             wzard_attack_rect.center = (wzard_rect.x + 125,wzard_rect.y + 70)
             wire_attack = 2
         
@@ -2749,7 +2749,7 @@ while lets_continue:
         
         if ghost_boss_rect.colliderect(gh_portal_image_rect) and ghost_boss_hp > 0:
             pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/ghost.wav"))
-            pygame.mixer.Channel(6).set_volume(0.005)
+            pygame.mixer.Channel(6).set_volume(0.01)
     
 #-----------------------------------------------------------------------------------------------#    
 ### KONTROLA KOLIZE ###
