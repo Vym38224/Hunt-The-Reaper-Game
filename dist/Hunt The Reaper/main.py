@@ -1219,8 +1219,7 @@ while lets_continue:
 
 #-----------------------------------------------------------------------------------------------#
 ### OBRÁZKY BLIT ###
-#-----------------------------------------------------------------------------------------------# 
-
+#-----------------------------------------------------------------------------------------------#
 # Backgrounds
     if enemy_spider == 0:
         screen.blit(home_background_img, home_background_img_rect)
@@ -1250,8 +1249,17 @@ while lets_continue:
         # Button start
         if start_button.draw(screen):
             run_game = 1
-
+    
     if run_game == 1 and player_human > 0 or player_archer > 0 or player_fmag > 0 or player_wmag > 0:
+        pygame.mixer.Channel(5).stop()
+        # Button exit   
+        if exit_button.draw(screen):
+            import sys
+            import os
+            python = sys.executable
+            os.execl(python, python, * sys.argv)
+
+    if run_game == 1 and player_human < 0 or player_archer < 0 or player_fmag < 0 or player_wmag < 0:
         pygame.mixer.Channel(5).stop()
         # Button exit   
         if exit_button.draw(screen):
@@ -4002,6 +4010,8 @@ while lets_continue:
         pygame.draw.rect(screen,grey,(129,3,width//2 - 270,66))
         pygame.draw.rect(screen,grey,(width//2 + 143,3,454,66))
     if player_human > 0 or player_archer > 0 or player_fmag > 0 or player_wmag > 0:
+        pygame.draw.line(screen, black, (127,70),(127,0), 3)
+    if player_human < 0 or player_archer < 0 or player_fmag < 0 or player_wmag < 0:
         pygame.draw.line(screen, black, (127,70),(127,0), 3)
 
     if ghost_boss_hp <= 0 and run_game == 1:
