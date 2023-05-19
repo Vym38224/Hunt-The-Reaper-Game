@@ -3,6 +3,7 @@ import random
 import buttons
 from players import *
 
+#ahoj
 # Načtení IMG 
 def loadify(imgname):
     return pygame.image.load(imgname).convert_alpha() 
