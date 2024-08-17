@@ -53,11 +53,11 @@ goblin_speed = 3
 goblin_boss_speed = 3
 
 archer_attack_speed = 15
-wzard_attack_speed = 4
+light_attack_speed = 4
 fball_speed = 9
 
 fmag_distance = 5
-wmag_distance = 6
+light_distance = 6
 human_distance = 4
 archer_distance = 5
 
@@ -391,21 +391,21 @@ if player_fmag > 0:
     text = f1.read(fmag_hp)
     
 # Watermag
-player_wmag = int()
-player_wmag_str=str(player_wmag)
+player_light = int()
+player_light_str=str(player_light)
 try:
-    f_player_wmag = open("players/player_wmag.txt","r")
+    f_player_light = open("players/player_light.txt","r")
 except FileNotFoundError:
         print("Soubor nebyl nalezen")
-text = f_player_wmag.read(player_wmag)
-wmag_hp = (player2.hp)
-if player_wmag > 0:
-    str_wmag_hp = str(wmag_hp)
+text = f_player_light.read(player_light)
+light_hp = (player2.hp)
+if player_light > 0:
+    str_light_hp = str(light_hp)
     try:
-        f2 = open("players_hp/wmag_hp.txt", "r")
+        f2 = open("players_hp/light_hp.txt", "r")
     except FileNotFoundError:
         print("Soubor nebyl nalezen")
-    text = f2.read(wmag_hp)
+    text = f2.read(light_hp)
 
 # Archer
 player_archer = int()
@@ -860,37 +860,37 @@ name1_text_rect = name1_text.get_rect()
 name1_text_rect.center = (600,440)
 
 # Watermag
-wzard_portret = loadify("img/wzard_portret.png")
-wzard_portret_rect = wzard_portret.get_rect()
-wzard_portret_rect.center = (width//2 + 105, 35)
+light_portret = loadify("img/light_portret.png")
+light_portret_rect = light_portret.get_rect()
+light_portret_rect.center = (width//2 + 105, 35)
 
-wzard_portret_dead = loadify("img/wzard_portret_dead.png")
-wzard_portret_dead_rect = wzard_portret_dead.get_rect()
-wzard_portret_dead_rect.center = (width//2 + 105, 35)
+light_portret_dead = loadify("img/light_portret_dead.png")
+light_portret_dead_rect = light_portret_dead.get_rect()
+light_portret_dead_rect.center = (width//2 + 105, 35)
 
-wzard_portret_lock = loadify("img/wzard_portret_lock.png")
-wzard_portret_lock_rect = wzard_portret_lock.get_rect()
-wzard_portret_lock_rect.center = (width//2 + 105, 35)
+light_portret_lock = loadify("img/light_portret_lock.png")
+light_portret_lock_rect = light_portret_lock.get_rect()
+light_portret_lock_rect.center = (width//2 + 105, 35)
 
-wzard_image = loadify(player2.img)
-wzard_rect = wzard_image.get_rect()
-wzard_rect.center = (width//2, height//2)
+light_image = loadify(player2.img)
+light_rect = light_image.get_rect()
+light_rect.center = (width//2, height//2)
 
-wzard2_image = loadify(player2.img2)
-wzard2_rect = wzard_image.get_rect()
-wzard2_rect.center = (width//2 , height//2 )
+light2_image = loadify(player2.img2)
+light2_rect = light_image.get_rect()
+light2_rect.center = (width//2 , height//2 )
 
-wzard_attack_image = loadify(player2.img_attack)
-wzard_attack_rect = wzard_attack_image.get_rect()
+light_attack_image = loadify(player2.img_attack)
+light_attack_rect = light_attack_image.get_rect()
 
-wzard_attack2_image = loadify(player2.img_attack2)
-wzard_attack2_rect = wzard_attack2_image.get_rect()
+light_attack2_image = loadify(player2.img_attack2)
+light_attack2_rect = light_attack2_image.get_rect()
 
-wzard_move_image = loadify("img/watermag_move.png")
-wzard_move_image_rect = wzard_move_image.get_rect()
+light_move_image = loadify("img/watermag_move.png")
+light_move_image_rect = light_move_image.get_rect()
 
-wzard_move_image2 = loadify("img/watermag_move2.png")
-wzard_move_image2_rect = wzard_move_image2.get_rect()
+light_move_image2 = loadify("img/watermag_move2.png")
+light_move_image2_rect = light_move_image2.get_rect()
 
 name2_text = pygame.font.SysFont("Moncerat", 20)
 name2_text = name2_text.render(player2.name, True, white)
@@ -1248,7 +1248,7 @@ while lets_continue:
         if start_button.draw(screen):
             run_game = 1
     
-    if run_game == 1 and player_human > 0 or player_archer > 0 or player_fmag > 0 or player_wmag > 0:
+    if run_game == 1 and player_human > 0 or player_archer > 0 or player_fmag > 0 or player_light > 0:
         pygame.mixer.Channel(5).stop()
         # Button exit   
         if exit_button.draw(screen):
@@ -1257,7 +1257,7 @@ while lets_continue:
             python = sys.executable
             os.execl(python, python, * sys.argv)
 
-    if run_game == 1 and player_human < 0 or player_archer < 0 or player_fmag < 0 or player_wmag < 0:
+    if run_game == 1 and player_human < 0 or player_archer < 0 or player_fmag < 0 or player_light < 0:
         pygame.mixer.Channel(5).stop()
         # Button exit   
         if exit_button.draw(screen):
@@ -1276,7 +1276,7 @@ while lets_continue:
     if run_game == 1 and keys[pygame.K_3] and enemy_scelet_boss_hp <= 0 and fmag_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/fire_hello.wav"))
         pygame.mixer.Channel(6).set_volume(0.01)
-    if run_game == 1 and keys[pygame.K_4] and goblin_boss_hp <= 0 and wmag_hp >0:
+    if run_game == 1 and keys[pygame.K_4] and goblin_boss_hp <= 0 and light_hp >0:
         pygame.mixer.Channel(6).play(pygame.mixer.Sound("sounds/war_hello.wav"))
         pygame.mixer.Channel(6).set_volume(0.03)
 #-----------------------------------------------------------------------------------------------#
@@ -1284,12 +1284,12 @@ while lets_continue:
 #-----------------------------------------------------------------------------------------------#
 
 # PROHRA
-    if enemy_ghost_boss > 0 and human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and wmag_hp <= 0 and run_game == 1:
+    if enemy_ghost_boss > 0 and human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and light_hp <= 0 and run_game == 1:
             pygame.mixer.Channel(4).stop()
             pygame.mixer.Channel(6).stop()
             pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/end_background_music.wav"))
             pygame.mixer.Channel(5).set_volume(0.5)
-    if human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and wmag_hp <= 0 and run_game == 1:
+    if human_hp <= 0 and archer_hp <= 0 and fmag_hp <=0 and light_hp <= 0 and run_game == 1:
         pygame.mixer.Channel(4).stop()
         pygame.mixer.Channel(6).stop()
         screen.blit(end_background_img, end_background_img_rect)
@@ -1338,13 +1338,13 @@ while lets_continue:
         except FileNotFoundError:
                 print("Soubor nebyl nalezen")
         text = f_enemy_spider.write(str_enemy_spider)
-        wmag_hp -= 10000 # war
-        str_wmag_hp = str(wmag_hp)
+        light_hp -= 10000 # war
+        str_light_hp = str(light_hp)
         try:
-            f1 = open("players_hp/wmag_hp.txt","w")
+            f1 = open("players_hp/light_hp.txt","w")
         except FileNotFoundError:
                 print("Soubor nebyl nalezen")
-        text = f1.write(str_wmag_hp)
+        text = f1.write(str_light_hp)
         f1.close()
         archer_hp -= 10000 # arhcer
         str_archer_hp = str(archer_hp)
@@ -1397,12 +1397,12 @@ while lets_continue:
             screen.blit(fzard_portret_lock, fzard_portret_lock_rect)
 
         if goblin_boss_hp <= 0:
-            if wmag_hp > 0:
-                screen.blit(wzard_portret, wzard_portret_rect)
-            if wmag_hp <= 0:
-                screen.blit(wzard_portret_dead, wzard_portret_dead_rect)
+            if light_hp > 0:
+                screen.blit(light_portret, light_portret_rect)
+            if light_hp <= 0:
+                screen.blit(light_portret_dead, light_portret_dead_rect)
         if goblin_boss_hp > 0: 
-            screen.blit(wzard_portret_lock, wzard_portret_lock_rect)
+            screen.blit(light_portret_lock, light_portret_lock_rect)
 
         if human_hp > 0:                 
             screen.blit(human_portret, human_portret_rect)
@@ -1531,15 +1531,15 @@ while lets_continue:
             text = f_fmag.write(player_fmag_str)
             f_fmag.close()
 
-        if player_wmag > 0:
-            player_wmag -= 10
-            player_wmag_str = str(player_wmag)
+        if player_light > 0:
+            player_light -= 10
+            player_light_str = str(player_light)
             try:
-                f_wmag = open("players/player_wmag.txt","w")
+                f_light = open("players/player_light.txt","w")
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
-            text = f_wmag.write(player_wmag_str)
-            f_wmag.close()
+            text = f_light.write(player_light_str)
+            f_light.close()
         
         if player_archer > 0:
             player_archer -= 10
@@ -1561,15 +1561,15 @@ while lets_continue:
                 print("Soubor nebyl nalezen")
         text = f_fmag.write(player_fmag_str)
         f_fmag.close()
-        if player_wmag > 0:
-            player_wmag -= 10
-            player_wmag_str = str(player_wmag)
+        if player_light > 0:
+            player_light -= 10
+            player_light_str = str(player_light)
             try:
-                f_wmag = open("players/player_wmag.txt","w")
+                f_light = open("players/player_light.txt","w")
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
-            text = f_wmag.write(player_wmag_str)
-            f_wmag.close()
+            text = f_light.write(player_light_str)
+            f_light.close()
         
         if player_human > 0:
             player_human -= 10
@@ -1593,14 +1593,14 @@ while lets_continue:
 
 # Načtení Wmága do pole
     if keys [pygame.K_4]:
-        player_wmag += 1
-        player_wmag_str = str(player_wmag)
+        player_light += 1
+        player_light_str = str(player_light)
         try:
-            f_wmag = open("players/player_wmag.txt","w")
+            f_light = open("players/player_light.txt","w")
         except FileNotFoundError:
                 print("Soubor nebyl nalezen")
-        text = f_wmag.write(player_wmag_str)
-        f_wmag.close()
+        text = f_light.write(player_light_str)
+        f_light.close()
         if player_fmag > 0:
             player_fmag -= 10
             player_fmag_str = str(player_fmag)
@@ -1641,15 +1641,15 @@ while lets_continue:
                 print("Soubor nebyl nalezen")
         text = f_archer.write(player_archer_str)
         f_archer.close()
-        if player_wmag > 0:
-            player_wmag -= 10
-            player_wmag_str = str(player_wmag)
+        if player_light > 0:
+            player_light -= 10
+            player_light_str = str(player_light)
             try:
-                f_wmag = open("players/player_wmag.txt","w")
+                f_light = open("players/player_light.txt","w")
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
-            text = f_wmag.write(player_wmag_str)
-            f_wmag.close()
+            text = f_light.write(player_light_str)
+            f_light.close()
 
         if player_fmag > 0:
             player_fmag -= 10
@@ -1671,210 +1671,67 @@ while lets_continue:
             text = f_human.write(player_human_str)
             f_human.close()
 
-# Načte příšery
+    def update_enemy_count(file_path, enemy_count):
+        enemy_count += 1
+        enemy_count_str = str(enemy_count)
+        try:
+            with open(file_path, "w") as f:
+                f.write(enemy_count_str)
+        except FileNotFoundError:
+            print("Soubor nebyl nalezen")
+        return enemy_count
+
+    # Načte příšery
     if run_game == 1:
-
-# Spider
-        enemy_spider += 1
-        enemy_spider_str = str(enemy_spider)
-        try:
-            f_enemy_spider = open("players/enemy_spider.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_spider.write(enemy_spider_str)
-        f_enemy_spider.close()
-
-# Spider 1 + 2 + 3
-    if spider_hp <= 0: 
-        enemy_spider1 += 1
-        enemy_spider1_str = str(enemy_spider1)
-        try:
-            f_enemy_spider1 = open("players/enemy_spider1.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_spider1.write(enemy_spider1_str)
-        f_enemy_spider1.close()
-        enemy_spider2 += 1
-        enemy_spider2_str = str(enemy_spider2)
-        try:
-            f_enemy_spider2 = open("players/enemy_spider2.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_spider2.write(enemy_spider2_str)
-        f_enemy_spider2.close()
-        enemy_spider3 += 1
-        enemy_spider3_str = str(enemy_spider3)
-        try:
-            f_enemy_spider3 = open("players/enemy_spider3.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_spider3.write(enemy_spider3_str)
-        f_enemy_spider3.close()
-
-# Spider BOSS
-    if  spider_hp <= 0 and spider_hp1 <= 0 and spider_hp2 <= 0 and spider_hp3 <= 0:
-        enemy_spider_boss += 1
-        enemy_spider_boss_str = str(enemy_spider_boss)
-        try:
-            f_enemy_spider_boss = open("players/enemy_spider_boss.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_spider_boss.write(enemy_spider_boss_str)
-        f_enemy_spider_boss.close()
+        # Spider
+        enemy_spider = update_enemy_count("players/enemy_spider.txt", enemy_spider)
+    # Spider 1 + 2 + 3
+    if spider_hp <= 0:
+        enemy_spider1 = update_enemy_count("players/enemy_spider1.txt", enemy_spider1)
+        enemy_spider2 = update_enemy_count("players/enemy_spider2.txt", enemy_spider2)
+        enemy_spider3 = update_enemy_count("players/enemy_spider3.txt", enemy_spider3)
+    # Spider BOSS
+    if spider_hp <= 0 and spider_hp1 <= 0 and spider_hp2 <= 0 and spider_hp3 <= 0:
+        enemy_spider_boss = update_enemy_count("players/enemy_spider_boss.txt", enemy_spider_boss)
         
         
     if enemy_spider_boss_hp <= 0 and run_game == 1:
-# Skeleton 
-        enemy_scelet += 1
-        enemy_scelet_str = str(enemy_scelet)
-        try:
-            f_enemy_scelet = open("players/enemy_scelet.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_scelet.write(enemy_scelet_str)
-        f_enemy_scelet.close()
+        # Skeleton
+        enemy_scelet = update_enemy_count("players/enemy_scelet.txt", enemy_scelet)
+        # Skeleton 1 + 2 + 3
+        if scelet_hp <= 0:
+            enemy_scelet1 = update_enemy_count("players/enemy_scelet1.txt", enemy_scelet1)
+            enemy_scelet2 = update_enemy_count("players/enemy_scelet2.txt", enemy_scelet2)
+            enemy_scelet3 = update_enemy_count("players/enemy_scelet3.txt", enemy_scelet3)
+        # Skeleton BOSS
+        if scelet_hp <= 0 and scelet1_hp <= 0 and scelet2_hp <= 0 and scelet3_hp <= 0:
+            enemy_scelet_boss = update_enemy_count("players/enemy_scelet_boss.txt", enemy_scelet_boss)
 
-# Skeleton 1 + 2 + 3
-    if scelet_hp <= 0:         
-        enemy_scelet1 += 1
-        enemy_scelet1_str = str(enemy_scelet1)
-        try:
-            f_enemy_scelet1 = open("players/enemy_scelet1.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_scelet1.write(enemy_scelet1_str)
-        f_enemy_scelet1.close()
-    
-        enemy_scelet2 += 1
-        enemy_scelet2_str = str(enemy_scelet2)
-        try:
-            f_enemy_scelet2 = open("players/enemy_scelet2.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_scelet2.write(enemy_scelet2_str)
-        f_enemy_scelet2.close()
 
-        enemy_scelet3 += 1
-        enemy_scelet3_str = str(enemy_scelet3)
-        try:
-            f_enemy_scelet3 = open("players/enemy_scelet3.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_scelet3.write(enemy_scelet3_str)
-        f_enemy_scelet3.close()
-
-    # Skeleton BOSS
-    if scelet_hp <= 0 and scelet1_hp <= 0 and scelet2_hp <= 0 and scelet3_hp <= 0:
-        enemy_scelet_boss += 1
-        enemy_scelet_boss_str = str(enemy_scelet_boss)
-        try:
-            f_enemy_scelet_boss  = open("players/enemy_scelet_boss.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_scelet_boss.write(enemy_scelet_boss_str)
-        f_enemy_scelet_boss.close()
-    if enemy_scelet_boss_hp <= 0:
-        pass
-  
     if enemy_scelet_boss_hp <= 0 and run_game == 1:
-# Goblin
-        enemy_goblin += 1
-        enemy_goblin_str = str(enemy_goblin)
-        try:
-            f_enemy_goblin = open("players/enemy_goblin.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_goblin.write(enemy_goblin_str)
-        f_enemy_goblin.close()
-        
-# Goblin 1 + 2 + 3
-        if goblin_hp <= 0: 
-            enemy_goblin1 += 1
-            enemy_goblin1_str = str(enemy_goblin1)
-            try:
-                f_enemy_goblin1 = open("players/enemy_goblin1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_goblin1.write(enemy_goblin1_str)
-            f_enemy_goblin1.close()
-            enemy_goblin2 += 1
-            enemy_goblin2_str = str(enemy_goblin2)
-            try:
-                f_enemy_goblin2 = open("players/enemy_goblin2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_goblin2.write(enemy_goblin2_str)
-            f_enemy_goblin2.close()
-            enemy_goblin3 += 1
-            enemy_goblin3_str = str(enemy_goblin3)
-            try:
-                f_enemy_goblin3 = open("players/enemy_goblin3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_goblin3.write(enemy_goblin3_str)
-            f_enemy_goblin3.close()
+        # Goblin
+        enemy_goblin = update_enemy_count("players/enemy_goblin.txt", enemy_goblin)
+        # Goblin 1 + 2 + 3
+        if goblin_hp <= 0:
+            enemy_goblin1 = update_enemy_count("players/enemy_goblin1.txt", enemy_goblin1)
+            enemy_goblin2 = update_enemy_count("players/enemy_goblin2.txt", enemy_goblin2)
+            enemy_goblin3 = update_enemy_count("players/enemy_goblin3.txt", enemy_goblin3)
+        # Goblin BOSS
+        if goblin_hp <= 0 and goblin_hp1 <= 0 and goblin_hp2 <= 0 and goblin_hp3 <= 0:
+            enemy_goblin_boss = update_enemy_count("players/enemy_goblin_boss.txt", enemy_goblin_boss)
 
-# Goblin BOSS
-        if  goblin_hp <= 0 and goblin_hp1 <= 0 and goblin_hp2 <= 0 and goblin_hp3 <= 0:
-            enemy_goblin_boss += 1
-            enemy_goblin_boss_str = str(enemy_goblin_boss)
-            try:
-                f_enemy_goblin_boss  = open("players/enemy_goblin_boss.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_enemy_goblin_boss.write(enemy_goblin_boss_str)
-            f_enemy_goblin_boss.close()
-        if goblin_boss_hp <= 0:
-            pass
 
     if goblin_boss_hp <= 0 and run_game == 1:
-# Ghost
-        enemy_ghost += 1
-        enemy_ghost_str = str(enemy_ghost)
-        try:
-            f_enemy_ghost = open("players/enemy_ghost.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_ghost.write(enemy_ghost_str)
-        f_enemy_ghost.close()
-
-# Ghost 1 + 2 + 3
-    if ghost_hp <= 0: 
-        enemy_ghost1 += 1
-        enemy_ghost1_str = str(enemy_ghost1)
-        try:
-            f_enemy_ghost1 = open("players/enemy_ghost1.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_ghost1.write(enemy_ghost1_str)
-        f_enemy_ghost1.close()
-        enemy_ghost2 += 1
-        enemy_ghost2_str = str(enemy_ghost2)
-        try:
-            f_enemy_ghost2 = open("players/enemy_ghost2.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_ghost2.write(enemy_ghost2_str)
-        f_enemy_ghost2.close()
-        enemy_ghost3 += 1
-        enemy_ghost3_str = str(enemy_ghost3)
-        try:
-            f_enemy_ghost3 = open("players/enemy_ghost3.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_ghost3.write(enemy_ghost3_str)
-        f_enemy_ghost3.close()
-
-# Ghost BOSS
-    if  ghost_hp <= 0 and ghost_hp1 <= 0 and ghost_hp2 <= 0 and ghost_hp3 <= 0:
-        enemy_ghost_boss += 1
-        enemy_ghost_boss_str = str(enemy_ghost_boss)
-        try:
-            f_enemy_ghost_boss = open("players/enemy_ghost_boss.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_enemy_ghost_boss.write(enemy_ghost_boss_str)
-        f_enemy_ghost_boss.close()
+        # Ghost
+        enemy_ghost = update_enemy_count("players/enemy_ghost.txt", enemy_ghost)
+        # Ghost 1 + 2 + 3
+        if ghost_hp <= 0:
+            enemy_ghost1 = update_enemy_count("players/enemy_ghost1.txt", enemy_ghost1)
+            enemy_ghost2 = update_enemy_count("players/enemy_ghost2.txt", enemy_ghost2)
+            enemy_ghost3 = update_enemy_count("players/enemy_ghost3.txt", enemy_ghost3)
+        # Ghost BOSS
+        if ghost_hp <= 0 and ghost_hp1 <= 0 and ghost_hp2 <= 0 and ghost_hp3 <= 0:
+            enemy_ghost_boss = update_enemy_count("players/enemy_ghost_boss.txt", enemy_ghost_boss)
    
 # Human
     if player_human > 0 and enemy_spider > 0:
@@ -2073,104 +1930,104 @@ while lets_continue:
                 screen.blit(hp1_text,hp1_text_rect)
 
 # Water mag
-    if player_wmag > 0 and goblin_boss_hp <= 0:
-        if wmag_hp > 0:
+    if player_light > 0 and goblin_boss_hp <= 0:
+        if light_hp > 0:
             hp2_text = pygame.font.SysFont("Moncerat", 18)
-        if wmag_hp >= 75:
-            hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, green)
-        if wmag_hp <= 74 and wmag_hp >= 40:
-            hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, yellow)
-        if wmag_hp <= 39 and wmag_hp > 0:
-            hp2_text = hp2_text.render("HP: " + f"{wmag_hp}", True, red)
-        if wmag_hp <= 0:
-            player_wmag -= 100000000
-            player_wmag_str = str(player_wmag)
+        if light_hp >= 75:
+            hp2_text = hp2_text.render("HP: " + f"{light_hp}", True, green)
+        if light_hp <= 74 and light_hp >= 40:
+            hp2_text = hp2_text.render("HP: " + f"{light_hp}", True, yellow)
+        if light_hp <= 39 and light_hp > 0:
+            hp2_text = hp2_text.render("HP: " + f"{light_hp}", True, red)
+        if light_hp <= 0:
+            player_light -= 100000000
+            player_light_str = str(player_light)
             try:
-                f_wmag = open("players/player_wmag.txt","w")
+                f_light = open("players/player_light.txt","w")
             except FileNotFoundError:
                     print("Soubor nebyl nalezen")
-            text = f_wmag.write(player_wmag_str)
-            f_wmag.close()
+            text = f_light.write(player_light_str)
+            f_light.close()
         hp2_text_rect = hp2_text.get_rect()
-        hp2_text_rect.center = (wzard_rect.x + 80, wzard_rect.y + 120)  
+        hp2_text_rect.center = (light_rect.x + 80, light_rect.y + 120)  
         keys = pygame.key.get_pressed()
-        if keys [pygame.K_w] and wzard_rect.top > 100 and wzard2_rect.top > 100:
+        if keys [pygame.K_w] and light_rect.top > 100 and light2_rect.top > 100:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
             pygame.mixer.Channel(0).set_volume(0.2)
-            wzard_move_image_rect.y = wzard_move_image_rect.y - wmag_distance
-            wzard_move_image2_rect.y = wzard_move_image2_rect.y - wmag_distance
-            wzard_rect.y = wzard_rect.y - wmag_distance
-            wzard2_rect.y = wzard2_rect.y - wmag_distance
-            name2_text_rect.y = name2_text_rect.y - wmag_distance
-            hp2_text_rect.y = hp2_text_rect.y - wmag_distance
-        elif keys [pygame.K_s] and wzard_rect.bottom < height - 120 and wzard2_rect.bottom < height - 120:
+            light_move_image_rect.y = light_move_image_rect.y - light_distance
+            light_move_image2_rect.y = light_move_image2_rect.y - light_distance
+            light_rect.y = light_rect.y - light_distance
+            light2_rect.y = light2_rect.y - light_distance
+            name2_text_rect.y = name2_text_rect.y - light_distance
+            hp2_text_rect.y = hp2_text_rect.y - light_distance
+        elif keys [pygame.K_s] and light_rect.bottom < height - 120 and light2_rect.bottom < height - 120:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
             pygame.mixer.Channel(0).set_volume(0.2)
-            wzard_move_image_rect.y = wzard_move_image_rect.y + wmag_distance
-            wzard_move_image2_rect.y = wzard_move_image2_rect.y + wmag_distance
-            wzard_rect.y = wzard_rect.y + wmag_distance
-            wzard2_rect.y = wzard2_rect.y + wmag_distance
-            name2_text_rect.y = name2_text_rect.y + wmag_distance
-            hp2_text_rect.y = hp2_text_rect.y + wmag_distance
-        elif keys [pygame.K_a] and wzard_rect.left > 25 and wzard2_rect.left > 25:  
+            light_move_image_rect.y = light_move_image_rect.y + light_distance
+            light_move_image2_rect.y = light_move_image2_rect.y + light_distance
+            light_rect.y = light_rect.y + light_distance
+            light2_rect.y = light2_rect.y + light_distance
+            name2_text_rect.y = name2_text_rect.y + light_distance
+            hp2_text_rect.y = hp2_text_rect.y + light_distance
+        elif keys [pygame.K_a] and light_rect.left > 25 and light2_rect.left > 25:  
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
             pygame.mixer.Channel(0).set_volume(0.2)               
-            wzard_move_image_rect.x = wzard_move_image_rect.x - wmag_distance
-            wzard_rect.x = wzard_rect.x - wmag_distance
-            wzard2_rect.x = wzard2_rect.x - wmag_distance
-            name2_text_rect.x = name2_text_rect.x - wmag_distance
-            hp2_text_rect.x = hp2_text_rect.x - wmag_distance
+            light_move_image_rect.x = light_move_image_rect.x - light_distance
+            light_rect.x = light_rect.x - light_distance
+            light2_rect.x = light2_rect.x - light_distance
+            name2_text_rect.x = name2_text_rect.x - light_distance
+            hp2_text_rect.x = hp2_text_rect.x - light_distance
             mirror = 1
-        elif keys [pygame.K_d] and wzard_rect.right > 0 and wzard2_rect.right < width:
+        elif keys [pygame.K_d] and light_rect.right > 0 and light2_rect.right < width:
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('sounds/steps.wav'))
             pygame.mixer.Channel(0).set_volume(0.2)
-            wzard_move_image_rect.x = wzard_move_image_rect.x + wmag_distance
-            wzard_rect.x = wzard_rect.x + wmag_distance
-            wzard2_rect.x = wzard2_rect.x + wmag_distance
-            name2_text_rect.x = name2_text_rect.x + wmag_distance
-            hp2_text_rect.x = hp2_text_rect.x + wmag_distance
+            light_move_image_rect.x = light_move_image_rect.x + light_distance
+            light_rect.x = light_rect.x + light_distance
+            light2_rect.x = light2_rect.x + light_distance
+            name2_text_rect.x = name2_text_rect.x + light_distance
+            hp2_text_rect.x = hp2_text_rect.x + light_distance
             mirror = 0       
               
         elif keys [pygame.K_SPACE] and mirror == 1:
             pygame.mixer.Channel(3).play(pygame.mixer.Sound('sounds/war_attack.wav'))
             pygame.mixer.Channel(3).set_volume(0.1)
-            wzard_attack2_rect.center = (wzard2_rect.x + 10,wzard2_rect.y + 70)
+            light_attack2_rect.center = (light2_rect.x + 10,light2_rect.y + 70)
             wire_attack = 1
         elif keys [pygame.K_SPACE] and mirror == 0:
             pygame.mixer.Channel(3).play(pygame.mixer.Sound('sounds/war_attack.wav'))
             pygame.mixer.Channel(3).set_volume(0.1)
-            wzard_attack_rect.center = (wzard_rect.x + 125,wzard_rect.y + 70)
+            light_attack_rect.center = (light_rect.x + 125,light_rect.y + 70)
             wire_attack = 2
         
         if wire_attack == 1:
-            screen.blit(wzard_attack2_image,wzard_attack2_rect)
-            wzard_attack2_rect.x += attack_1x * wzard_attack_speed
+            screen.blit(light_attack2_image,light_attack2_rect)
+            light_attack2_rect.x += attack_1x * light_attack_speed
         if wire_attack == 2:
-            screen.blit(wzard_attack_image,wzard_attack_rect)
-            wzard_attack_rect.x += attack_x * wzard_attack_speed  
+            screen.blit(light_attack_image,light_attack_rect)
+            light_attack_rect.x += attack_x * light_attack_speed  
 
         if ghost_hp1 <= 0 and ghost_hp2 <= 0 and ghost_hp3 <= 0 :
             wire_attack == 0
               
         if mirror == 0:
             if keys [pygame.K_d] or keys [pygame.K_w] or keys [pygame.K_s]:
-                wzard_move_image_rect.center = (wzard2_rect.x + 80 ,wzard2_rect.y + 50)
-                screen.blit(wzard_move_image,wzard_move_image_rect)
+                light_move_image_rect.center = (light2_rect.x + 80 ,light2_rect.y + 50)
+                screen.blit(light_move_image,light_move_image_rect)
                 screen.blit(name2_text,name2_text_rect)
                 screen.blit(hp2_text,hp2_text_rect)
             else:
-                screen.blit(wzard_image,wzard_rect)
+                screen.blit(light_image,light_rect)
                 screen.blit(name2_text,name2_text_rect)
                 screen.blit(hp2_text,hp2_text_rect)
 
         if mirror == 1:
             if keys [pygame.K_a] or keys [pygame.K_w] or keys [pygame.K_s]: 
-                wzard_move_image2_rect.center = (wzard2_rect.x + 80 ,wzard2_rect.y + 50)
-                screen.blit(wzard_move_image2,wzard_move_image2_rect)                
+                light_move_image2_rect.center = (light2_rect.x + 80 ,light2_rect.y + 50)
+                screen.blit(light_move_image2,light_move_image2_rect)                
                 screen.blit(name2_text,name2_text_rect)
                 screen.blit(hp2_text,hp2_text_rect)
             else:
-                screen.blit(wzard2_image,wzard2_rect)
+                screen.blit(light2_image,light2_rect)
                 screen.blit(name2_text,name2_text_rect)
                 screen.blit(hp2_text,hp2_text_rect)
 
@@ -2758,1234 +2615,163 @@ while lets_continue:
             pygame.mixer.Channel(6).set_volume(0.01)
     
 #-----------------------------------------------------------------------------------------------#    
-### KONTROLA KOLIZE ###
+                            ### KONTROLA KOLIZE ###
 #-----------------------------------------------------------------------------------------------#
 
+# Kolize mezi Enemy a Player
 #-----------------------------------------------------------------------------------------------#
-# Enemy a Player
-#-----------------------------------------------------------------------------------------------#
+    def handle_collision(player,attacker_rect, attacker2_rect, target_rect, target_hp, damage, player_hp, player_file, sound_channel, sound_file, volume, enemy):
+        if attacker_rect.colliderect(target_rect) or attacker2_rect.colliderect(target_rect):
+            if player_hp > 0 and target_hp > 0 and enemy > 0 and player > 0:
+                player_hp -= damage
+                str_player_hp = str(player_hp)
+                try:
+                    with open(player_file, "w") as f:
+                        f.write(str_player_hp)
+                except FileNotFoundError:
+                    print("Soubor nebyl nalezen")
+                pygame.mixer.Channel(sound_channel).play(pygame.mixer.Sound(sound_file))
+                pygame.mixer.Channel(sound_channel).set_volume(volume)
+        return player_hp
 
-# spider --> human
-    if spider_rect.colliderect(human_rect) or spider_rect.colliderect(human2_rect):
-        if player_human > 0 and spider_hp > 0 and enemy_spider > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-# spider1 --> human
-    if spider_rect1.colliderect(human_rect) or spider_rect1.colliderect(human2_rect):
-        if player_human > 0 and spider_hp1 > 0 and enemy_spider1 > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# spider2 --> human
-    if spider_rect2.colliderect(human_rect) or spider_rect2.colliderect(human2_rect):
-        if player_human > 0 and spider_hp2 > 0 and enemy_spider2 > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# spider3 --> human
-    if spider_rect3.colliderect(human_rect) or spider_rect3.colliderect(human2_rect):
-        if player_human > 0 and spider_hp3 > 0 and enemy_spider3 > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# spiderboss --> human
-    if spider_boss_rect.colliderect(human_rect) or spider_boss_rect.colliderect(human2_rect):
-        if player_human > 0 and enemy_spider_boss_hp > 0 and enemy_spider > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# scelet --> human
-    if scelet_rect.colliderect(human_rect) or scelet_rect.colliderect(human2_rect):
-        if player_human > 0 and scelet_hp > 0 and enemy_scelet > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
- # scelet1 --> human
-    if scelet1_rect.colliderect(human_rect) or scelet1_rect.colliderect(human2_rect) :
-        if player_human > 0 and scelet1_hp > 0 and enemy_scelet1 > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# scelet2 --> human
-    if scelet2_rect.colliderect(human_rect) or scelet2_rect.colliderect(human2_rect) :
-        if player_human > 0 and scelet2_hp > 0 and enemy_scelet2 > 0:
-            human_hp -= 1
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# sceletboss --> human
-    if scelet_boss_rect.colliderect(human_rect) or scelet_boss_rect.colliderect(human2_rect) and human_attack == 1 and keys [pygame.K_SPACE]:
-        if player_human > 0 and enemy_scelet_boss_hp > 0 and enemy_scelet_boss > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin --> human
-    if goblin_rect.colliderect(human_rect) or goblin_rect.colliderect(human2_rect):
-        if player_human > 0 and goblin_hp > 0 and enemy_goblin > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin 1 --> human
-    if goblin_rect1.colliderect(human_rect) or goblin_rect1.colliderect(human2_rect):
-        if player_human > 0 and goblin_hp1 > 0 and enemy_goblin1 > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin 2 --> human
-    if goblin_rect2.colliderect(human_rect) or goblin_rect2.colliderect(human2_rect):
-        if player_human > 0 and goblin_hp2 > 0 and enemy_goblin2 > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin 3 --> human
-    if goblin_rect3.colliderect(human_rect) or goblin_rect3.colliderect(human2_rect):
-        if player_human > 0 and goblin_hp3 > 0 and enemy_goblin3 > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin boss --> human
-    if goblin_boss_rect.colliderect(human_rect) or goblin_boss_rect.colliderect(human2_rect):
-        if player_human > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
-            human_hp -= 2
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-
-# ghost --> human
-    if ghost_rect.colliderect(human_rect) or ghost_rect.colliderect(human2_rect):
-        if player_human > 0 and ghost_hp > 0 and enemy_ghost > 0:
-            human_hp -= 5
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 1 --> human
-    if ghost1_rect.colliderect(human_rect) or ghost1_rect.colliderect(human2_rect):
-        if player_human > 0 and ghost_hp1 > 0 and enemy_ghost1 > 0:
-            human_hp -= 5
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 2 --> human
-    if ghost2_rect.colliderect(human_rect) or ghost2_rect.colliderect(human2_rect):
-        if player_human > 0 and ghost_hp2 > 0 and enemy_ghost2 > 0:
-            human_hp -= 5
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 3 --> human
-    if ghost3_rect.colliderect(human_rect) or ghost3_rect.colliderect(human2_rect):
-        if player_human > 0 and ghost_hp3 > 0 and enemy_ghost3 > 0:
-            human_hp -= 5
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost boss --> human
-    if ghost_boss_rect.colliderect(human_rect) or ghost_boss_rect.colliderect(human2_rect):
-        if player_human > 0 and ghost_boss_hp > 0 and enemy_ghost_boss > 0:
-            human_hp -= 50
-            str_human_hp = str(human_hp)
-            try:
-                f1 = open("players_hp/human_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_human_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-#-----------------------------------------------------------------------------------------------#
-# scelet --> archer
-    if scelet_rect.colliderect(archer_rect) or scelet_rect.colliderect(archer2_rect):
-        if player_archer > 0 and scelet_hp > 0 and enemy_scelet > 0:
-            archer_hp -= 1
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
- # scelet1 --> archer
-    if scelet1_rect.colliderect(archer_rect) or scelet1_rect.colliderect(archer2_rect):
-        if player_archer > 0 and scelet1_hp > 0 and enemy_scelet1 > 0:
-            archer_hp -= 1
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-
-# scelet2 --> archer
-    if scelet2_rect.colliderect(archer_rect) or scelet2_rect.colliderect(archer2_rect):
-        if player_archer > 0 and scelet2_hp > 0 and enemy_scelet2 > 0:
-            archer_hp -= 1
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# scelet3 --> archer
-    if scelet3_rect.colliderect(archer_rect) or scelet3_rect.colliderect(archer2_rect):
-        if player_archer > 0 and scelet3_hp > 0 and enemy_scelet3 > 0:
-            archer_hp -= 1
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# sceletboss --> archer
-    if scelet_boss_rect.colliderect(archer_rect) or scelet_boss_rect.colliderect(archer2_rect):
-        if player_archer > 0 and enemy_scelet_boss_hp > 0 and enemy_scelet_boss > 0:
-            archer_hp -= 1
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-
-# goblin --> archer
-    if goblin_rect.colliderect(archer_rect) or goblin_rect.colliderect(archer2_rect):
-        if player_archer > 0 and goblin_hp > 0 and enemy_goblin > 0:
-            archer_hp -= 2
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin1 --> archer
-    if goblin_rect1.colliderect(archer_rect) or goblin_rect1.colliderect(archer2_rect):
-        if player_archer > 0 and goblin_hp1 > 0 and enemy_goblin1 > 0:
-            archer_hp -= 2
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
+    # Define common parameters
+    sound_channel = 7
+    collision_params = [
+        # Human collisions
+        (player_human, spider_rect, spider_rect, human_rect, spider_hp, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_spider),
+        (player_human,spider_rect1, spider_rect1, human_rect, spider_hp1, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_spider1),
+        (player_human,spider_rect2, spider_rect2, human_rect, spider_hp2, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_spider2),
+        (player_human,spider_rect3, spider_rect3, human_rect, spider_hp3, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_spider3),
+        (player_human,spider_boss_rect, spider_boss_rect, human_rect, enemy_spider_boss_hp, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_spider_boss),
+        (player_human,scelet_rect, scelet_rect, human_rect, scelet_hp, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet),
+        (player_human,scelet1_rect, scelet1_rect, human_rect, scelet1_hp, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet1),
+        (player_human,scelet2_rect, scelet2_rect, human_rect, scelet2_hp, 1, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet2),
+        (player_human,scelet_boss_rect, scelet_boss_rect, human_rect, enemy_scelet_boss_hp, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet_boss),
+        (player_human,goblin_rect, goblin_rect, human_rect, goblin_hp, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin),
+        (player_human,goblin_rect1, goblin_rect1, human_rect, goblin_hp1, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin1),
+        (player_human,goblin_rect2, goblin_rect2, human_rect, goblin_hp2, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin2),
+        (player_human,goblin_rect3, goblin_rect3, human_rect, goblin_hp3, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin3),
+        (player_human,goblin_boss_rect, goblin_boss_rect, human_rect, goblin_boss_hp, 2, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin_boss),
+        (player_human,ghost_rect, ghost_rect, human_rect, ghost_hp, 5, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost),
+        (player_human,ghost1_rect, ghost1_rect, human_rect, ghost_hp1, 5, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost1),
+        (player_human,ghost2_rect, ghost2_rect, human_rect, ghost_hp2, 5, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost2),
+        (player_human,ghost3_rect, ghost3_rect, human_rect, ghost_hp3, 5, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost3),
+        (player_human,ghost_boss_rect, ghost_boss_rect, human_rect, ghost_boss_hp, 50, "players_hp/human_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost_boss),
         
-# goblin2 --> archer
-    if goblin_rect2.colliderect(archer_rect) or goblin_rect1.colliderect(archer2_rect):
-        if player_archer > 0 and goblin_hp2 > 0 and enemy_goblin2 > 0:
-            archer_hp -= 2
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
+        # Archer collisions
+        (player_archer,scelet_rect, scelet_rect, archer_rect, scelet_hp, 1, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet),
+        (player_archer,scelet1_rect, scelet1_rect, archer_rect, scelet1_hp, 1, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet1),
+        (player_archer,scelet2_rect, scelet2_rect, archer_rect, scelet2_hp, 1, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet2),
+        (player_archer,scelet3_rect, scelet3_rect, archer_rect, scelet3_hp, 1, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet3),
+        (player_archer,scelet_boss_rect, scelet_boss_rect, archer_rect, enemy_scelet_boss_hp, 1, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_scelet_boss),
+        (player_archer,goblin_rect, goblin_rect, archer_rect, goblin_hp, 2, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin),
+        (player_archer,goblin_rect1, goblin_rect1, archer_rect, goblin_hp1, 2, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin1),
+        (player_archer,goblin_rect2, goblin_rect2, archer_rect, goblin_hp2, 2, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin2),
+        (player_archer,goblin_rect3, goblin_rect3, archer_rect, goblin_hp3, 2, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin3),
+        (player_archer,goblin_boss_rect, goblin_boss_rect, archer_rect, goblin_boss_hp, 2, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin_boss),
+        (player_archer,ghost_rect, ghost_rect, archer_rect, ghost_hp, 3, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost),
+        (player_archer,ghost1_rect, ghost1_rect, archer_rect, ghost_hp1, 3, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost1),
+        (player_archer,ghost2_rect, ghost2_rect, archer_rect, ghost_hp2, 3, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost2),
+        (player_archer,ghost3_rect, ghost3_rect, archer_rect, ghost_hp3, 3, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost3),
+        (player_archer,ghost_boss_rect, ghost_boss_rect, archer_rect, ghost_boss_hp, 3, "players_hp/archer_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost_boss),
         
-# goblin3 --> archer
-    if goblin_rect3.colliderect(archer_rect) or goblin_rect3.colliderect(archer2_rect):
-        if player_archer > 0 and goblin_hp3 > 0 and enemy_goblin3 > 0:
-            archer_hp -= 2
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin boss --> archer
-    if goblin_boss_rect.colliderect(archer_rect) or goblin_boss_rect.colliderect(archer2_rect):
-        if player_archer > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
-            archer_hp -= 2
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost --> archer
-    if ghost_rect.colliderect(archer_rect) or ghost_rect.colliderect(archer2_rect):
-        if player_archer > 0 and ghost_hp > 0 and enemy_ghost > 0:
-            archer_hp -= 3
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-
-# ghost 1 --> archer
-    if ghost1_rect.colliderect(archer_rect) or ghost1_rect.colliderect(archer2_rect):
-        if player_archer > 0 and ghost_hp1 > 0 and enemy_ghost1 > 0:
-            archer_hp -= 3
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 2 --> archer
-    if ghost2_rect.colliderect(archer_rect) or ghost2_rect.colliderect(archer2_rect):
-        if player_archer > 0 and ghost_hp2 > 0 and enemy_ghost2 > 0:
-            archer_hp -= 3
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 3 --> archer
-    if ghost3_rect.colliderect(archer_rect) or ghost3_rect.colliderect(archer2_rect):
-        if player_archer > 0 and ghost_hp3 > 0 and enemy_ghost3 > 0:
-            archer_hp -= 3
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost boss --> archer
-    if ghost_boss_rect.colliderect(archer_rect) or ghost_boss_rect.colliderect(archer2_rect):
-        if player_archer > 0 and ghost_boss_hp > 0 and enemy_ghost_boss > 0:
-            archer_hp -= 3
-            str_archer_hp = str(archer_hp)
-            try:
-                f1 = open("players_hp/archer_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_archer_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-#-----------------------------------------------------------------------------------------------#
-# goblin --> firemag
-    if goblin_rect.colliderect(fzard_rect) or goblin_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and goblin_hp > 0 and enemy_goblin > 0:
-            fmag_hp -= 1
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# goblin 2 --> firemag
-    if goblin_rect2.colliderect(fzard_rect) or goblin_rect2.colliderect(fzard2_rect):
-        if player_fmag > 0 and goblin_hp2 > 0 and enemy_goblin2 > 0:
-            fmag_hp -= 1
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
+        # Firemag collisions
+        (player_fmag,goblin_rect, goblin_rect, fzard_rect, goblin_hp, 1, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin),
+        (player_fmag,goblin_rect2, goblin_rect2, fzard_rect, goblin_hp2, 1, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin2),
+        (player_fmag,goblin_rect1, goblin_rect1, fzard_rect, goblin_hp1, 1, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin1),
+        (player_fmag,goblin_rect3, goblin_rect3, fzard_rect, goblin_hp3, 1, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin3),
+        (player_fmag,goblin_boss_rect, goblin_boss_rect, fzard_rect, goblin_boss_hp, 1, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_goblin_boss),
+        (player_fmag,ghost_rect, ghost_rect, fzard_rect, ghost_hp, 2, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost),
+        (player_fmag,ghost1_rect, ghost1_rect, fzard_rect, ghost_hp1, 2, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost1),
+        (player_fmag,ghost2_rect, ghost2_rect, fzard_rect, ghost_hp2, 2, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost2),
+        (player_fmag,ghost3_rect, ghost3_rect, fzard_rect, ghost_hp3, 2, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost3),
+        (player_fmag,ghost_boss_rect, ghost_boss_rect, fzard_rect, ghost_boss_hp, 2, "players_hp/fmag_hp.txt", "sounds/uh.wav", 0.1, enemy_ghost_boss),
         
-# goblin 1 --> firemag
-    if goblin_rect1.colliderect(fzard_rect) or goblin_rect1.colliderect(fzard2_rect):
-        if player_fmag > 0 and goblin_hp1 > 0 and enemy_goblin1 > 0:
-            fmag_hp -= 1
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-        
-# goblin 3 --> firemag
-    if goblin_rect3.colliderect(fzard_rect) or goblin_rect3.colliderect(fzard2_rect):
-        if player_fmag > 0 and goblin_hp3 > 0 and enemy_goblin3 > 0:
-            fmag_hp -= 1
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
+        # Light collisions
+        (player_light,ghost_rect, ghost_rect, light_rect, ghost_hp, 1, "players_hp/light_hp.txt", "sounds/wuh.wav", 0.01, enemy_ghost),
+        (player_light,ghost1_rect, ghost1_rect, light_rect, ghost_hp1, 1, "players_hp/light_hp.txt", "sounds/wuh.wav", 0.01, enemy_ghost1),
+        (player_light,ghost2_rect, ghost2_rect, light_rect, ghost_hp2, 1, "players_hp/light_hp.txt", "sounds/wuh.wav", 0.01, enemy_ghost2),
+        (player_light,ghost3_rect, ghost3_rect, light_rect, ghost_hp3, 1, "players_hp/light_hp.txt", "sounds/wuh.wav", 0.01, enemy_ghost3),
+        (player_light,ghost_boss_rect, ghost_boss_rect, light_rect, ghost_boss_hp, 1, "players_hp/light_hp.txt", "sounds/wuh.wav", 0.01, enemy_ghost_boss)
+    ]
+    # Iterate over collision parameters and handle collisions
+    for params in collision_params:
+        player, attacker_rect, attacker2_rect, target_rect, target_hp, damage, player_file, sound_file, volume, enemy = params
+        if "human" in player_file:
+            human_hp = handle_collision(player_human,attacker_rect, attacker2_rect, target_rect, target_hp, damage, human_hp, player_file, sound_channel, sound_file, volume, enemy)
+        elif "archer" in player_file:
+            archer_hp = handle_collision(player_archer,attacker_rect, attacker2_rect, target_rect, target_hp, damage, archer_hp, player_file, sound_channel, sound_file, volume, enemy)
+        elif "fmag" in player_file:
+            fmag_hp = handle_collision(player_fmag,attacker_rect, attacker2_rect, target_rect, target_hp, damage, fmag_hp, player_file, sound_channel, sound_file, volume, enemy)
+        elif "light" in player_file:
+            light_hp = handle_collision(player_light,attacker_rect, attacker2_rect, target_rect, target_hp, damage, light_hp, player_file, sound_channel, sound_file, volume, enemy)
 
-# goblin boss --> firemag
-    if goblin_boss_rect.colliderect(fzard_rect) or goblin_boss_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and goblin_boss_hp > 0 and enemy_goblin_boss > 0:
-            fmag_hp -= 1
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost --> firemag
-    if ghost_rect.colliderect(fzard_rect) or ghost_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and ghost_hp > 0 and enemy_ghost > 0:
-            fmag_hp -= 2
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 1 --> firemag
-    if ghost1_rect.colliderect(fzard_rect) or ghost1_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and ghost_hp1 > 0 and enemy_ghost1 > 0:
-            fmag_hp -= 2
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-
-# ghost 2 --> firemag
-    if ghost2_rect.colliderect(fzard_rect) or ghost2_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and ghost_hp2 > 0 and enemy_ghost2 > 0:
-            fmag_hp -= 2
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
-
-# ghost 3 --> firemag
-    if ghost3_rect.colliderect(fzard_rect) or ghost3_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and ghost_hp3 > 0 and enemy_ghost3 > 0:
-            fmag_hp -= 2
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-
-# ghost boss --> firemag
-    if ghost_boss_rect.colliderect(fzard_rect) or ghost_boss_rect.colliderect(fzard2_rect):
-        if player_fmag > 0 and ghost_boss_hp > 0 and enemy_ghost_boss > 0:
-            fmag_hp -= 2
-            str_fmag_hp = str(fmag_hp)
-            try:
-                f1 = open("players_hp/fmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_fmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/uh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.1)
+# Kolize mezi Attack a Enemy
 #-----------------------------------------------------------------------------------------------#
-# ghost --> watermag
-    if ghost_rect.colliderect(wzard_rect) or ghost_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and ghost_hp > 0 and enemy_ghost > 0:
-            wmag_hp -= 1
-            str_wmag_hp = str(wmag_hp)
-            try:
-                f1 = open("players_hp/wmag_hp.txt","w")
-            except FileNotFoundError:
+    def handle_collision(attack_rect, attack2_rect, entity_rect, enemy_entity, player, entity_hp, file_path, damage, keys=None, key_check=None):
+        if attack_rect.colliderect(entity_rect) or attack2_rect.colliderect(entity_rect):
+            if enemy_entity > 0 and player > 0 and (keys is None or keys[key_check]):
+                entity_hp -= 1000 * damage
+                str_entity_hp = str(entity_hp)
+                try:
+                    with open(file_path, "w") as f3:
+                        f3.write(str_entity_hp)
+                except FileNotFoundError:
                     print("Soubor nebyl nalezen")
-            text = f1.write(str_wmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.01)
-            
+        return entity_hp
 
-# ghost 1 --> watermag
-    if ghost1_rect.colliderect(wzard_rect) or ghost1_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and ghost_hp1 > 0 and enemy_ghost1 > 0:
-            wmag_hp -= 1
-            str_wmag_hp = str(wmag_hp)
-            try:
-                f1 = open("players_hp/wmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_wmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.01)
+    # Human attacks
+    spider_hp = handle_collision(human_attack_rect, human_attack2_rect, spider_rect, enemy_spider, player_human, spider_hp, "players_hp/spider_hp.txt", 1, keys, pygame.K_SPACE)
+    spider_hp1 = handle_collision(human_attack_rect, human_attack2_rect, spider_rect1, enemy_spider1, player_human, spider_hp1, "players_hp/spider_hp1.txt", 1, keys, pygame.K_SPACE)
+    spider_hp2 = handle_collision(human_attack_rect, human_attack2_rect, spider_rect2, enemy_spider2, player_human, spider_hp2, "players_hp/spider_hp2.txt", 1, keys, pygame.K_SPACE)
+    spider_hp3 = handle_collision(human_attack_rect, human_attack2_rect, spider_rect3, enemy_spider3, player_human, spider_hp3, "players_hp/spider_hp3.txt", 1, keys, pygame.K_SPACE)
+    enemy_spider_boss_hp = handle_collision(human_attack_rect, human_attack2_rect, spider_boss_rect, enemy_spider_boss, player_human, enemy_spider_boss_hp, "players_hp/spider_boss_hp.txt", 1, keys, pygame.K_SPACE)
+    scelet_hp = handle_collision(human_attack_rect, human_attack2_rect, scelet_rect, enemy_scelet, player_human, scelet_hp, "players_hp/scelet_hp.txt", 0.5, keys, pygame.K_SPACE)
+    scelet1_hp = handle_collision(human_attack_rect, human_attack2_rect, scelet1_rect, enemy_scelet1, player_human, scelet1_hp, "players_hp/scelet1_hp.txt", 0.5, keys, pygame.K_SPACE)
+    scelet2_hp = handle_collision(human_attack_rect, human_attack2_rect, scelet2_rect, enemy_scelet2, player_human, scelet2_hp, "players_hp/scelet2_hp.txt", 0.5, keys, pygame.K_SPACE)
+    scelet3_hp = handle_collision(human_attack_rect, human_attack2_rect, scelet3_rect, enemy_scelet3, player_human, scelet3_hp, "players_hp/scelet3_hp.txt", 0.5, keys, pygame.K_SPACE)
+    enemy_scelet_boss_hp = handle_collision(human_attack_rect, human_attack2_rect, scelet_boss_rect, enemy_scelet_boss, player_human, enemy_scelet_boss_hp, "players_hp/scelet_boss_hp.txt", 0.5, keys, pygame.K_SPACE)
+    goblin_hp = handle_collision(human_attack_rect, human_attack2_rect, goblin_rect, enemy_goblin, player_human, goblin_hp, "players_hp/goblin_hp.txt", 0.25, keys, pygame.K_SPACE)
+    goblin_hp1 = handle_collision(human_attack_rect, human_attack2_rect, goblin_rect1, enemy_goblin1, player_human, goblin_hp1, "players_hp/goblin_hp1.txt", 0.25, keys, pygame.K_SPACE)
+    goblin_hp2 = handle_collision(human_attack_rect, human_attack2_rect, goblin_rect2, enemy_goblin2, player_human, goblin_hp2, "players_hp/goblin_hp2.txt", 0.25, keys, pygame.K_SPACE)
+    goblin_hp3 = handle_collision(human_attack_rect, human_attack2_rect, goblin_rect3, enemy_goblin3, player_human, goblin_hp3, "players_hp/goblin_hp3.txt", 0.25, keys, pygame.K_SPACE)
+    goblin_boss_hp = handle_collision(human_attack_rect, human_attack2_rect, goblin_boss_rect, enemy_goblin_boss, player_human, goblin_boss_hp, "players_hp/goblin_boss_hp.txt", 0.25, keys, pygame.K_SPACE)
 
-# ghost 2 --> watermag
-    if ghost2_rect.colliderect(wzard_rect) or ghost2_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and ghost_hp2 > 0 and enemy_ghost2 > 0:
-            wmag_hp -= 1
-            str_wmag_hp = str(wmag_hp)
-            try:
-                f1 = open("players_hp/wmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_wmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.01)
+    # Arrow collisions
+    scelet_hp = handle_collision(arrow_rect, arrow2_rect, scelet_rect, enemy_scelet, player_archer, scelet_hp, "players_hp/scelet_hp.txt", 1)
+    scelet1_hp = handle_collision(arrow_rect, arrow2_rect, scelet1_rect, enemy_scelet1, player_archer, scelet1_hp, "players_hp/scelet_hp1.txt", 2)
+    scelet2_hp = handle_collision(arrow_rect, arrow2_rect, scelet2_rect, enemy_scelet2, player_archer, scelet2_hp, "players_hp/scelet_hp2.txt", 2)
+    scelet3_hp = handle_collision(arrow_rect, arrow2_rect, scelet3_rect, enemy_scelet3, player_archer, scelet3_hp, "players_hp/scelet_hp3.txt", 2)
+    enemy_scelet_boss_hp = handle_collision(arrow_rect, arrow2_rect, scelet_boss_rect, enemy_scelet_boss, player_archer, enemy_scelet_boss_hp, "players_hp/scelet_boss_hp.txt", 2)
+    goblin_hp = handle_collision(arrow_rect, arrow2_rect, goblin_rect, enemy_goblin, player_archer, goblin_hp, "players_hp/goblin_hp.txt", 0.5)
+    goblin_hp1 = handle_collision(arrow_rect, arrow2_rect, goblin_rect1, enemy_goblin1, player_archer, goblin_hp1, "players_hp/goblin_hp1.txt", 0.5)
+    goblin_hp2 = handle_collision(arrow_rect, arrow2_rect, goblin_rect2, enemy_goblin2, player_archer, goblin_hp2, "players_hp/goblin_hp2.txt", 0.5)
+    goblin_hp3 = handle_collision(arrow_rect, arrow2_rect, goblin_rect3, enemy_goblin3, player_archer, goblin_hp3, "players_hp/goblin_hp3.txt", 0.5)
+    goblin_boss_hp = handle_collision(arrow_rect, arrow2_rect, goblin_boss_rect, enemy_goblin_boss, player_archer, goblin_boss_hp, "players_hp/goblin_boss_hp.txt", 0.5)
+    ghost_hp = handle_collision(arrow_rect, arrow2_rect, ghost_rect, enemy_ghost, player_archer, ghost_hp, "players_hp/ghost_hp.txt", 0.25)
+    ghost_hp1 = handle_collision(arrow_rect, arrow2_rect, ghost1_rect, enemy_ghost1, player_archer, ghost_hp1, "players_hp/ghost_hp1.txt", 0.25)
+    ghost_hp2 = handle_collision(arrow_rect, arrow2_rect, ghost2_rect, enemy_ghost2, player_archer, ghost_hp2, "players_hp/ghost_hp2.txt", 0.25)
+    ghost_hp3 = handle_collision(arrow_rect, arrow2_rect, ghost3_rect, enemy_ghost3, player_archer, ghost_hp3, "players_hp/ghost_hp3.txt", 0.25)
+    ghost_boss_hp = handle_collision(arrow_rect, arrow2_rect, ghost_boss_rect, enemy_ghost_boss, player_archer, ghost_boss_hp, "players_hp/ghost_boss_hp.txt", 0.5)
 
-# ghost 3 --> watermag
-    if ghost3_rect.colliderect(wzard_rect) or ghost3_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and ghost_hp3 > 0 and enemy_ghost3 > 0:
-            wmag_hp -= 1
-            str_wmag_hp = str(wmag_hp)
-            try:
-                f1 = open("players_hp/wmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_wmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.01)
+    # Fireball collisions
+    goblin_hp = handle_collision(fball_rect, fball2_rect, goblin_rect, enemy_goblin, player_fmag, goblin_hp, "players_hp/goblin_hp.txt", 1)
+    goblin_hp1 = handle_collision(fball_rect, fball2_rect, goblin_rect1, enemy_goblin1, player_fmag, goblin_hp1, "players_hp/goblin_hp1.txt", 1)
+    goblin_hp2 = handle_collision(fball_rect, fball2_rect, goblin_rect2, enemy_goblin2, player_fmag, goblin_hp2, "players_hp/goblin_hp2.txt", 1)
+    goblin_hp3 = handle_collision(fball_rect, fball2_rect, goblin_rect3, enemy_goblin3, player_fmag, goblin_hp3, "players_hp/goblin_hp3.txt", 1)
+    goblin_boss_hp = handle_collision(fball_rect, fball2_rect, goblin_boss_rect, enemy_goblin_boss, player_fmag, goblin_boss_hp, "players_hp/goblin_boss_hp.txt", 2)
+    ghost_hp = handle_collision(fball_rect, fball2_rect, ghost_rect, enemy_ghost, player_fmag, ghost_hp, "players_hp/ghost_hp.txt", 0.5)
+    ghost_hp1 = handle_collision(fball_rect, fball2_rect, ghost1_rect, enemy_ghost1, player_fmag, ghost_hp1, "players_hp/ghost_hp1.txt", 0.5)
+    ghost_hp2 = handle_collision(fball_rect, fball2_rect, ghost2_rect, enemy_ghost2, player_fmag, ghost_hp2, "players_hp/ghost_hp2.txt", 0.5)
+    ghost_hp3 = handle_collision(fball_rect, fball2_rect, ghost3_rect, enemy_ghost3, player_fmag, ghost_hp3, "players_hp/ghost_hp3.txt", 0.5)
+    ghost_boss_hp = handle_collision(fball_rect, fball2_rect, ghost_boss_rect, enemy_ghost_boss, player_fmag, ghost_boss_hp, "players_hp/ghost_boss_hp.txt", 1)
 
-# ghost boss --> watermag
-    if ghost_boss_rect.colliderect(wzard_rect) or ghost_boss_rect.colliderect(wzard2_rect):
-        if player_wmag > 0 and ghost_boss_hp > 0 and enemy_ghost_boss > 0:
-            wmag_hp -= 1
-            str_wmag_hp = str(wmag_hp)
-            try:
-                f1 = open("players_hp/wmag_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f1.write(str_wmag_hp)
-            f1.close()
-            pygame.mixer.Channel(7).play(pygame.mixer.Sound("sounds/wuh.wav"))
-            pygame.mixer.Channel(7).set_volume(0.01)
-
-#-----------------------------------------------------------------------------------------------#
-# Attack a Enemy
-#-----------------------------------------------------------------------------------------------#
-
-# human_attack --> spider
-    if human_attack_rect.colliderect(spider_rect) or human_attack2_rect.colliderect(spider_rect) :
-        if enemy_spider > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            spider_hp -= 1
-            str_spider_hp = str(spider_hp)
-            try:
-                f3 = open("players_hp/spider_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_spider_hp)
-            f3.close()
-
-# human_attack --> spider1
-    if human_attack_rect.colliderect(spider_rect1) or human_attack2_rect.colliderect(spider_rect1) :
-        if enemy_spider1 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            spider_hp1 -= 1
-            str_spider_hp1 = str(spider_hp1)
-            try:
-                f3 = open("players_hp/spider_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_spider_hp1)
-            f3.close()
-
-# human_attack --> spider2
-    if human_attack_rect.colliderect(spider_rect2) or human_attack2_rect.colliderect(spider_rect2) :
-        if enemy_spider2 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            spider_hp2 -= 1
-            str_spider_hp2 = str(spider_hp2)
-            try:
-                f3 = open("players_hp/spider_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_spider_hp2)
-            f3.close()
-
-# human_attack --> spider 3
-    if human_attack_rect.colliderect(spider_rect3) or human_attack2_rect.colliderect(spider_rect3) :
-        if enemy_spider3 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            spider_hp3 -= 1
-            str_spider_hp3 = str(spider_hp3)
-            try:
-                f3 = open("players_hp/spider_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_spider_hp3)
-            f3.close()
-
-# human_attack --> spiderboss
-    if human_attack_rect.colliderect(spider_boss_rect) or human_attack2_rect.colliderect(spider_boss_rect):
-        if enemy_spider_boss > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            enemy_spider_boss_hp -= 1
-            str_enemy_spider_boss_hp = str(enemy_spider_boss_hp)
-            try:
-                f3 = open("players_hp/spider_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_enemy_spider_boss_hp)
-            f3.close()
-
-# human_attack --> scelet
-    if human_attack_rect.colliderect(scelet_rect) or human_attack2_rect.colliderect(scelet_rect) :
-        if enemy_scelet > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            scelet_hp -= 0.5
-            str_scelet_hp = str(scelet_hp)
-            try:
-                f3 = open("players_hp/scelet_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet_hp)
-            f3.close()
-
-# human_attack--> scelet1
-    if human_attack_rect.colliderect(scelet1_rect) or human_attack2_rect.colliderect(scelet1_rect):
-        if enemy_scelet1 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            scelet1_hp -= 0.5
-            str_scelet1_hp = str(scelet1_hp)
-            try:
-                f3 = open("players_hp/scelet1_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet1_hp)
-            f3.close()
-
-# human_attack--> scelet2
-    if human_attack_rect.colliderect(scelet2_rect) or human_attack2_rect.colliderect(scelet2_rect):
-        if enemy_scelet2 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            scelet2_hp -= 0.5
-            str_scelet2_hp = str(scelet2_hp)
-            try:
-                f3 = open("players_hp/scelet2_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet2_hp)
-            f3.close()
-
-# human_attack --> scelet3
-    if human_attack_rect.colliderect(scelet3_rect) or human_attack2_rect.colliderect(scelet3_rect):
-        if enemy_scelet3 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            scelet3_hp -= 0.5
-            str_scelet3_hp = str(scelet3_hp)
-            try:
-                f3 = open("players_hp/scelet3_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet3_hp)
-            f3.close()
-
-# human_attack --> sceletboss
-    if human_attack_rect.colliderect(scelet_boss_rect) or human_attack2_rect.colliderect(scelet_boss_rect):
-        if enemy_scelet_boss > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            enemy_scelet_boss_hp -= 0.5
-            str_enemy_scelet_boss_hp = str(enemy_scelet_boss_hp)
-            try:
-                f3 = open("players_hp/scelet_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_enemy_scelet_boss_hp)
-            f3.close()
-
-# human_attack --> goblin
-    if human_attack_rect.colliderect(goblin_rect) or human_attack2_rect.colliderect(goblin_rect) :
-        if enemy_goblin > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            goblin_hp -= 0.25
-            str_goblin_hp = str(goblin_hp)
-            try:
-                f3 = open("players_hp/goblin_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp)
-            f3.close()
-
-# human_attack --> goblin 1
-    if human_attack_rect.colliderect(goblin_rect1) or human_attack2_rect.colliderect(goblin_rect1) :
-        if enemy_goblin1 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            goblin_hp1 -= 0.25
-            str_goblin_hp1 = str(goblin_hp1)
-            try:
-                f3 = open("players_hp/goblin_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp1)
-            f3.close()
-
-# human_attack --> goblin 2
-    if human_attack_rect.colliderect(goblin_rect2) or human_attack2_rect.colliderect(goblin_rect2) :
-        if enemy_goblin2 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            goblin_hp2 -= 0.25
-            str_goblin_hp2 = str(goblin_hp2)
-            try:
-                f3 = open("players_hp/goblin_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp2)
-            f3.close()
-
-# human_attack --> goblin 3
-    if human_attack_rect.colliderect(goblin_rect3) or human_attack2_rect.colliderect(goblin_rect3) :
-        if enemy_goblin3 > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            goblin_hp3 -= 0.25
-            str_goblin_hp3 = str(goblin_hp3)
-            try:
-                f3 = open("players_hp/goblin_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp3)
-            f3.close()
-
-# human_attack --> goblin boss
-    if human_attack_rect.colliderect(goblin_boss_rect) or human_attack2_rect.colliderect(goblin_boss_rect) :
-        if enemy_goblin_boss > 0 and keys [pygame.K_SPACE] and player_human > 0:
-            goblin_boss_hp -= 0.25
-            str_goblin_boss_hp = str(goblin_boss_hp)
-            try:
-                f3 = open("players_hp/goblin_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_boss_hp)
-            f3.close()
-
-#-----------------------------------------------------------------------------------------------#
-
-# arrow  --> scelet
-    if arrow_rect.colliderect(scelet_rect) or arrow2_rect.colliderect(scelet_rect):
-        if enemy_scelet > 0 and player_archer > 0:
-            scelet_hp -= 1
-            str_scelet_hp = str(scelet_hp)
-            try:
-                f3 = open("players_hp/scelet_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet_hp)
-            f3.close()
-
-# arrow --> scelet1
-    if arrow_rect.colliderect(scelet1_rect) or arrow2_rect.colliderect(scelet1_rect):
-        if enemy_scelet1 > 0 and player_archer > 0:
-            scelet1_hp -= 2
-            str_scelet1_hp = str(scelet_hp1)
-            try:
-                f3 = open("players_hp/scelet_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet_hp1)
-            f3.close()
-
-# arrow --> scelet2
-    if arrow_rect.colliderect(scelet2_rect) or arrow2_rect.colliderect(scelet2_rect):
-        if enemy_scelet2 > 0 and player_archer > 0:
-            scelet2_hp -= 2
-            str_scelet2_hp = str(scelet_hp2)
-            try:
-                f3 = open("players_hp/scelet_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet_hp2)
-            f3.close()
-
-# arrow --> scelet3
-    if arrow_rect.colliderect(scelet3_rect) or arrow2_rect.colliderect(scelet3_rect):
-        if enemy_scelet3 > 0 and player_archer > 0:
-            scelet3_hp -= 2
-            str_scelet3_hp = str(scelet_hp3)
-            try:
-                f3 = open("players_hp/scelet_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_scelet_hp2)
-            f3.close()
-
-# arrow --> sceletboss
-    if arrow_rect.colliderect(scelet_boss_rect) or arrow2_rect.colliderect(scelet_boss_rect):
-        if enemy_scelet_boss > 0 and player_archer > 0:
-            enemy_scelet_boss_hp -= 2
-            str_enemy_scelet_boss_hp = str(enemy_scelet_boss_hp)
-            try:
-                f3 = open("players_hp/scelet_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_enemy_scelet_boss_hp)
-            f3.close()
-
-# arrow --> goblin
-    if arrow_rect.colliderect(goblin_rect) or arrow2_rect.colliderect(goblin_rect):
-        if enemy_goblin > 0 and player_archer > 0:
-            goblin_hp -= 0.5
-            str_goblin_hp = str(goblin_hp)
-            try:
-                f3 = open("players_hp/goblin_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp)
-            f3.close()
-
-# arrow --> goblin 1
-    if arrow_rect.colliderect(goblin_rect1) or arrow2_rect.colliderect(goblin_rect1):
-        if enemy_goblin1 > 0 and player_archer > 0:
-            goblin_hp1 -= 0.5
-            str_goblin_hp1 = str(goblin_hp1)
-            try:
-                f3 = open("players_hp/goblin_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp1)
-            f3.close()
-
-# arrow --> goblin 2
-    if arrow_rect.colliderect(goblin_rect2) or arrow2_rect.colliderect(goblin_rect2):
-        if enemy_goblin2 > 0 and player_archer > 0:
-            goblin_hp2 -= 0.5
-            str_goblin_hp2 = str(goblin_hp2)
-            try:
-                f3 = open("players_hp/goblin_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp2)
-            f3.close()
-
-# arrow --> goblin 3
-    if arrow_rect.colliderect(goblin_rect3) or arrow2_rect.colliderect(goblin_rect3):
-        if enemy_goblin3 > 0 and player_archer > 0:
-            goblin_hp3 -= 0.5
-            str_goblin_hp3 = str(goblin_hp3)
-            try:
-                f3 = open("players_hp/goblin_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp3)
-            f3.close()
-
-# arrow --> goblin boss
-    if arrow_rect.colliderect(goblin_boss_rect) or arrow2_rect.colliderect(goblin_boss_rect) :
-        if enemy_goblin_boss > 0 and player_archer > 0:
-            goblin_boss_hp -= 0.5
-            str_goblin_boss_hp = str(goblin_boss_hp)
-            try:
-                f3 = open("players_hp/goblin_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_boss_hp)
-            f3.close()
-
-# arrow --> ghost
-    if arrow_rect.colliderect(ghost_rect) or arrow2_rect.colliderect(ghost_rect):
-        if enemy_ghost > 0 and player_archer > 0:
-            ghost_hp -= 0.25
-            str_ghost_hp = str(ghost_hp)
-            try:
-                f3 = open("players_hp/ghost_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp)
-            f3.close()
-
-# arrow --> ghost 1
-    if arrow_rect.colliderect(ghost1_rect) or arrow2_rect.colliderect(ghost1_rect):
-        if enemy_ghost1 > 0 and player_archer > 0:
-            ghost_hp1 -= 0.25
-            str_ghost_hp1 = str(ghost_hp1)
-            try:
-                f3 = open("players_hp/ghost_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp1)
-            f3.close()
-
-# arrow --> ghost 2
-    if arrow_rect.colliderect(ghost2_rect) or arrow2_rect.colliderect(ghost2_rect):
-        if enemy_ghost2 > 0 and player_archer > 0:
-            ghost_hp2 -= 0.25
-            str_ghost_hp2 = str(ghost_hp2)
-            try:
-                f3 = open("players_hp/ghost_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp2)
-            f3.close()
-
-# arrow --> ghost 3
-    if arrow_rect.colliderect(ghost3_rect) or arrow2_rect.colliderect(ghost3_rect):
-        if enemy_ghost3 > 0 and player_archer > 0:
-            ghost_hp3 -= 0.25
-            str_ghost_hp3 = str(ghost_hp3)
-            try:
-                f3 = open("players_hp/ghost_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp3)
-            f3.close()
-            
-# arrow --> ghost boss
-    if arrow_rect.colliderect(ghost_boss_rect) or arrow2_rect.colliderect(ghost_boss_rect) :
-        if enemy_ghost_boss > 0 and player_archer > 0:
-            ghost_boss_hp -= 0.5
-            str_ghost_boss_hp = str(ghost_boss_hp)
-            try:
-                f3 = open("players_hp/ghost_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_boss_hp)
-            f3.close()
-
-#-----------------------------------------------------------------------------------------------#
-
-# fireball --> goblin
-    if fball_rect.colliderect(goblin_rect) or fball2_rect.colliderect(goblin_rect):
-        if enemy_goblin > 0 and player_fmag > 0:
-            goblin_hp -= 1
-            str_goblin_hp = str(goblin_hp)
-            try:
-                f3 = open("players_hp/goblin_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp)
-            f3.close()
-
-# fireball --> goblin 1
-    if fball_rect.colliderect(goblin_rect1) or fball2_rect.colliderect(goblin_rect1):
-        if enemy_goblin1 > 0 and player_fmag > 0:
-            goblin_hp1 -= 1
-            str_goblin_hp1 = str(goblin_hp1)
-            try:
-                f3 = open("players_hp/goblin_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp1)
-            f3.close()
-
-# fireball --> goblin 2
-    if fball_rect.colliderect(goblin_rect2) or fball2_rect.colliderect(goblin_rect2):
-        if enemy_goblin2 > 0 and player_fmag > 0:
-            goblin_hp2 -= 1
-            str_goblin_hp2 = str(goblin_hp2)
-            try:
-                f3 = open("players_hp/goblin_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp2)
-            f3.close()
-
-# fireball --> goblin 3
-    if fball_rect.colliderect(goblin_rect3) or fball2_rect.colliderect(goblin_rect3):
-        if enemy_goblin3 > 0 and player_fmag > 0:
-            goblin_hp3 -= 1
-            str_goblin_hp3 = str(goblin_hp3)
-            try:
-                f3 = open("players_hp/goblin_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_hp3)
-            f3.close()
-
-# fireball--> goblin boss
-    if fball_rect.colliderect(goblin_boss_rect) or fball2_rect.colliderect(goblin_boss_rect) :
-        if enemy_goblin_boss > 0 and player_fmag > 0:
-            goblin_boss_hp -= 2
-            str_goblin_boss_hp = str(goblin_boss_hp)
-            try:
-                f3 = open("players_hp/goblin_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_goblin_boss_hp)
-            f3.close()
-
-# fireball --> ghost
-    if fball_rect.colliderect(ghost_rect) or fball2_rect.colliderect(ghost_rect):
-        if enemy_ghost > 0 and player_fmag > 0:
-            ghost_hp -= 0.5
-            str_ghost_hp = str(ghost_hp)
-            try:
-                f3 = open("players_hp/ghost_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp)
-            f3.close()
-
-# fireball --> ghost 1
-    if fball_rect.colliderect(ghost1_rect) or fball2_rect.colliderect(ghost1_rect):
-        if enemy_ghost1 > 0 and player_fmag > 0:
-            ghost_hp1 -= 0.5
-            str_ghost_hp1 = str(ghost_hp1)
-            try:
-                f3 = open("players_hp/ghost_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp1)
-            f3.close()
-
-# fireball --> ghost 2
-    if fball_rect.colliderect(ghost2_rect) or fball2_rect.colliderect(ghost2_rect):
-        if enemy_ghost2 > 0 and player_fmag > 0:
-            ghost_hp2 -= 0.5
-            str_ghost_hp2 = str(ghost_hp2)
-            try:
-                f3 = open("players_hp/ghost_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp2)
-            f3.close()
-
-# fireball --> ghost 3
-    if fball_rect.colliderect(ghost3_rect) or fball2_rect.colliderect(ghost3_rect):
-        if enemy_ghost3 > 0 and player_fmag > 0:
-            ghost_hp3 -= 0.5
-            str_ghost_hp3 = str(ghost_hp3)
-            try:
-                f3 = open("players_hp/ghost_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp3)
-            f3.close()
-
-# fireball--> ghost boss
-    if fball_rect.colliderect(ghost_boss_rect) or fball2_rect.colliderect(ghost_boss_rect) :
-        if enemy_ghost_boss > 0 and player_fmag > 0:
-            ghost_boss_hp -= 1
-            str_ghost_boss_hp = str(ghost_boss_hp)
-            try:
-                f3 = open("players_hp/ghost_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_boss_hp)
-            f3.close()
-
-#-----------------------------------------------------------------------------------------------#
-# waterball --> ghost
-    if wzard_attack_rect.colliderect(ghost_rect) or wzard_attack2_rect.colliderect(ghost_rect):
-        if enemy_ghost > 0 and player_wmag > 0:
-            ghost_hp -= 1
-            str_ghost_hp = str(ghost_hp)
-            try:
-                f3 = open("players_hp/ghost_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp)
-            f3.close()
-
-# waterball --> ghost 1
-    if wzard_attack_rect.colliderect(ghost1_rect) or wzard_attack2_rect.colliderect(ghost1_rect):
-        if enemy_ghost1 > 0 and player_wmag > 0:
-            ghost_hp1 -= 1
-            str_ghost_hp1 = str(ghost_hp1)
-            try:
-                f3 = open("players_hp/ghost_hp1.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp1)
-            f3.close()
-
-# waterball --> ghost 2
-    if wzard_attack_rect.colliderect(ghost2_rect) or wzard_attack2_rect.colliderect(ghost2_rect):
-        if enemy_ghost2 > 0 and player_wmag > 0:
-            ghost_hp2 -= 1
-            str_ghost_hp2 = str(ghost_hp2)
-            try:
-                f3 = open("players_hp/ghost_hp2.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp2)
-            f3.close()
-
-# waterball --> ghost 3
-    if wzard_attack_rect.colliderect(ghost3_rect) or wzard_attack2_rect.colliderect(ghost3_rect):
-        if enemy_ghost3 > 0 and player_wmag > 0:
-            ghost_hp3 -= 1
-            str_ghost_hp3 = str(ghost_hp3)
-            try:
-                f3 = open("players_hp/ghost_hp3.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_hp3)
-            f3.close()
-
-# waterball--> ghost boss
-    if wzard_attack_rect.colliderect(ghost_boss_rect) or wzard_attack2_rect.colliderect(ghost_boss_rect) :
-        if enemy_ghost_boss > 0 and player_wmag > 0:
-            ghost_boss_hp -= 1
-            str_ghost_boss_hp = str(ghost_boss_hp)
-            try:
-                f3 = open("players_hp/ghost_boss_hp.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f3.write(str_ghost_boss_hp)
-            f3.close()
+    # Ligh collisions
+    ghost_hp = handle_collision(light_attack_rect, light_attack2_rect, ghost_rect, enemy_ghost, player_light, ghost_hp, "players_hp/ghost_hp.txt", 1)
+    ghost_hp1 = handle_collision(light_attack_rect, light_attack2_rect, ghost1_rect, enemy_ghost1, player_light, ghost_hp1, "players_hp/ghost_hp1.txt", 1)
+    ghost_hp2 = handle_collision(light_attack_rect, light_attack2_rect, ghost2_rect, enemy_ghost2, player_light, ghost_hp2, "players_hp/ghost_hp2.txt", 1)
+    ghost_hp3 = handle_collision(light_attack_rect, light_attack2_rect, ghost3_rect, enemy_ghost3, player_light, ghost_hp3, "players_hp/ghost_hp3.txt", 1)
+    ghost_boss_hp = handle_collision(light_attack_rect, light_attack2_rect, ghost_boss_rect, enemy_ghost_boss, player_light, ghost_boss_hp, "players_hp/ghost_boss_hp.txt", 1)
 #-----------------------------------------------------------------------------------------------#
 # OBRAZCE
 #-----------------------------------------------------------------------------------------------#
@@ -4006,17 +2792,13 @@ while lets_continue:
         pygame.draw.line(screen, black, (width//2 + 140,70),(width//2 + 140,0), 3)
         pygame.draw.rect(screen,grey,(129,3,width//2 - 270,66))
         pygame.draw.rect(screen,grey,(width//2 + 143,3,454,66))
-    if player_human > 0 or player_archer > 0 or player_fmag > 0 or player_wmag > 0:
+    if player_human > 0 or player_archer > 0 or player_fmag > 0 or player_light > 0:
         pygame.draw.line(screen, black, (127,70),(127,0), 3)
-    if player_human < 0 or player_archer < 0 or player_fmag < 0 or player_wmag < 0:
+    if player_human < 0 or player_archer < 0 or player_fmag < 0 or player_light < 0:
         pygame.draw.line(screen, black, (127,70),(127,0), 3)
 
     if ghost_boss_hp <= 0 and run_game == 1:
          screen.blit(custom_end_text, custom_end_text_rect)
-
-
-
-
 #-----------------------------------------------------------------------------------------------#
     pygame.display.update()
     clock.tick_busy_loop(fps)
