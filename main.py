@@ -1511,167 +1511,37 @@ while lets_continue:
 #-----------------------------------------------------------------------------------------------#
 ### POSTAVY ###
 #-----------------------------------------------------------------------------------------------#
+    #NAČTE HRDINY
+    def update_player_file(player_type, value):
+        try:
+            with open(f"players/player_{player_type}.txt", "w") as f:
+                f.write(str(value))
+        except FileNotFoundError:
+            print(f"Soubor {player_type} nebyl nalezen")
+
+    def update_player_and_others(main_player_key, other_players):
+        globals()[main_player_key] += 1
+        update_player_file(main_player_key, globals()[main_player_key])
+        for player_key in other_players:
+            if globals()[player_key] > 0:
+                globals()[player_key] -= 10
+                update_player_file(player_key, globals()[player_key])
+
     keys = pygame.key.get_pressed()
-# Načtení Humana do pole
-    if keys [pygame.K_1]:
-        player_human += 1
-        player_human_str = str(player_human)
-        try:
-            f_human = open("players/player_human.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_human.write(player_human_str)
-        f_human.close()
-        if player_fmag > 0:
-            player_fmag -= 10
-            player_fmag_str = str(player_fmag)
-            try:
-                f_fmag = open("players/player_fmag.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_fmag.write(player_fmag_str)
-            f_fmag.close()
-
-        if player_light > 0:
-            player_light -= 10
-            player_light_str = str(player_light)
-            try:
-                f_light = open("players/player_light.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_light.write(player_light_str)
-            f_light.close()
-        
-        if player_archer > 0:
-            player_archer -= 10
-            player_archer_str = str(player_archer)
-            try:
-                f_archer = open("players/player_archer.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_archer.write(player_archer_str)
-            f_archer.close()
-
-# Načtení Fmága do pole
-    if keys [pygame.K_3]:
-        player_fmag += 1
-        player_fmag_str = str(player_fmag)
-        try:
-            f_fmag = open("players/player_fmag.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_fmag.write(player_fmag_str)
-        f_fmag.close()
-        if player_light > 0:
-            player_light -= 10
-            player_light_str = str(player_light)
-            try:
-                f_light = open("players/player_light.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_light.write(player_light_str)
-            f_light.close()
-        
-        if player_human > 0:
-            player_human -= 10
-            player_human_str = str(player_human)
-            try:
-                f_human = open("players/player_human.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_human.write(player_human_str)
-            f_human.close()
-        
-        if player_archer > 0:
-            player_archer -= 10
-            player_archer_str = str(player_archer)
-            try:
-                f_archer = open("players/player_archer.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_archer.write(player_archer_str)
-            f_archer.close()
-
-# Načtení Wmága do pole
-    if keys [pygame.K_4]:
-        player_light += 1
-        player_light_str = str(player_light)
-        try:
-            f_light = open("players/player_light.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_light.write(player_light_str)
-        f_light.close()
-        if player_fmag > 0:
-            player_fmag -= 10
-            player_fmag_str = str(player_fmag)
-            try:
-                f_fmag = open("players/player_fmag.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_fmag.write(player_fmag_str)
-            f_fmag.close()
-        
-        if player_human > 0:
-            player_human -= 10
-            player_human_str = str(player_human)
-            try:
-                f_human = open("players/player_human.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_human.write(player_human_str)
-            f_human.close()
-        
-        if player_archer > 0:
-            player_archer -= 10
-            player_archer_str = str(player_archer)
-            try:
-                f_archer = open("players/player_archer.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_archer.write(player_archer_str)
-            f_archer.close()
-
-# Načtení Archera do pole
-    if keys [pygame.K_2]:
-        player_archer += 1
-        player_archer_str = str(player_archer)
-        try:
-            f_archer = open("players/player_archer.txt","w")
-        except FileNotFoundError:
-                print("Soubor nebyl nalezen")
-        text = f_archer.write(player_archer_str)
-        f_archer.close()
-        if player_light > 0:
-            player_light -= 10
-            player_light_str = str(player_light)
-            try:
-                f_light = open("players/player_light.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_light.write(player_light_str)
-            f_light.close()
-
-        if player_fmag > 0:
-            player_fmag -= 10
-            player_fmag_str = str(player_fmag)
-            try:
-                f_fmag = open("players/player_fmag.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_fmag.write(player_fmag_str)
-            f_fmag.close()
-        
-        if player_human > 0:
-            player_human -= 10
-            player_human_str = str(player_human)
-            try:
-                f_human = open("players/player_human.txt","w")
-            except FileNotFoundError:
-                    print("Soubor nebyl nalezen")
-            text = f_human.write(player_human_str)
-            f_human.close()
-
+    # Načtení Humana do pole
+    if keys[pygame.K_1]:
+        update_player_and_others('player_human', ['player_fmag', 'player_light', 'player_archer'])
+    # Načtení Fmága do pole
+    if keys[pygame.K_3]:
+        update_player_and_others('player_fmag', ['player_light', 'player_human', 'player_archer'])
+    # Načtení Wmága do pole
+    if keys[pygame.K_4]:
+        update_player_and_others('player_light', ['player_fmag', 'player_human', 'player_archer'])
+    # Načtení Archera do pole
+    if keys[pygame.K_2]:
+        update_player_and_others('player_archer', ['player_light', 'player_fmag', 'player_human'])
+#-----------------------------------------------------------------------------------------------#
+    # NAČTE PŘÍŠERY
     def update_enemy_count(file_path, enemy_count):
         enemy_count += 1
         enemy_count_str = str(enemy_count)
@@ -1681,60 +1551,45 @@ while lets_continue:
         except FileNotFoundError:
             print("Soubor nebyl nalezen")
         return enemy_count
-
-    # Načte příšery
+    # Spider
     if run_game == 1:
-        # Spider
         enemy_spider = update_enemy_count("players/enemy_spider.txt", enemy_spider)
-    # Spider 1 + 2 + 3
     if spider_hp <= 0:
         enemy_spider1 = update_enemy_count("players/enemy_spider1.txt", enemy_spider1)
         enemy_spider2 = update_enemy_count("players/enemy_spider2.txt", enemy_spider2)
         enemy_spider3 = update_enemy_count("players/enemy_spider3.txt", enemy_spider3)
-    # Spider BOSS
     if spider_hp <= 0 and spider_hp1 <= 0 and spider_hp2 <= 0 and spider_hp3 <= 0:
-        enemy_spider_boss = update_enemy_count("players/enemy_spider_boss.txt", enemy_spider_boss)
-        
-        
+        enemy_spider_boss = update_enemy_count("players/enemy_spider_boss.txt", enemy_spider_boss)  
+    # Skeleton   
     if enemy_spider_boss_hp <= 0 and run_game == 1:
-        # Skeleton
         enemy_scelet = update_enemy_count("players/enemy_scelet.txt", enemy_scelet)
-        # Skeleton 1 + 2 + 3
         if scelet_hp <= 0:
             enemy_scelet1 = update_enemy_count("players/enemy_scelet1.txt", enemy_scelet1)
             enemy_scelet2 = update_enemy_count("players/enemy_scelet2.txt", enemy_scelet2)
             enemy_scelet3 = update_enemy_count("players/enemy_scelet3.txt", enemy_scelet3)
-        # Skeleton BOSS
         if scelet_hp <= 0 and scelet1_hp <= 0 and scelet2_hp <= 0 and scelet3_hp <= 0:
             enemy_scelet_boss = update_enemy_count("players/enemy_scelet_boss.txt", enemy_scelet_boss)
-
-
+    # Goblin
     if enemy_scelet_boss_hp <= 0 and run_game == 1:
-        # Goblin
         enemy_goblin = update_enemy_count("players/enemy_goblin.txt", enemy_goblin)
-        # Goblin 1 + 2 + 3
         if goblin_hp <= 0:
             enemy_goblin1 = update_enemy_count("players/enemy_goblin1.txt", enemy_goblin1)
             enemy_goblin2 = update_enemy_count("players/enemy_goblin2.txt", enemy_goblin2)
             enemy_goblin3 = update_enemy_count("players/enemy_goblin3.txt", enemy_goblin3)
-        # Goblin BOSS
         if goblin_hp <= 0 and goblin_hp1 <= 0 and goblin_hp2 <= 0 and goblin_hp3 <= 0:
             enemy_goblin_boss = update_enemy_count("players/enemy_goblin_boss.txt", enemy_goblin_boss)
-
-
+    # Ghost
     if goblin_boss_hp <= 0 and run_game == 1:
-        # Ghost
         enemy_ghost = update_enemy_count("players/enemy_ghost.txt", enemy_ghost)
-        # Ghost 1 + 2 + 3
         if ghost_hp <= 0:
             enemy_ghost1 = update_enemy_count("players/enemy_ghost1.txt", enemy_ghost1)
             enemy_ghost2 = update_enemy_count("players/enemy_ghost2.txt", enemy_ghost2)
             enemy_ghost3 = update_enemy_count("players/enemy_ghost3.txt", enemy_ghost3)
-        # Ghost BOSS
         if ghost_hp <= 0 and ghost_hp1 <= 0 and ghost_hp2 <= 0 and ghost_hp3 <= 0:
             enemy_ghost_boss = update_enemy_count("players/enemy_ghost_boss.txt", enemy_ghost_boss)
-   
-# Human
+#-----------------------------------------------------------------------------------------------#
+#POHYBY HRDINŮ
+    # Human
     if player_human > 0 and enemy_spider > 0:
         if human_hp > 0:
             hp0_text = pygame.font.SysFont("Moncerat", 18)
@@ -2712,7 +2567,7 @@ while lets_continue:
     def handle_collision(attack_rect, attack2_rect, entity_rect, enemy_entity, player, entity_hp, file_path, damage, keys=None, key_check=None):
         if attack_rect.colliderect(entity_rect) or attack2_rect.colliderect(entity_rect):
             if enemy_entity > 0 and player > 0 and (keys is None or keys[key_check]):
-                entity_hp -= 1000 * damage
+                entity_hp -= damage
                 str_entity_hp = str(entity_hp)
                 try:
                     with open(file_path, "w") as f3:
