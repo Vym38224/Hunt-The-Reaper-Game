@@ -3,7 +3,6 @@ import random
 import buttons
 from players import *
 
-#ahoj
 # Načtení IMG 
 def loadify(imgname):
     return pygame.image.load(imgname).convert_alpha() 
@@ -38,12 +37,9 @@ fire_attack = 0
 wire_attack = 0
 human_attack = 0
 arrow_attack = 0
-
 run_game = 0
-
 attack_x = 1
 attack_1x = -1* attack_x
-
 ghost_speed = 4
 ghost_boss_speed = 4
 spider_speed = 2
@@ -52,463 +48,99 @@ scelet_speed = 2
 scelet_boss_speed = 3
 goblin_speed = 3
 goblin_boss_speed = 3
-
 archer_attack_speed = 15
 light_attack_speed = 4
 fball_speed = 9
-
 fmag_distance = 5
 light_distance = 6
 human_distance = 4
 archer_distance = 5
 
-# Nastavení ghost_hp = 0 na začátku hry
-ghost_hp = 0
-str_ghost_hp = str(ghost_hp)
-try:
-    f_ghost_hp = open("players_hp/ghost_hp.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_ghost_hp.write(str_ghost_hp)
-ghost_hp1 = 0
-str_ghost_hp1 = str(ghost_hp1)
-try:
-    f_ghost_hp1 = open("players_hp/ghost_hp1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_ghost_hp1.write(str_ghost_hp1)
-ghost_hp2= 0
-str_ghost_hp2 = str(ghost_hp2)
-try:
-    f_ghost_hp2= open("players_hp/ghost_hp2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_ghost_hp.write(str_ghost_hp2)
-ghost_hp3 = 0
-str_ghost_hp3 = str(ghost_hp3)
-try:
-    f_ghost_hp3 = open("players_hp/ghost_hp3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_ghost_hp.write(str_ghost_hp3)
+#Random pohyb
+entities = {
+    "ghost": 4,
+    "ghost_boss": 1,
+    "spider": 4,
+    "spider_boss": 1,
+    "scelet": 8,
+    "scelet_boss": 1,
+    "goblin": 4,
+    "goblin_boss": 1
+}
+movement = {}
 
-# Nastavení goblin_hp = 0 na začátku hry
-goblin_hp = 0
-str_goblin_hp = str(goblin_hp)
-try:
-    f_goblin_hp = open("players_hp/goblin_hp.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_goblin_hp.write(str_goblin_hp)
-goblin_hp1 = 0
-str_goblin_hp1 = str(goblin_hp1)
-try:
-    f_goblin_hp1 = open("players_hp/goblin_hp1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_goblin_hp.write(str_goblin_hp1)
-goblin_hp2 = 0
-str_goblin_hp2 = str(goblin_hp2)
-try:
-    f_goblin_hp2 = open("players_hp/goblin_hp2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_goblin_hp2.write(str_goblin_hp2)
-goblin_hp3 = 0
-str_goblin_hp3 = str(goblin_hp3)
-try:
-    f_goblin_hp3 = open("players_hp/goblin_hp3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_goblin_hp3.write(str_goblin_hp3)
+for entity, count in entities.items():
+    for i in range(count):
+        suffix = f"_{i}" if count > 1 else ""
+        movement[f"{entity}{suffix}_x"] = random.choice([-1, 1])
+        movement[f"{entity}{suffix}_y"] = random.choice([-1, 1])
 
-# Nastavení spider_hp = 0 na začátku hry
-spider_hp = 0
-str_spider_hp = str(spider_hp)
-try:
-    f_spider_hp = open("players_hp/spider_hp.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_spider_hp.write(str_spider_hp)
-spider_hp1 = 0
-str_spider_hp1 = str(spider_hp1)
-try:
-    f_spider_hp1 = open("players_hp/spider_hp1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_spider_hp.write(str_spider_hp1)
-spider_hp2 = 0
-str_spider_hp2 = str(spider_hp2)
-try:
-    f_spider_hp2 = open("players_hp/spider_hp2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_spider_hp2.write(str_spider_hp2)
-spider_hp3 = 0
-str_spider_hp3 = str(spider_hp3)
-try:
-    f_spider_hp3 = open("players_hp/spider_hp3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_spider_hp3.write(str_spider_hp3)
+ghost_x, ghost_y = movement["ghost_0_x"], movement["ghost_0_y"]
+ghost1_x, ghost1_y = movement["ghost_1_x"], movement["ghost_1_y"]
+ghost2_x, ghost2_y = movement["ghost_2_x"], movement["ghost_2_y"]
+ghost3_x, ghost3_y = movement["ghost_3_x"], movement["ghost_3_y"]
+ghost_boss_x, ghost_boss_y = movement["ghost_boss_x"], movement["ghost_boss_y"]
 
-# Nastavení scelet_hp = 0 na začátku hry
-scelet_hp = 0
-str_scelet_hp = str(scelet_hp)
-try:
-    f_scelet_hp = open("players_hp/scelet_hp.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_scelet_hp.write(str_scelet_hp)
-scelet_hp1 = 0
-str_scelet_hp1 = str(scelet_hp1)
-try:
-    f_scelet_hp1 = open("players_hp/scelet_hp1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_scelet_hp1.write(str_scelet_hp1)
-scelet_hp2 = 0
-str_scelet_hp2 = str(scelet_hp2)
-try:
-    f_scelet_hp2 = open("players_hp/scelet_hp2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_scelet_hp2.write(str_scelet_hp2)
-scelet_hp3 = 0
-str_scelet_hp3 = str(scelet_hp3)
-try:
-    f_scelet_hp3 = open("players_hp/scelet_hp3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_scelet_hp3.write(str_scelet_hp3)
+spider_x, spider_y = movement["spider_0_x"], movement["spider_0_y"]
+spider1_x, spider1_y = movement["spider_1_x"], movement["spider_1_y"]
+spider2_x, spider2_y = movement["spider_2_x"], movement["spider_2_y"]
+spider3_x, spider3_y = movement["spider_3_x"], movement["spider_3_y"]
+spider_boss_x, spider_boss_y = movement["spider_boss_x"], movement["spider_boss_y"]
 
-# Nastavení enemy_goblin = 0 na začátku hry
-enemy_goblin = 0
-str_enemy_goblin = str(enemy_goblin)
-try:
-    f_enemy_goblin = open("players/enemy_goblin.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin.write(str_enemy_goblin)
-enemy_goblin1 = 0
-str_enemy_goblin1 = str(enemy_goblin1)
-try:
-    f_enemy_goblin1 = open("players/enemy_goblin1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin1.write(str_enemy_goblin1)
-enemy_goblin2 = 0
-str_enemy_goblin2 = str(enemy_goblin1)
-try:
-    f_enemy_goblin2 = open("players/enemy_goblin2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin2.write(str_enemy_goblin2)
-enemy_goblin3 = 0
-str_enemy_goblin3 = str(enemy_goblin3)
-try:
-    f_enemy_goblin3 = open("players/enemy_goblin3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin3.write(str_enemy_goblin3)
+scelet_x, scelet_y = movement["scelet_0_x"], movement["scelet_0_y"]
+scelet1_x, scelet1_y = movement["scelet_1_x"], movement["scelet_1_y"]
+scelet2_x, scelet2_y = movement["scelet_2_x"], movement["scelet_2_y"]
+scelet3_x, scelet3_y = movement["scelet_3_x"], movement["scelet_3_y"]
+scelet4_x, scelet4_y = movement["scelet_4_x"], movement["scelet_4_y"]
+scelet5_x, scelet5_y = movement["scelet_5_x"], movement["scelet_5_y"]
+scelet6_x, scelet6_y = movement["scelet_6_x"], movement["scelet_6_y"]
+scelet7_x, scelet7_y = movement["scelet_7_x"], movement["scelet_7_y"]
+scelet_boss_x, scelet_boss_y = movement["scelet_boss_x"], movement["scelet_boss_y"]
 
-# Nastavení enemy_spider = 0 na začátku hry
-enemy_spider = 0
-str_enemy_spider = str(enemy_spider)
-try:
-    f_enemy_spider = open("players/enemy_spider.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_spider.write(str_enemy_spider)
-enemy_spider1 = 0
-str_enemy_spider1 = str(enemy_spider1)
-try:
-    f_enemy_spider1 = open("players/enemy_spider1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_spider1.write(str_enemy_spider1)
-enemy_spider2 = 0
-str_enemy_spider2 = str(enemy_spider1)
-try:
-    f_enemy_spider2 = open("players/enemy_spider2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_spider2.write(str_enemy_spider2)
-enemy_spider3 = 0
-str_enemy_spider3 = str(enemy_spider3)
-try:
-    f_enemy_spider3 = open("players/enemy_spider3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_spider3.write(str_enemy_spider3)
-
-# Nastavení enemy_scelet = 0 na začátku hry
-enemy_scelet = 0
-str_enemy_scelet = str(enemy_scelet)
-try:
-    f_enemy_scelet = open("players/enemy_scelet.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_scelet.write(str_enemy_scelet)
-enemy_scelet1 = 0
-str_enemy_scelet1 = str(enemy_scelet1)
-try:
-    f_enemy_scelet1 = open("players/enemy_scelet1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_scelet1.write(str_enemy_scelet1)
-enemy_scelet2 = 0
-str_enemy_scelet2 = str(enemy_scelet2)
-try:
-    f_enemy_scelet2 = open("players/enemy_scelet2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_scelet2.write(str_enemy_scelet2)
-enemy_scelet3 = 0
-str_enemy_scelet3 = str(enemy_scelet3)
-try:
-    f_enemy_scelet3 = open("players/enemy_scelet3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_scelet3.write(str_enemy_scelet3)
-
-# Nastavení enemy_ghost = 0 na začátku hry
-enemy_ghost = 0
-str_enemy_ghost = str(enemy_ghost)
-try:
-    f_enemy_ghost = open("players/enemy_ghost.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_ghost.write(str_enemy_ghost)
-enemy_ghost1 = 0
-str_enemy_ghost1 = str(enemy_ghost1)
-try:
-    f_enemy_ghost1 = open("players/enemy_ghost1.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_ghost1.write(str_enemy_ghost1)
-enemy_ghost2 = 0
-str_enemy_ghost2 = str(enemy_ghost2)
-try:
-    f_enemy_ghost2 = open("players/enemy_ghost2.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_ghost2.write(str_enemy_ghost2)
-enemy_ghost3 = 0
-str_enemy_ghost3 = str(enemy_ghost3)
-try:
-    f_enemy_ghost3 = open("players/enemy_ghost3.txt","w")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_ghost3.write(str_enemy_ghost3)
-
-
-# Random pohyb skeletonů
-ghost_x = random.choice ([-1,1])
-ghost_y = random.choice([-1,1])
-ghost1_x = random.choice ([-1,1])
-ghost1_y = random.choice([-1,1])
-ghost2_x = random.choice ([-1,1])
-ghost2_y = random.choice([-1,1])
-ghost3_x = random.choice ([-1,1])
-ghost3_y = random.choice([-1,1])
-ghost_boss_x = random.choice ([-1,1])
-ghost_boss_y = random.choice([-1,1])
-spider_x = random.choice ([-1,1])
-spider_y = random.choice([-1,1])
-spider1_x = random.choice ([-1,1])
-spider1_y = random.choice([-1,1])
-spider2_x = random.choice ([-1,1])
-spider2_y = random.choice([-1,1])
-spider3_x = random.choice ([-1,1])
-spider3_y = random.choice([-1,1])
-spider_boss_x = random.choice ([-1,1])
-spider_boss_y = random.choice([-1,1])
-scelet_x = random.choice ([-1,1])
-scelet_y = random.choice([-1,1])
-scelet1_x = random.choice ([-1,1])
-scelet1_y = random.choice([-1,1])
-scelet2_x = random.choice ([-1,1])
-scelet2_y = random.choice([-1,1])
-scelet3_x = random.choice ([-1,1])
-scelet3_y = random.choice([-1,1])
-scelet4_x = random.choice ([-1,1])
-scelet4_y = random.choice([-1,1])
-scelet5_x = random.choice ([-1,1])
-scelet5_y = random.choice([-1,1])
-scelet6_x = random.choice ([-1,1])
-scelet6_y = random.choice([-1,1])
-scelet7_x = random.choice ([-1,1])
-scelet7_y = random.choice([-1,1])
-scelet_boss_x = random.choice ([-1,1])
-scelet_boss_y = random.choice([-1,1])
-goblin_x = random.choice ([-1,1])
-goblin_y = random.choice([-1,1])
-goblin1_x = random.choice ([-1,1])
-goblin1_y = random.choice([-1,1])
-goblin2_x = random.choice ([-1,1])
-goblin2_y = random.choice([-1,1])
-goblin3_x = random.choice ([-1,1])
-goblin3_y = random.choice([-1,1])
-goblin_boss_x = random.choice ([-1,1])
-goblin_boss_y = random.choice([-1,1])
+goblin_x, goblin_y = movement["goblin_0_x"], movement["goblin_0_y"]
+goblin1_x, goblin1_y = movement["goblin_1_x"], movement["goblin_1_y"]
+goblin2_x, goblin2_y = movement["goblin_2_x"], movement["goblin_2_y"]
+goblin3_x, goblin3_y = movement["goblin_3_x"], movement["goblin_3_y"]
+goblin_boss_x, goblin_boss_y = movement["goblin_boss_x"], movement["goblin_boss_y"]
 
 #-----------------------------------------------------------------------------------------------#
 ### HRÁČ V POLI ###
 #-----------------------------------------------------------------------------------------------#
+players = {
+    "human": ("player_human.txt", "human_hp.txt", player0),
+    "fmag": ("player_fmag.txt", "fmag_hp.txt", player1),
+    "light": ("player_light.txt", "light_hp.txt", player2),
+    "archer": ("player_archer.txt", "archer_hp.txt", player3)
+}
+player_human = player_fmag = player_light = player_archer = int()
 
-# Human
-player_human = int()
-player_human_str=str(player_human)
-try:
-    f_player_human = open("players/player_human.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_player_human.read(player_human)
-human_hp = (player0.hp)
-if player_human > 0:
-    str_human_hp = str(human_hp)
+def read_player_data(player_name, player_file, hp_file, player_obj):
+    player_value = globals()[f"player_{player_name}"]
+    player_str = str(player_value)
     try:
-        f2 = open("players_hp/human_hp.txt", "r")
+        with open(f"players/{player_file}", "r") as f_player:
+            text = f_player.read(player_value)
     except FileNotFoundError:
         print("Soubor nebyl nalezen")
-    text = f2.read(human_hp)
+        return None
 
-# Firemag
-player_fmag = int()
-player_fmag_str=str(player_fmag)
-try:
-    f_fmag = open("players/player_fmag.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_fmag.read(player_fmag)
-fmag_hp = (player1.hp)
-if player_fmag > 0:
-    str_fmag_hp = str(fmag_hp)
-    try:
-        f1 = open("players_hp/fmag_hp.txt", "r")
-    except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-    text = f1.read(fmag_hp)
-    
-# Watermag
-player_light = int()
-player_light_str=str(player_light)
-try:
-    f_player_light = open("players/player_light.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_player_light.read(player_light)
-light_hp = (player2.hp)
-if player_light > 0:
-    str_light_hp = str(light_hp)
-    try:
-        f2 = open("players_hp/light_hp.txt", "r")
-    except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-    text = f2.read(light_hp)
+    player_hp = player_obj.hp
+    if player_value > 0:
+        str_player_hp = str(player_hp)
+        try:
+            with open(f"players_hp/{hp_file}", "r") as f_hp:
+                text = f_hp.read(player_hp)
+        except FileNotFoundError:
+            print("Soubor nebyl nalezen")
+    return player_hp
 
-# Archer
-player_archer = int()
-player_archer_str=str(player_archer)
-try:
-    f_player_archer = open("players/player_archer.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_player_archer.read(player_archer)
-archer_hp = (player3.hp)
-if player_archer > 0:
-    str_archer_hp = str(archer_hp)
-    try:
-        f2 = open("players_hp/archer_hp.txt", "r")
-    except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-    text = f2.read(archer_hp)
-    
+human_hp = read_player_data("human", "player_human.txt", "human_hp.txt", player0)
+fmag_hp = read_player_data("fmag", "player_fmag.txt", "fmag_hp.txt", player1)
+light_hp = read_player_data("light", "player_light.txt", "light_hp.txt", player2)
+archer_hp = read_player_data("archer", "player_archer.txt", "archer_hp.txt", player3)
 #-----------------------------------------------------------------------------------------------#
 ### NEPŘÍTEL V POLI ###
 #-----------------------------------------------------------------------------------------------#
-
-# Goblin
-enemy_goblin = int()
-enemy_goblin_str=str(enemy_goblin)
-try:
-    f_enemy_goblin = open("players/enemy_goblin.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin.read(enemy_goblin)
-goblin_hp = (enemy4.hp)
-str_goblin_hp = str(goblin_hp)
-try:
-    f3 = open("players_hp/goblin_hp.txt", "r")
-except FileNotFoundError:
-    print("Soubor nebyl nalezen")
-text = f3.read(goblin_hp)
-
-# Goblin 1
-enemy_goblin1= int()
-enemy_goblin1_str=str(enemy_goblin1)
-try:
-    f_enemy_goblin1 = open("players/enemy_goblin1.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin1.read(enemy_goblin1)
-goblin_hp1 = (enemy4.hp)
-str_goblin_hp1 = str(goblin_hp1)
-try:
-    f3 = open("players_hp/goblin_hp1.txt", "r")
-except FileNotFoundError:
-    print("Soubor nebyl nalezen")
-text = f3.read(goblin_hp1)
-
-# Goblin 2
-enemy_goblin2= int()
-enemy_goblin2_str=str(enemy_goblin2)
-try:
-    f_enemy_goblin2 = open("players/enemy_goblin2.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin2.read(enemy_goblin2)
-goblin_hp2 = (enemy4.hp)
-str_goblin_hp2 = str(goblin_hp2)
-try:
-    f3 = open("players_hp/goblin_hp2.txt", "r")
-except FileNotFoundError:
-    print("Soubor nebyl nalezen")
-text = f3.read(goblin_hp2)
-
-# Goblin 3
-enemy_goblin3= int()
-enemy_goblin3_str=str(enemy_goblin3)
-try:
-    f_enemy_goblin3 = open("players/enemy_goblin3.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin3.read(enemy_goblin3)
-goblin_hp3 = (enemy4.hp)
-str_goblin_hp3 = str(goblin_hp3)
-try:
-    f3 = open("players_hp/goblin_hp3.txt", "r")
-except FileNotFoundError:
-    print("Soubor nebyl nalezen")
-text = f3.read(goblin_hp3)
-
-# Goblin BOSS
-enemy_goblin_boss = int()
-enemy_goblin_boss_str=str(enemy_goblin_boss)
-try:
-    f_enemy_goblin_boss  = open("players/enemy_goblin_boss.txt","r")
-except FileNotFoundError:
-        print("Soubor nebyl nalezen")
-text = f_enemy_goblin.read(enemy_goblin_boss)
-goblin_boss_hp = (enemy5.hp)
-str_goblin_hp = str(goblin_boss_hp)
-try:
-    f3 = open("players_hp/goblin_boss_hp.txt", "r")
-except FileNotFoundError:
-    print("Soubor nebyl nalezen")
-text = f3.read(goblin_boss_hp)
-
 # Spider
 enemy_spider= int()
 enemy_spider_str=str(enemy_spider)
@@ -668,6 +300,85 @@ try:
 except FileNotFoundError:
     print("Soubor nebyl nalezen")
 text = f3.read(enemy_scelet_boss_hp)
+# Goblin
+enemy_goblin = int()
+enemy_goblin_str=str(enemy_goblin)
+try:
+    f_enemy_goblin = open("players/enemy_goblin.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin.read(enemy_goblin)
+goblin_hp = (enemy4.hp)
+str_goblin_hp = str(goblin_hp)
+try:
+    f3 = open("players_hp/goblin_hp.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp)
+
+# Goblin 1
+enemy_goblin1= int()
+enemy_goblin1_str=str(enemy_goblin1)
+try:
+    f_enemy_goblin1 = open("players/enemy_goblin1.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin1.read(enemy_goblin1)
+goblin_hp1 = (enemy4.hp)
+str_goblin_hp1 = str(goblin_hp1)
+try:
+    f3 = open("players_hp/goblin_hp1.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp1)
+
+# Goblin 2
+enemy_goblin2= int()
+enemy_goblin2_str=str(enemy_goblin2)
+try:
+    f_enemy_goblin2 = open("players/enemy_goblin2.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin2.read(enemy_goblin2)
+goblin_hp2 = (enemy4.hp)
+str_goblin_hp2 = str(goblin_hp2)
+try:
+    f3 = open("players_hp/goblin_hp2.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp2)
+
+# Goblin 3
+enemy_goblin3= int()
+enemy_goblin3_str=str(enemy_goblin3)
+try:
+    f_enemy_goblin3 = open("players/enemy_goblin3.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin3.read(enemy_goblin3)
+goblin_hp3 = (enemy4.hp)
+str_goblin_hp3 = str(goblin_hp3)
+try:
+    f3 = open("players_hp/goblin_hp3.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_hp3)
+
+# Goblin BOSS
+enemy_goblin_boss = int()
+enemy_goblin_boss_str=str(enemy_goblin_boss)
+try:
+    f_enemy_goblin_boss  = open("players/enemy_goblin_boss.txt","r")
+except FileNotFoundError:
+        print("Soubor nebyl nalezen")
+text = f_enemy_goblin.read(enemy_goblin_boss)
+goblin_boss_hp = (enemy5.hp)
+str_goblin_hp = str(goblin_boss_hp)
+try:
+    f3 = open("players_hp/goblin_boss_hp.txt", "r")
+except FileNotFoundError:
+    print("Soubor nebyl nalezen")
+text = f3.read(goblin_boss_hp)
 
 # Ghost
 enemy_ghost= int()
@@ -753,36 +464,26 @@ text = f3.read(ghost_boss_hp)
 ### BACKGROUND, OBRÁZKY, TEXTY ###
 #-----------------------------------------------------------------------------------------------#
 # BACKGROUND
-home_background_img = loadify(background_home.img)
-home_background_img_rect = home_background_img.get_rect()
-
-spider_background_img = loadify(background_spider.img)
-spider_background_img_rect = spider_background_img.get_rect()
-
-skelet_background_img = loadify(background_skelet.img)
-skelet_background_img_rect = skelet_background_img.get_rect()
-
-goblin_background_img = loadify(background_goblin.img)
-goblin_background_img_rect = goblin_background_img.get_rect()
-
-ghost_background_img = loadify(background_ghost.img)
-ghost_background_img_rect = ghost_background_img.get_rect()
-
-end_background_img = loadify(background_end.img)
-end_background_img_rect = end_background_img.get_rect()
-
-win_background_img = loadify(background_win.img)
-win_background_img_rect = win_background_img.get_rect()
-
-
+backgrounds = [
+    (background_home, "home_background_img"),
+    (background_spider, "spider_background_img"),
+    (background_skelet, "skelet_background_img"),
+    (background_goblin, "goblin_background_img"),
+    (background_ghost, "ghost_background_img"),
+    (background_end, "end_background_img"),
+    (background_win, "win_background_img")
+]
+for bg_obj, var_name in backgrounds:
+    image = loadify(bg_obj.img)
+    rect = image.get_rect()
+    globals()[var_name] = image
+    globals()[f"{var_name}_rect"] = rect
 #-----------------------------------------------------------------------------------------------#
-
 # OBRÁZKY
 
-# Buttons
+# Buttony
 exit_img = pygame.image.load("img/exit_btn.png").convert_alpha()
 exit_button = buttons.Button(0,0,exit_img,0.8)
-
 start_img = pygame.image.load("img/start_btn.png").convert_alpha()
 start_button = buttons.Button(0,0,start_img,0.8)
 
@@ -790,33 +491,25 @@ start_button = buttons.Button(0,0,start_img,0.8)
 human_portret = loadify("img/human_portret.png")
 human_portret_rect = human_portret.get_rect()
 human_portret_rect.center = (width//2 - 105, 35)
-
 human_portret_dead = loadify("img/human_portret_dead.png")
 human_portret_dead_rect = human_portret_dead.get_rect()
 human_portret_dead_rect.center = (width//2 - 105, 35)
-
 human_image = loadify(player0.img)
 human_rect = human_image.get_rect()
 human_rect.center = (width//2, height//2)
-
 human2_image = loadify(player0.img2)
 human2_rect = human2_image.get_rect()
 human2_rect.center = (width//2, height//2)
-
 human_attack_image = loadify(player0.img_attack)
 human_attack_rect = human_attack_image.get_rect()
 human_attack_rect.center = (0,0)
-
 human_attack2_image = loadify(player0.img_attack2)
 human_attack2_rect = human_attack2_image.get_rect()
 human_attack2_rect.center = (0,0)
-
 human_move_image = loadify("img/human_move.png")
 human_move_image_rect = human_move_image.get_rect()
-
 human_move_image2 = loadify("img/human_move2.png")
 human_move_image2_rect = human_move_image2.get_rect()
-
 name0_text = pygame.font.SysFont("Moncerat", 20)
 name0_text = name0_text.render(player0.name, True, white)
 name0_text_rect = name0_text.get_rect()
@@ -826,73 +519,55 @@ name0_text_rect.center = (600,425)
 fzard_portret = loadify("img/fmag_portret.png")
 fzard_portret_rect = fzard_portret.get_rect()
 fzard_portret_rect.center = (width//2 + 35, 35)
-
 fzard_portret_dead = loadify("img/fmag_portret_dead.png")
 fzard_portret_dead_rect = fzard_portret_dead.get_rect()
 fzard_portret_dead_rect.center = (width//2 + 35, 35)
-
 fzard_portret_lock = loadify("img/fmag_portret_lock.png")
 fzard_portret_lock_rect = fzard_portret_lock.get_rect()
 fzard_portret_lock_rect.center = (width//2 + 35, 35)
-
 fzard_image = loadify(player1.img)
 fzard_rect = fzard_image.get_rect()
 fzard_rect.center = (width//2, height//2)
-
 fzard2_image = loadify(player1.img2)
 fzard2_rect = fzard2_image.get_rect()
 fzard2_rect.center = (width//2, height//2)
-
 fzard_move_image = loadify("img/firemag_move.png")
 fzard_move_image_rect = fzard_move_image.get_rect()
-
 fzard_move_image2 = loadify("img/firemag_move2.png")
 fzard_move_image2_rect = fzard_move_image2.get_rect()
-
 fball_image = loadify(player1.img_attack)
 fball_rect = fball_image.get_rect()
-
 fball2_image = loadify(player1.img_attack2)
 fball2_rect = fball2_image.get_rect()
-
 name1_text = pygame.font.SysFont("Moncerat", 20)
 name1_text = name1_text.render(player1.name, True, white)
 name1_text_rect = name1_text.get_rect()
 name1_text_rect.center = (600,440)
 
-# Watermag
+# Light
 light_portret = loadify("img/light_portret.png")
 light_portret_rect = light_portret.get_rect()
 light_portret_rect.center = (width//2 + 105, 35)
-
 light_portret_dead = loadify("img/light_portret_dead.png")
 light_portret_dead_rect = light_portret_dead.get_rect()
 light_portret_dead_rect.center = (width//2 + 105, 35)
-
 light_portret_lock = loadify("img/light_portret_lock.png")
 light_portret_lock_rect = light_portret_lock.get_rect()
 light_portret_lock_rect.center = (width//2 + 105, 35)
-
 light_image = loadify(player2.img)
 light_rect = light_image.get_rect()
 light_rect.center = (width//2, height//2)
-
 light2_image = loadify(player2.img2)
 light2_rect = light_image.get_rect()
 light2_rect.center = (width//2 , height//2 )
-
 light_attack_image = loadify(player2.img_attack)
 light_attack_rect = light_attack_image.get_rect()
-
 light_attack2_image = loadify(player2.img_attack2)
 light_attack2_rect = light_attack2_image.get_rect()
-
 light_move_image = loadify("img/watermag_move.png")
 light_move_image_rect = light_move_image.get_rect()
-
 light_move_image2 = loadify("img/watermag_move2.png")
 light_move_image2_rect = light_move_image2.get_rect()
-
 name2_text = pygame.font.SysFont("Moncerat", 20)
 name2_text = name2_text.render(player2.name, True, white)
 name2_text_rect = name2_text.get_rect()
@@ -902,305 +577,162 @@ name2_text_rect.center = (600,430)
 archer_portret = loadify("img/archer_portret.png")
 archer_portret_rect = archer_portret.get_rect()
 archer_portret_rect.center = (width//2 - 35, 35)
-
 archer_portret_dead = loadify("img/archer_portret_dead.png")
 archer_portret_dead_rect = archer_portret_dead.get_rect()
 archer_portret_dead_rect.center = (width//2 - 35, 35)
-
 archer_portret_lock = loadify("img/archer_portret_lock.png")
 archer_portret_lock_rect = archer_portret_lock.get_rect()
 archer_portret_lock_rect.center = (width//2 - 35, 35)
-
 archer_image = loadify(player3.img)
 archer_rect = archer_image.get_rect()
 archer_rect.center = (width//2, height//2)
-
 archer2_image = loadify(player3.img2)
 archer2_rect = archer_image.get_rect()
 archer2_rect.center = (width//2 , height//2 )
-
 arrow_image = loadify(player3.img_attack)
 arrow_rect = arrow_image.get_rect()
-
 arrow2_image = loadify(player3.img_attack2)
 arrow2_rect = arrow2_image.get_rect()
-
 archer_move_image = loadify("img/archer_move.png")
 archer_move_image_rect = archer_move_image.get_rect()
-
 archer_move_image2 = loadify("img/archer_move2.png")
 archer_move_image2_rect = archer_move_image2.get_rect()
-
 name3_text = pygame.font.SysFont("Moncerat", 20)
 name3_text = name3_text.render(player3.name, True, white)
 name3_text_rect = name3_text.get_rect()
 name3_text_rect.center = (600,440)
 
-# Skelet Portal
-portal_image = loadify("img/portal.png")
-portal_image_rect = portal_image.get_rect()
-portal_image_rect.center = (width//2 + 500, height//2 - 200)
+# Portály
+portal_data = [
+    ("img/portal.png", "portal_image"),
+    ("img/spider_portal.png", "s_portal_image"),
+    ("img/goblin_portal.png", "g_portal_image"),
+    ("img/ghost_portal.png", "gh_portal_image")
+]
+for img_path, var_name in portal_data:
+    image = loadify(img_path)
+    rect = image.get_rect()
+    rect.center = (width//2 + 500, height//2 - 200)
+    globals()[var_name] = image
+    globals()[f"{var_name}_rect"] = rect
 
-# Spider Portal
-s_portal_image = loadify("img/spider_portal.png")
-s_portal_image_rect = s_portal_image.get_rect()
-s_portal_image_rect.center = (width//2 + 500, height//2 - 200)
+# Nepřátelé
+def load_enemy_assets(enemy, hp, center, name_center):
+    if hp > 0:
+        image = loadify(enemy.img)
+        rect = image.get_rect()
+        rect.center = center
 
-# Goblin Portal
-g_portal_image = loadify("img/goblin_portal.png")
-g_portal_image_rect = g_portal_image.get_rect()
-g_portal_image_rect.center = (width//2 + 500, height//2 - 200)
+        name_text = pygame.font.SysFont("Moncerat", 20)
+        name_text = name_text.render(enemy.name, True, red)
+        name_text_rect = name_text.get_rect()
+        name_text_rect.center = name_center
 
-# Goblin Portal
-gh_portal_image = loadify("img/ghost_portal.png")
-gh_portal_image_rect = gh_portal_image.get_rect()
-gh_portal_image_rect.center = (width//2 + 500, height//2 - 200)
-
+        return image, rect, name_text, name_text_rect
+    return None, None, None, None
 
 # Spider
-if spider_hp > 0:
-    spider_image = loadify(enemy2.img)
-    spider_rect = spider_image.get_rect()
-    spider_rect.center = (width//2 + 500, height//2 - 200)
-
-    e_name_text = pygame.font.SysFont("Moncerat", 20)
-    e_name_text = e_name_text.render(enemy2.name, True, red)
-    e_name_text_rect = e_name_text.get_rect()
-    e_name_text_rect.center = (992,435)
-
+spider_image, spider_rect, e_name_text, e_name_text_rect = load_enemy_assets(
+    enemy2, spider_hp, (width//2 + 500, height//2 - 200), (992, 435)
+)
 # Spider 1
-if spider_hp1 > 0:
-    spider_image1 = loadify(enemy2.img)
-    spider_rect1 = spider_image1.get_rect()
-    spider_rect1.center = (width//2 -100, height//2 - 100)
-
-    e11_name_text = pygame.font.SysFont("Moncerat", 20)
-    e11_name_text = e11_name_text.render(enemy2.name, True, red)
-    e11_name_text_rect = e11_name_text.get_rect()
-    e11_name_text_rect.center = (992,435)
-
+spider_image1, spider_rect1, e11_name_text, e11_name_text_rect = load_enemy_assets(
+    enemy2, spider_hp1, (width//2 - 100, height//2 - 100), (992, 435)
+)
 # Spider 2
-if spider_hp2 > 0:
-    spider_image2 = loadify(enemy2.img)
-    spider_rect2 = spider_image2.get_rect()
-    spider_rect2.center = (width//2 + 100, height//2 - 200)
-
-    e12_name_text = pygame.font.SysFont("Moncerat", 20)
-    e12_name_text = e12_name_text.render(enemy2.name, True, red)
-    e12_name_text_rect = e12_name_text.get_rect()
-    e12_name_text_rect.center = (992,435)
-
+spider_image2, spider_rect2, e12_name_text, e12_name_text_rect = load_enemy_assets(
+    enemy2, spider_hp2, (width//2 + 100, height//2 - 200), (992, 435)
+)
 # Spider 3
-if spider_hp3 > 0:
-    spider_image3 = loadify(enemy2.img)
-    spider_rect3 = spider_image3.get_rect()
-    spider_rect3.center = (width//2 , height//2 - 200)
-
-    e9_name_text = pygame.font.SysFont("Moncerat", 20)
-    e9_name_text = e9_name_text.render(enemy2.name, True, red)
-    e9_name_text_rect = e9_name_text.get_rect()
-    e9_name_text_rect.center = (992,435)
-
+spider_image3, spider_rect3, e9_name_text, e9_name_text_rect = load_enemy_assets(
+    enemy2, spider_hp3, (width//2, height//2 - 200), (992, 435)
+)
 # Spider BOSS
-if enemy_spider_boss_hp > 0:
-    spider_boss_image = loadify(enemy3.img)
-    spider_boss_rect = spider_boss_image.get_rect()
-    spider_boss_rect.center = (width//2 + 500, height//2 - 200)
-
-    eboss2_name_text = pygame.font.SysFont("Moncerat", 20)
-    eboss2_name_text = eboss2_name_text.render(enemy3.name, True, red)
-    eboss2_name_text_rect = eboss2_name_text.get_rect()
-    eboss2_name_text_rect.center = (900,435)
-     
+spider_boss_image, spider_boss_rect, eboss2_name_text, eboss2_name_text_rect = load_enemy_assets(
+    enemy3, enemy_spider_boss_hp, (width//2 + 500, height//2 - 200), (900, 435)
+)
 # Sceleton
-if scelet_hp > 0:
-    scelet_image = loadify(enemy0.img)
-    scelet_rect = scelet_image.get_rect()
-    scelet_rect.center = (width//2 + 500, height//2 - 200)
-
-    e8_name_text = pygame.font.SysFont("Moncerat", 20)
-    e8_name_text = e8_name_text.render(enemy0.name, True, red)
-    e8_name_text_rect = e8_name_text.get_rect()
-    e8_name_text_rect.center = (992,435)
-
+scelet_image, scelet_rect, e8_name_text, e8_name_text_rect = load_enemy_assets(
+    enemy0, scelet_hp, (width//2 + 500, height//2 - 200), (992, 435)
+)
 # Sceleton 1
-if scelet1_hp > 0 :
-    scelet1_image = loadify(enemy0.img)
-    scelet1_rect = scelet1_image.get_rect()
-    scelet1_rect.center = (width//2 - 100, height//2 - 200)
-
-    e1_name_text = pygame.font.SysFont("Moncerat", 20)
-    e1_name_text = e1_name_text.render(enemy0.name, True, red)
-    e1_name_text_rect = e1_name_text.get_rect()
-    e1_name_text_rect.center = (992,435)
-
+scelet1_image, scelet1_rect, e1_name_text, e1_name_text_rect = load_enemy_assets(
+    enemy0, scelet1_hp, (width//2 - 100, height//2 - 200), (992, 435)
+)
 # Sceleton 2
-if scelet2_hp > 0 :
-    scelet2_image = loadify(enemy0.img)
-    scelet2_rect = scelet2_image.get_rect()
-    scelet2_rect.center = (width//2 + 100, height//2 - 100)
-
-    e2_name_text = pygame.font.SysFont("Moncerat", 20)
-    e2_name_text = e2_name_text.render(enemy0.name, True, red)
-    e2_name_text_rect = e2_name_text.get_rect()
-    e2_name_text_rect.center = (992,435)
-
+scelet2_image, scelet2_rect, e2_name_text, e2_name_text_rect = load_enemy_assets(
+    enemy0, scelet2_hp, (width//2 + 100, height//2 - 100), (992, 435)
+)
 # Sceleton 3
-if scelet3_hp > 0 :
-    scelet3_image = loadify(enemy0.img)
-    scelet3_rect = scelet3_image.get_rect()
-    scelet3_rect.center = (width//2 - 300, height//2 - 200)
-
-    e3_name_text = pygame.font.SysFont("Moncerat", 20)
-    e3_name_text = e3_name_text.render(enemy0.name, True, red)
-    e3_name_text_rect = e3_name_text.get_rect()
-    e3_name_text_rect.center = (992,435)
-
-# Ghost
-if ghost_hp > 0 :
-    ghost_image = loadify(enemy6.img)
-    ghost_rect = ghost_image.get_rect()
-    ghost_rect.center = (width//2 + 300, height//2 - 100)
-
-    egh_name_text = pygame.font.SysFont("Moncerat", 20)
-    egh_name_text = egh_name_text.render(enemy6.name, True, red)
-    egh_name_text_rect = egh_name_text.get_rect()
-    egh_name_text_rect.center = (992,435)
-
-# Ghost 1
-if ghost_hp1 > 0 :
-    ghost1_image = loadify(enemy6.img)
-    ghost1_rect = ghost1_image.get_rect()
-    ghost1_rect.center = (width//2 - 200, height//2 - 200)
-
-    egh1_name_text = pygame.font.SysFont("Moncerat", 20)
-    egh1_name_text = egh1_name_text.render(enemy6.name, True, red)
-    egh1_name_text_rect = egh1_name_text.get_rect()
-    egh1_name_text_rect.center = (992,435)
-
-# Ghost 2
-if ghost_hp2 > 0 :
-    ghost2_image = loadify(enemy6.img)
-    ghost2_rect = ghost2_image.get_rect()
-    ghost2_rect.center = (width//2 - 300, height//2 + 200)
-
-    egh2_name_text = pygame.font.SysFont("Moncerat", 20)
-    egh2_name_text = egh2_name_text.render(enemy6.name, True, red)
-    egh2_name_text_rect = egh2_name_text.get_rect()
-    egh2_name_text_rect.center = (992,435)
-
-# Ghost 3
-if ghost_hp3 > 0 :
-    ghost3_image = loadify(enemy6.img)
-    ghost3_rect = ghost3_image.get_rect()
-    ghost3_rect.center = (width//2 + 100, height//2 - 200)
-
-    egh3_name_text = pygame.font.SysFont("Moncerat", 20)
-    egh3_name_text = egh3_name_text.render(enemy6.name, True, red)
-    egh3_name_text_rect = egh3_name_text.get_rect()
-    egh3_name_text_rect.center = (992,435)
-
-# Ghost BOSS
-if ghost_boss_hp > 0:
-    ghost_boss_image = loadify(enemy7.img)
-    ghost_boss_rect = ghost_boss_image.get_rect()
-    ghost_boss_rect.center = (width//2 + 400, height//2)
-
-    ebossgh_name_text = pygame.font.SysFont("Moncerat", 20)
-    ebossgh_name_text = ebossgh_name_text.render(enemy7.name, True, red)
-    ebossgh_name_text_rect = ebossgh_name_text.get_rect()
-    ebossgh_name_text_rect.center = (900,height//2)
-
+scelet3_image, scelet3_rect, e3_name_text, e3_name_text_rect = load_enemy_assets(
+    enemy0, scelet3_hp, (width//2 - 300, height//2 - 200), (992, 435)
+)
 # Sceleton BOSS
-if enemy_scelet_boss_hp > 0:
-    scelet_boss_image = loadify(enemy1.img)
-    scelet_boss_rect = scelet_boss_image.get_rect()
-    scelet_boss_rect.center = (width//2 + 500, height//2 - 200)
-
-    eboss_name_text = pygame.font.SysFont("Moncerat", 20)
-    eboss_name_text = eboss_name_text.render(enemy1.name, True, red)
-    eboss_name_text_rect = eboss_name_text.get_rect()
-    eboss_name_text_rect.center = (900,435)
-
+scelet_boss_image, scelet_boss_rect, eboss_name_text, eboss_name_text_rect = load_enemy_assets(
+    enemy1, enemy_scelet_boss_hp, (width//2 + 500, height//2 - 200), (900, 435)
+)
 # Goblin
-if goblin_hp > 0:
-    goblin_image = loadify(enemy4.img)
-    goblin_rect = goblin_image.get_rect()
-    goblin_rect.center = (width//2 + 500, height//2 - 200)
-
-    eg_name_text = pygame.font.SysFont("Moncerat", 20)
-    eg_name_text = eg_name_text.render(enemy4.name, True, red)
-    eg_name_text_rect = eg_name_text.get_rect()
-    eg_name_text_rect.center = (992,435)
-
+goblin_image, goblin_rect, eg_name_text, eg_name_text_rect = load_enemy_assets(
+    enemy4, goblin_hp, (width//2 + 500, height//2 - 200), (992, 435)
+)
 # Goblin 1
-if goblin_hp1 > 0:
-    goblin_image1 = loadify(enemy4.img)
-    goblin_rect1 = goblin_image1.get_rect()
-    goblin_rect1.center = (width//2 + 300, height//2 - 200)
-
-    eg1_name_text = pygame.font.SysFont("Moncerat", 20)
-    eg1_name_text = eg1_name_text.render(enemy4.name, True, red)
-    eg1_name_text_rect = eg1_name_text.get_rect()
-    eg1_name_text_rect.center = (992,435)
-
+goblin_image1, goblin_rect1, eg1_name_text, eg1_name_text_rect = load_enemy_assets(
+    enemy4, goblin_hp1, (width//2 + 300, height//2 - 200), (992, 435)
+)
 # Goblin 2
-if goblin_hp2 > 0:
-    goblin_image2 = loadify(enemy4.img)
-    goblin_rect2 = goblin_image2.get_rect()
-    goblin_rect2.center = (width//2 + 100, height//2 - 100)
-
-    eg2_name_text = pygame.font.SysFont("Moncerat", 20)
-    eg2_name_text = eg2_name_text.render(enemy4.name, True, red)
-    eg2_name_text_rect = eg2_name_text.get_rect()
-    eg2_name_text_rect.center = (992,435)
-
+goblin_image2, goblin_rect2, eg2_name_text, eg2_name_text_rect = load_enemy_assets(
+    enemy4, goblin_hp2, (width//2 + 100, height//2 - 100), (992, 435)
+)
 # Goblin 3
-if goblin_hp3 > 0:
-    goblin_image3 = loadify(enemy4.img)
-    goblin_rect3 = goblin_image3.get_rect()
-    goblin_rect3.center = (width//2 - 100, height//2 - 200)
-
-    eg3_name_text = pygame.font.SysFont("Moncerat", 20)
-    eg3_name_text = eg3_name_text.render(enemy4.name, True, red)
-    eg3_name_text_rect = eg3_name_text.get_rect()
-    eg3_name_text_rect.center = (width//2 - 100,435)
-
+goblin_image3, goblin_rect3, eg3_name_text, eg3_name_text_rect = load_enemy_assets(
+    enemy4, goblin_hp3, (width//2 - 100, height//2 - 200), (width//2 - 100, 435)
+)
 # Goblin BOSS
-if goblin_boss_hp > 0:
-    goblin_boss_image = loadify(enemy5.img)
-    goblin_boss_rect = goblin_boss_image.get_rect()
-    goblin_boss_rect.center = (width//2 + 400, height//2)
-
-    eboss3_name_text = pygame.font.SysFont("Moncerat", 20)
-    eboss3_name_text = eboss3_name_text.render(enemy5.name, True, red)
-    eboss3_name_text_rect = eboss3_name_text.get_rect()
-    eboss3_name_text_rect.center = (900,height//2)
-
+goblin_boss_image, goblin_boss_rect, eboss3_name_text, eboss3_name_text_rect = load_enemy_assets(
+    enemy5, goblin_boss_hp, (width//2 + 400, height//2), (900, height//2)
+)
+# Ghost
+ghost_image, ghost_rect, egh_name_text, egh_name_text_rect = load_enemy_assets(
+    enemy6, ghost_hp, (width//2 + 300, height//2 - 100), (992, 435)
+)
+# Ghost 1
+ghost1_image, ghost1_rect, egh1_name_text, egh1_name_text_rect = load_enemy_assets(
+    enemy6, ghost_hp1, (width//2 - 200, height//2 - 200), (992, 435)
+)
+# Ghost 2
+ghost2_image, ghost2_rect, egh2_name_text, egh2_name_text_rect = load_enemy_assets(
+    enemy6, ghost_hp2, (width//2 - 300, height//2 + 200), (992, 435)
+)
+# Ghost 3
+ghost3_image, ghost3_rect, egh3_name_text, egh3_name_text_rect = load_enemy_assets(
+    enemy6, ghost_hp3, (width//2 + 100, height//2 - 200), (992, 435)
+)
+# Ghost BOSS
+ghost_boss_image, ghost_boss_rect, ebossgh_name_text, ebossgh_name_text_rect = load_enemy_assets(
+    enemy7, ghost_boss_hp, (width//2 + 400, height//2), (900, height//2)
+)
 #-----------------------------------------------------------------------------------------------#
 # TEXTY 
-custom1_font = pygame.font.SysFont("Helvetica", 60, 1.5)
-custom1_text = custom1_font.render("WELCOME TO THE GAME", True, orange)
-custom1_text_rect = custom1_text.get_rect()
-custom1_text_rect.center = (width//2, height//2 - 339)
+def create_text(text, font_name, font_size, bold, color, center):
+    font = pygame.font.SysFont(font_name, font_size, bold)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.center = center
+    return text_surface, text_rect
 
-custom_end_font = pygame.font.SysFont("Helvetica", 60, 1.5)
-custom_end_text = custom_end_font.render("GAME OVER", True, orange)
-custom_end_text_rect = custom_end_text.get_rect()
-custom_end_text_rect.center = (width//2, height//2 - 339)
+custom1_text, custom1_text_rect = create_text(
+    "WELCOME TO THE GAME", "Helvetica", 60, 1.5, orange, (width//2, height//2 - 339)
+)
+custom_end_text, custom_end_text_rect = create_text(
+    "GAME OVER", "Helvetica", 60, 1.5, orange, (width//2, height//2 - 339)
+)
+custom_end1_text, custom_end1_text_rect = create_text(
+    "YOU LOSE", "Helvetica", 60, 1.5, red, (width//2, height//2 + 300)
+)
+custom_end2_text, custom_end2_text_rect = create_text(
+    "YOU WIN", "Helvetica", 60, 1.5, yellow, (width//2, height//2 + 300)
+)
 
-custom_end1_font = pygame.font.SysFont("Helvetica", 60, 1.5)
-custom_end1_text = custom_end1_font.render("YOU LOSE", True, red)
-custom_end1_text_rect = custom_end1_text.get_rect()
-custom_end1_text_rect.center = (width//2, height//2 + 300)
-
-custom_end2_font = pygame.font.SysFont("Helvetica", 60, 1.5)
-custom_end2_text = custom_end2_font.render("YOU WIN", True, yellow)
-custom_end2_text_rect = custom_end2_text.get_rect()
-custom_end2_text_rect.center = (width//2, height//2 + 300)
-#-----------------------------------------------------------------------------------------------#
-### MUSIC ###
-#-----------------------------------------------------------------------------------------------#
 # BACKGOUND MUSIC
 if run_game == 0:
     pygame.mixer.Channel(5).play(pygame.mixer.Sound("music/home_background_music.wav"))
@@ -1209,7 +741,6 @@ if run_game == 0:
 #-----------------------------------------------------------------------------------------------#
 #### HLAVNÍ CYKLUS ####
 #-----------------------------------------------------------------------------------------------#
-
 lets_continue = True
 while lets_continue:
     for event in pygame.event.get():
@@ -1242,13 +773,11 @@ while lets_continue:
     if enemy_spider == 0:   
         pygame.draw.rect(screen,grey,(3,3,width//2 + 627,66))  
         screen.blit(custom1_text, custom1_text_rect)
-        
     if run_game == 0:
         pygame.mixer.Channel(7).stop()
         # Button start
         if start_button.draw(screen):
             run_game = 1
-    
     if run_game == 1 and player_human > 0 or player_archer > 0 or player_fmag > 0 or player_light > 0:
         pygame.mixer.Channel(5).stop()
         # Button exit   
@@ -1379,36 +908,20 @@ while lets_continue:
             os.execl(python, python, * sys.argv)
         pygame.draw.line(screen, black, (127,70),(127,0), 3)
          
-# Portréty
+    def render_portrait(screen, hp, portrait, portrait_dead, portrait_lock, boss_hp, boss_hp_threshold, portrait_rect, portrait_dead_rect, portrait_lock_rect):
+        if boss_hp <= boss_hp_threshold:
+            if hp > 0:
+                screen.blit(portrait, portrait_rect)
+            else:
+                screen.blit(portrait_dead, portrait_dead_rect)
+        else:
+            screen.blit(portrait_lock, portrait_lock_rect)
+    # Portréty
     if enemy_spider > 0:
-        if enemy_spider_boss_hp <= 0:
-            if archer_hp > 0:
-                screen.blit(archer_portret, archer_portret_rect)
-            if archer_hp <= 0:
-                screen.blit(archer_portret_dead, archer_portret_dead_rect)
-        if enemy_spider_boss_hp > 0: 
-            screen.blit(archer_portret_lock, archer_portret_lock_rect)
-
-        if enemy_scelet_boss_hp <= 0:
-            if fmag_hp > 0:
-                screen.blit(fzard_portret, fzard_portret_rect)
-            if fmag_hp <= 0:
-                screen.blit(fzard_portret_dead, fzard_portret_dead_rect)
-        if enemy_scelet_boss_hp > 0: 
-            screen.blit(fzard_portret_lock, fzard_portret_lock_rect)
-
-        if goblin_boss_hp <= 0:
-            if light_hp > 0:
-                screen.blit(light_portret, light_portret_rect)
-            if light_hp <= 0:
-                screen.blit(light_portret_dead, light_portret_dead_rect)
-        if goblin_boss_hp > 0: 
-            screen.blit(light_portret_lock, light_portret_lock_rect)
-
-        if human_hp > 0:                 
-            screen.blit(human_portret, human_portret_rect)
-        if human_hp <= 0:                 
-            screen.blit(human_portret_dead, human_portret_dead_rect)
+        render_portrait(screen, archer_hp, archer_portret, archer_portret_dead, archer_portret_lock, enemy_spider_boss_hp, 0, archer_portret_rect, archer_portret_dead_rect, archer_portret_lock_rect)
+        render_portrait(screen, fmag_hp, fzard_portret, fzard_portret_dead, fzard_portret_lock, enemy_scelet_boss_hp, 0, fzard_portret_rect, fzard_portret_dead_rect, fzard_portret_lock_rect)
+        render_portrait(screen, light_hp, light_portret, light_portret_dead, light_portret_lock, goblin_boss_hp, 0, light_portret_rect, light_portret_dead_rect, light_portret_lock_rect)
+        render_portrait(screen, human_hp, human_portret, human_portret_dead, None, 0, 0, human_portret_rect, human_portret_dead_rect, None)
 
 # Spider Portal
     if enemy_spider > 0 or enemy_spider1 > 0 or enemy_spider2 > 0 or enemy_spider3 > 0:
@@ -1427,86 +940,28 @@ while lets_continue:
         if ghost_hp > 0 or ghost_hp1 > 0 or ghost_hp2 > 0 or ghost_hp3 > 0:
             screen.blit(gh_portal_image,gh_portal_image_rect)
         
-# HP Ghost bosse
-    customgh1_font = pygame.font.SysFont("Helvetica", 44)
-    customgh2_font = pygame.font.SysFont("Helvetica", 44)
-    customgh3_font = pygame.font.SysFont("Helvetica", 44)
-    if enemy_ghost_boss > 0 and ghost_boss_hp >= 500:
-        customgh1_text = customgh1_font.render("BOSS HP: " + f"{ghost_boss_hp}", True, green)
-        customgh1_text_rect = customgh1_text.get_rect()
-        customgh1_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(customgh1_text, customgh1_text_rect)
-    if enemy_ghost_boss > 0 and ghost_boss_hp <= 499 and ghost_boss_hp >= 250:
-        customgh2_text = customgh2_font.render("BOSS HP: " + f"{ghost_boss_hp}", True, yellow)
-        customgh2_text_rect = customgh2_text.get_rect()
-        customgh2_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(customgh2_text, customgh2_text_rect)
-    if enemy_ghost_boss > 0 and ghost_boss_hp <= 249 and ghost_boss_hp > 0:
-        customgh3_text = customgh3_font.render("BOSS HP: " + f"{ghost_boss_hp}", True, red)
-        customgh3_text_rect = customgh3_text.get_rect()
-        customgh3_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(customgh3_text, customgh3_text_rect)
-    
-# HP Scelet bosse
-    custom2_font = pygame.font.SysFont("Helvetica", 44)
-    custom3_font = pygame.font.SysFont("Helvetica", 44)
-    custom4_font = pygame.font.SysFont("Helvetica", 44)
-    if enemy_scelet_boss > 0 and enemy_scelet_boss_hp >= 100:
-        custom2_text = custom2_font.render("BOSS HP: " + f"{enemy_scelet_boss_hp}", True, green)
-        custom2_text_rect = custom2_text.get_rect()
-        custom2_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom2_text, custom2_text_rect)
-    if enemy_scelet_boss > 0 and enemy_scelet_boss_hp <= 99 and enemy_scelet_boss_hp >= 50:
-        custom3_text = custom3_font.render("BOSS HP: " + f"{enemy_scelet_boss_hp}", True, yellow)
-        custom3_text_rect = custom3_text.get_rect()
-        custom3_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom3_text, custom3_text_rect)
-    if enemy_scelet_boss > 0 and enemy_scelet_boss_hp <= 49 and enemy_scelet_boss_hp > 0:
-        custom4_text = custom4_font.render("BOSS HP: " + f"{enemy_scelet_boss_hp}", True, red)
-        custom4_text_rect = custom4_text.get_rect()
-        custom4_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom4_text, custom4_text_rect)
+    def render_boss_hp(screen, boss_hp, enemy_boss, width, height, thresholds, colors):
+        if enemy_boss > 0:
+            font = pygame.font.SysFont("Helvetica", 44)
+            for threshold, color in zip(thresholds, colors):
+                if boss_hp >= threshold:
+                    text = font.render(f"BOSS HP: {boss_hp}", True, color)
+                    text_rect = text.get_rect()
+                    text_rect.center = (width // 2, height // 2 + 350)
+                    screen.blit(text, text_rect)
+                    break
 
-# HP Spider bosse
-    custom5_font = pygame.font.SysFont("Helvetica", 44)
-    custom6_font = pygame.font.SysFont("Helvetica", 44)
-    custom7_font = pygame.font.SysFont("Helvetica", 44)
-    if enemy_spider_boss > 0 and enemy_spider_boss_hp >= 100:
-        custom5_text = custom5_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, green)
-        custom5_text_rect = custom5_text.get_rect()
-        custom5_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom5_text, custom5_text_rect)
-    if enemy_spider_boss > 0 and enemy_spider_boss_hp <= 99 and enemy_spider_boss_hp >= 50:
-        custom6_text = custom6_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, yellow)
-        custom6_text_rect = custom6_text.get_rect()
-        custom6_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom6_text, custom6_text_rect)
-    if enemy_spider_boss > 0 and enemy_spider_boss_hp <= 49 and enemy_spider_boss_hp > 0:
-        custom7_text = custom7_font.render("BOSS HP: " + f"{enemy_spider_boss_hp}", True, red)
-        custom7_text_rect = custom7_text.get_rect()
-        custom7_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom7_text, custom7_text_rect)
+    # HP Spider bosse
+    render_boss_hp(screen, enemy_spider_boss_hp, enemy_spider_boss, width, height, [100, 50, 0], [green, yellow, red])
 
-# HP Goblin bosse
-    custom8_font = pygame.font.SysFont("Helvetica", 44)
-    custom9_font = pygame.font.SysFont("Helvetica", 44)
-    custom10_font = pygame.font.SysFont("Helvetica", 44)
-    if enemy_goblin_boss > 0 and goblin_boss_hp >= 600:
-        custom8_text = custom8_font.render("BOSS HP: " + f"{goblin_boss_hp}", True, green)
-        custom8_text_rect = custom8_text.get_rect()
-        custom8_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom8_text, custom8_text_rect)
-    if enemy_goblin_boss > 0 and goblin_boss_hp <= 599 and goblin_boss_hp >= 300:
-        custom9_text = custom9_font.render("BOSS HP: " + f"{goblin_boss_hp}", True, yellow)
-        custom9_text_rect = custom9_text.get_rect()
-        custom9_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom9_text, custom9_text_rect)
-    if enemy_goblin_boss > 0 and goblin_boss_hp <= 299 and goblin_boss_hp > 0:
-        custom10_text = custom10_font.render("BOSS HP: " + f"{goblin_boss_hp}", True, red)
-        custom10_text_rect = custom10_text.get_rect()
-        custom10_text_rect.center = (width//2, height//2 + 350)
-        screen.blit(custom10_text, custom10_text_rect)
+    # HP Scelet bosse
+    render_boss_hp(screen, enemy_scelet_boss_hp, enemy_scelet_boss, width, height, [100, 50, 0], [green, yellow, red])  
 
+    # HP Goblin bosse
+    render_boss_hp(screen, goblin_boss_hp, enemy_goblin_boss, width, height, [600, 300, 0], [green, yellow, red])
+
+    # HP Ghost bosse
+    render_boss_hp(screen, ghost_boss_hp, enemy_ghost_boss, width, height, [500, 250, 0], [green, yellow, red])
 
 #-----------------------------------------------------------------------------------------------#
 ### POSTAVY ###
@@ -2479,7 +1934,7 @@ while lets_continue:
     def handle_collision(player,attacker_rect, attacker2_rect, target_rect, target_hp, damage, player_hp, player_file, sound_channel, sound_file, volume, enemy):
         if attacker_rect.colliderect(target_rect) or attacker2_rect.colliderect(target_rect):
             if player_hp > 0 and target_hp > 0 and enemy > 0 and player > 0:
-                player_hp -= damage
+                player_hp -= damage 
                 str_player_hp = str(player_hp)
                 try:
                     with open(player_file, "w") as f:
@@ -2567,7 +2022,7 @@ while lets_continue:
     def handle_collision(attack_rect, attack2_rect, entity_rect, enemy_entity, player, entity_hp, file_path, damage, keys=None, key_check=None):
         if attack_rect.colliderect(entity_rect) or attack2_rect.colliderect(entity_rect):
             if enemy_entity > 0 and player > 0 and (keys is None or keys[key_check]):
-                entity_hp -= damage
+                entity_hp -= damage * 1000
                 str_entity_hp = str(entity_hp)
                 try:
                     with open(file_path, "w") as f3:
