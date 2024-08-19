@@ -2022,7 +2022,7 @@ while lets_continue:
     def handle_collision(attack_rect, attack2_rect, entity_rect, enemy_entity, player, entity_hp, file_path, damage, keys=None, key_check=None):
         if attack_rect.colliderect(entity_rect) or attack2_rect.colliderect(entity_rect):
             if enemy_entity > 0 and player > 0 and (keys is None or keys[key_check]):
-                entity_hp -= damage * 1000
+                entity_hp -= damage 
                 str_entity_hp = str(entity_hp)
                 try:
                     with open(file_path, "w") as f3:
